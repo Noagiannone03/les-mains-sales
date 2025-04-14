@@ -4,8 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Les Mains Sales - Accueil</title>
+  <!-- Préchargement des images actives -->
+  <link rel="preload" href="assets/pictos/colored-pic/ampoule-active.png" as="image">
+  <link rel="preload" href="assets/hand-button/voir-plus-colored.png" as="image">
+  <link rel="preload" href="assets/pictos/colored-pic/mind-active.png" as="image">
+  <link rel="preload" href="assets/images/Rectangle 117-colored.png" as="image">
   <style>
-    /* Importation de la police Ubuntu Regular en local */
+    /* Importation des polices */
     @font-face {
       font-family: 'Ubuntu';
       src: url('fonts/ubuntu-regular.woff2') format('woff2'),
@@ -21,8 +26,7 @@
       font-family: 'ubuntu-medium';
       src: url('assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
     }
-
-    /* Réinitialisation de base */
+    /* Réinitialisation */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -32,27 +36,25 @@
       font-family: 'Ubuntu', sans-serif;
       overflow-x: hidden;
     }
-
     /* ======================= */
     /*        NAVBAR         */
     /* ======================= */
     .navbar {
-      /* Position statique pour que la navbar défile avec la page */
       width: 100%;
-      height: 60px;                /* Hauteur totale de la barre */
-      background-color: #000;      /* Fond noir */
+      height: 60px; /* Hauteur totale */
+      background-color: #000;
       display: flex;
-      align-items: center;         /* Centrage vertical */
+      align-items: center;
       justify-content: space-between;
-      padding: 0 30px;             /* Marge intérieure horizontale */
+      padding: 0 30px;
     }
     .navbar .logo img {
-      height: 40px; /* Conservation du ratio du logo */
+      height: 40px;
       display: block;
     }
     .navbar nav {
       display: flex;
-      gap: 30px; /* Espacement entre les liens */
+      gap: 30px;
     }
     .navbar nav a {
       color: #fff;
@@ -62,11 +64,10 @@
       position: relative;
       padding: 5px 0;
     }
-    /* Effet de survol : PNG derrière le texte */
     .navbar nav a::before {
       content: "";
       position: absolute;
-      top: 0; 
+      top: 0;
       left: 0;
       width: 100%;
       height: 100%;
@@ -80,14 +81,13 @@
       opacity: 1;
       transform: scale(1);
     }
-
     /* ======================= */
     /*      SECTION VIDÉO      */
     /* ======================= */
     .video-container {
       position: relative;
       width: 100%;
-      height: 100vh;    /* La vidéo occupe toute la hauteur de la fenêtre */
+      height: 100vh;
       overflow: hidden;
     }
     .video-container video {
@@ -95,10 +95,9 @@
       height: 100%;
       object-fit: cover;
     }
-    /* Dégradé progressif en haut de la vidéo */
     .gradient-overlay {
       position: absolute;
-      top: 0; 
+      top: 0;
       left: 0;
       width: 100%;
       height: 50px;
@@ -114,7 +113,6 @@
       pointer-events: none;
       z-index: 5;
     }
-    /* Flèche en bas de la vidéo */
     .scroll-down {
       position: absolute;
       bottom: 20px;
@@ -131,13 +129,10 @@
     .scroll-down:hover {
       transform: translateX(-50%) scale(1.1);
     }
-
-    /* Marge entre sections */
     .spacer {
       height: 30px;
       width: 100%;
     }
-
     /* ======================= */
     /*   IMAGE PLEIN LARGEUR   */
     /* ======================= */
@@ -150,11 +145,11 @@
       width: 100%;
       height: auto;
     }
-
     /* ======================= */
     /*     SECTION CONCEPT     */
     /* ======================= */
     .concept-section {
+      margin: 0 50px;
       min-height: 90vh;
       padding: 50px 50px;
       display: flex;
@@ -170,14 +165,12 @@
       grid-template-rows: 1fr;
       gap: 20px;
     }
-    /* Grille d'images en 2 colonnes x 3 lignes */
     .images-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-auto-rows: 1fr;
       gap: 20px;
     }
-    /* Par défaut, images en noir et blanc */
     .images-grid img {
       width: 100%;
       height: 100%;
@@ -187,16 +180,12 @@
       filter: grayscale(100%);
       transition: filter 0.3s ease;
     }
-    /* Au survol, elles passent en couleur */
     .images-grid img:hover {
       filter: grayscale(0%);
     }
-    /* En mode toggle (via JS), nous forçons la couleur (aucun filtre) */
     .toggled .images-grid img {
       filter: none;
     }
-
-    /* Contenu de la colonne de droite */
     .concept-content {
       height: 100%;
       position: relative;
@@ -217,9 +206,9 @@
       margin-bottom: 20px;
       transition: color 0.3s ease;
     }
-    /* En mode toggle, le titre deviendra bleu (#2DDFF3) */
+    .concept-content h1,
     .toggled .concept-content h1 {
-      color: #2DDFF3;
+      color: inherit;
     }
     .concept-content p {
       line-height: 1.3;
@@ -228,14 +217,14 @@
       font-family: 'ubuntu-medium', sans-serif;
       margin-bottom: 15px;
     }
-    /* Pour les phrases à surligner en mode toggle */
     .toggle-highlight {
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
     }
     .toggled .toggle-highlight {
-      color: #2DDFF3;
+      background-color: #2DDFF3;
+   
+      border-radius: 3px;
     }
-    /* Bouton "Voir +" sous forme d'image */
     .concept-content .voir-plus {
       text-align: right;
     }
@@ -247,7 +236,6 @@
     .concept-content .voir-plus img:hover {
       transform: scale(1.05);
     }
-    /* Image cliquable en haut à droite avec effet shake au survol */
     .concept-content .concept-image {
       position: absolute;
       top: 0;
@@ -274,6 +262,224 @@
       75% { transform: translate(-2px, -2px); }
       100% { transform: translate(0, 0); }
     }
+    .toggled .concept-image {
+      width: 16%;
+    }
+    /* ======================= */
+    /*   NOUVELLE SECTION PORTFOLIO   */
+    /* ======================= */
+    .portfolio-section {
+      min-height: 90vh;
+      padding: 50px 80px; /* Marges latérales augmentées */
+      display: flex;
+      align-items: center;
+    }
+    .portfolio-container {
+      height: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .top-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      align-items: center;
+    }
+    .portfolio-title {
+      flex: 0 0 auto;
+      font-size: 5.5em;
+      text-transform: uppercase;
+      font-family: 'sharpie-extrabold', sans-serif;
+      letter-spacing: 3px;
+    }
+    .text-and-image {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      flex: 1;
+    }
+    .portfolio-small-image {
+    
+      height: auto;
+      border-radius: 8px;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+    .portfolio-small-image:hover {
+      animation: shake 0.5s;
+      filter: grayscale(0%);
+    }
+    .portfolio-section.toggled .portfolio-small-image {
+      filter: none;
+    }
+    .subtitle-row {
+      width: 100%;
+    }
+    .portfolio-subtitle {
+      font-size: 1.5em;
+      font-family: 'ubuntu-medium', sans-serif;
+      line-height: 1.4;
+      text-align: justify;
+    }
+    .portfolio-section.toggled .portfolio-subtitle {
+   
+      border-radius: 3px;
+    }
+    .portfolio-large-image {
+      width: 100%;
+      max-height: 500px; /* Hauteur réduite */
+      object-fit: cover;
+      display: block;
+      border-radius: 20px;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+    .portfolio-large-image:hover {
+      filter: grayscale(0%);
+    }
+   
+    .slider-toggles {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 10px;
+      margin-top: 40px; /* Plus éloigné de l'image */
+    }
+    .toggle-line {
+      display: inline-block;
+      width: 40px;
+      height: 3px;
+      background-color: #000;
+      border-radius: 2px;
+    }
+    /* ======================= */
+    /*         FOOTER          */
+    /* ======================= */
+    .footer-section {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+    }
+    .footer-container {
+      position: relative;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+      height: 100%;
+    }
+    /* Petite image en haut à gauche du footer */
+    .footer-small-image {
+      position: flexe;;
+      left: 20px;
+      width: 100px;
+      border-radius: 8px;
+    }
+    /* Conteneur central dans le footer */
+    .footer-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Grande image centrale */
+    .footer-large-image {
+      max-width: 600px;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 30px;
+    }
+    /* Bloc "pillule" dans le footer */
+    .footer-pill {
+        z-index: 10;
+      background-color: #000;
+      color: #fff;
+      border-radius: 50px;
+      padding: 20px 20px;
+      text-align: center;
+      width: 100%;
+      max-width: 1000px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    /* Footer Pill - Partie supérieure : Navigation */
+    .footer-pill-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+    .footer-pill-top .left-img,
+    .footer-pill-top .right-img {
+      width: 40px;
+      height: 40px;
+    }
+    .footer-pill-top .left-img img,
+    .footer-pill-top .right-img img {
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+    }
+    .footer-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1em;
+      text-transform: none;
+    }
+    .footer-nav .sep {
+      color: #fff;
+      padding: 0 10px;
+    }
+    /* Footer Pill - Partie inférieure : Liens légaux */
+    .footer-pill-bottom {
+      text-align: center;
+    }
+    .legal-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .legal-links a {
+      color: #fff;
+      text-decoration: underline;
+      font-size: 0.9em;
+    }
+    .legal-links .sep {
+      color: #fff;
+      padding: 0 10px;
+    }
+    /* Image décorative collée en dessous de la pillule */
+    .footer-below {
+      margin-top: -2%;
+      z-index: 3;
+      width: 100%;
+    }
+    .footer-below img {
+      display: block;
+    
+     
+    }
   </style>
 </head>
 <body>
@@ -293,7 +499,6 @@
 
   <!-- SECTION VIDÉO -->
   <section class="video-container">
-    <div class="gradient-overlay"></div>
     <video src="assets/videos/toulon-street-art.mp4" autoplay muted loop></video>
     <div class="scroll-down">
       <img src="assets/pictos/chevron-bas.png" alt="Scroll Down">
@@ -314,7 +519,7 @@
   <!-- SECTION CONCEPT -->
   <section class="concept-section" id="concept">
     <div class="concept-container">
-      <!-- Colonne de gauche : grille d'images en 2x3 -->
+      <!-- Grille d'images en 2x3 -->
       <div class="images-grid">
         <img src="assets/images/DSC00218.JPG" alt="Image 1">
         <img src="assets/images/DSC00463.JPG" alt="Image 2">
@@ -323,11 +528,10 @@
         <img src="assets/images/DSC00428.JPG" alt="Image 5">
         <img src="assets/images/DSC00452.JPG" alt="Image 6">
       </div>
-      <!-- Colonne de droite : contenu concept -->
+      <!-- Contenu concept -->
       <div class="concept-content">
-        <!-- Image cliquable en haut à droite -->
         <div class="concept-image">
-          <img src="assets/pictos/ampoule.png" alt="Concept Image">
+          <img src="assets/pictos/black-pic/ampoule.png" alt="Concept Image">
         </div>
         <div class="text">
           <h1>CONCEPT</h1>
@@ -341,7 +545,6 @@
             Formant un <span class="toggle-highlight">écosystème dynamique</span>, composé d’artistes, de designers, de programmeurs et de techniciens anonymes dévoilant leurs <span class="toggle-highlight">mains plutôt que leurs visages</span>.
           </p>
         </div>
-        <!-- Bouton (image) aligné à droite -->
         <div class="voir-plus">
           <img src="assets/hand-button/voir-plus-black.png" alt="Voir plus">
         </div>
@@ -349,33 +552,139 @@
     </div>
   </section>
 
-  <!-- JavaScript pour la mécanique de toggle -->
+  <!-- SECTION PORTFOLIO -->
+  <section class="portfolio-section" id="portfolio">
+    <div class="portfolio-container">
+      <!-- Ligne Titre + Image (petite) -->
+      <div class="top-row">
+        <h1 class="portfolio-title">PORTFOLIO</h1>
+        <div class="text-and-image">
+          <img class="portfolio-small-image" 
+               src="assets/pictos/black-pic/mind-black.png" 
+               alt="Portfolio Image">
+        </div>
+      </div>
+      <!-- Sous-titre avec surlignage sur seulement "MAINS SALES" -->
+      <div class="subtitle-row">
+        <h2 class="portfolio-subtitle">
+          Redéfinir l’utilisation d’un espace urbain, laisser une empreinte artistique, requalifier des zones abandonnées, apporter une nouvelle dimension : découvrez les objectifs des <span class="toggle-highlight">MAINS SALES</span>.
+        </h2>
+      </div>
+      <!-- Grosse image réduite en hauteur -->
+      <div class="fullwidth-image-container">
+        <img class="portfolio-large-image" 
+             src="assets/images/Rectangle 117.png" 
+             alt="Grande image Portfolio">
+      </div>
+      <!-- Slider toggles -->
+      <div class="slider-toggles">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION FOOTER -->
+  <section class="footer-section" id="footer">
+    <div class="footer-container">
+      <!-- Petite image en haut à gauche -->
+      <img
+        class="footer-small-image"
+        src="assets/pictos/colored-pic/palette-accueil.png"
+        alt="Petite image en haut à gauche">
+      <!-- Conteneur central -->
+      <div class="footer-center">
+        <!-- Grande image centrée -->
+        <img
+          class="footer-large-image"
+          src="assets/logos/mainssales-large-logo.png"
+          alt="Grande image de footer">
+        <!-- Bloc pillule dans le footer -->
+        <div class="footer-pill">
+          <!-- Partie supérieure : Navigation avec images et liens -->
+          <div class="footer-pill-top">
+            <div class="left-img">
+              <img src="assets/pictos/black-pic/picto-faceboook.png" style="width: 30px;" alt="Icône gauche">
+            </div>
+            <div class="footer-nav">
+              <a href="#home">Home</a>
+              <span class="sep">|</span>
+              <a href="#portfolio">Portfolio</a>
+              <span class="sep">|</span>
+              <a href="#concept">Concept</a>
+              <span class="sep">|</span>
+              <a href="#contact">Contact</a>
+            </div>
+            <div class="right-img">
+              <img src="assets/pictos/black-pic/picto-instagram.png" alt="Icône droite">
+            </div>
+          </div>
+          <!-- Partie inférieure : Liens légaux -->
+          <div class="footer-pill-bottom">
+            <div class="legal-links">
+              <a href="#">Mentions légales</a>
+              <span class="sep">|</span>
+              <a href="#">Conditions d'utilisation</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-below">
+            <img src="assets/images/machicouli.png" alt="Décoration Footer">
+          </div>
+      </div>
+      <!-- Image collée en dessous de la pillule -->
+      
+    </div>
+  </section>
+
+  <!-- JavaScript pour le toggle des sections -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
+      // Toggle pour la section Concept
       const conceptImage = document.querySelector(".concept-image img");
       const conceptSection = document.querySelector(".concept-section");
-      const gridImages = document.querySelectorAll(".images-grid img");
-      const voirPlusBtn = document.querySelector(".voir-plus img");
+      const conceptGridImages = document.querySelectorAll(".concept-section .images-grid img");
+      const conceptVoirPlusBtn = document.querySelector(".concept-content .voir-plus img");
       const h1Concept = document.querySelector(".concept-content h1");
-      let toggled = false;
+      let conceptToggled = false;
       conceptImage.addEventListener("click", function() {
-        toggled = !toggled;
-        if(toggled) {
-          // Active le mode toggle
+        conceptToggled = !conceptToggled;
+        if(conceptToggled) {
           conceptSection.classList.add("toggled");
-          gridImages.forEach(img => {
-            img.style.filter = "none";
-          });
-          voirPlusBtn.src = "assets/hand-button/voir-plus-blue.png";
+          conceptGridImages.forEach(img => { img.style.filter = "none"; });
+          conceptVoirPlusBtn.src = "assets/hand-button/voir-plus-colored.png";
+          conceptImage.src = "assets/pictos/colored-pic/ampoule-active.png";
           h1Concept.style.color = "#2DDFF3";
         } else {
-          // Restaure l'état initial
           conceptSection.classList.remove("toggled");
-          gridImages.forEach(img => {
-            img.style.filter = "";
-          });
-          voirPlusBtn.src = "assets/hand-button/voir-plus-black.png";
+          conceptGridImages.forEach(img => { img.style.filter = ""; });
+          conceptVoirPlusBtn.src = "assets/hand-button/voir-plus-black.png";
+          conceptImage.src = "assets/pictos/black-pic/ampoule.png";
           h1Concept.style.color = "";
+        }
+      });
+      
+      // Toggle pour la section Portfolio
+      const portfolioSection = document.querySelector(".portfolio-section");
+      const portfolioSmallImage = document.querySelector(".portfolio-small-image");
+      const portfolioLargeImage = document.querySelector(".portfolio-large-image");
+      const portfolioSubtitle = document.querySelector(".portfolio-subtitle");
+      let portfolioToggled = false;
+      portfolioSmallImage.addEventListener("click", function() {
+        portfolioToggled = !portfolioToggled;
+        if(portfolioToggled) {
+          portfolioSection.classList.add("toggled");
+          portfolioSmallImage.src = "assets/pictos/colored-pic/mind-active.png";
+       
+          portfolioSubtitle.style.padding = "0 5px";
+          portfolioSubtitle.style.borderRadius = "3px";
+        } else {
+          portfolioSection.classList.remove("toggled");
+          portfolioSmallImage.src = "assets/pictos/black-pic/mind-black.png";
+          portfolioSubtitle.style.backgroundColor = "";
+          portfolioSubtitle.style.padding = "";
+          portfolioSubtitle.style.borderRadius = "";
         }
       });
     });
