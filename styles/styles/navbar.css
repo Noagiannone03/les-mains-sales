@@ -45,11 +45,12 @@
           .navbar nav a {
               font-family: 'Ubuntu', sans-serif;
             color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 1em;
-            position: relative;
-            padding: 5px 0;
+            font-weight: bold;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 1.2em;
+      position: relative;
+      padding: 5px 0;
           }
           .navbar nav a::before {
         content: "";

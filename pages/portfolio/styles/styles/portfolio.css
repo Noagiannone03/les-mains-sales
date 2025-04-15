@@ -1,31 +1,34 @@
-/* Importation des polices */
-@font-face {
+  /* Importation des polices */
+  @font-face {
     font-family: 'Ubuntu';
-    src: url('fonts/ubuntu-regular.woff2') format('woff2'),
-         url('fonts/ubuntu-regular.woff') format('woff');
+    src: url('../../../../fonts/ubuntu-regular.woff2') format('woff2'),
+         url('../../../../fonts/ubuntu-regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
   }
   @font-face {
     font-family: 'sharpie-extrabold';
-    src: url('assets/fonts/sharpie/Sharpie-Extrabold.otf') format('truetype');
+    src: url('../../../../assets/fonts/sharpie/Sharpie-Extrabold.otf') format('truetype');
   }
   @font-face {
     font-family: 'ubuntu-medium';
-    src: url('assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
+    src: url('../../../../assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
   }
 
+
    /* ======================= */
-    /*   NOUVELLE SECTION PORTFOLIO   */
+    /*   SECTION PORTFOLIO   */
     /* ======================= */
     .portfolio-section {
-        min-height: 90vh;
+        margin-top: 10vh;
+        min-height: 80vh; /* réduit de 89vh à 80vh */
+  
         padding: 50px 80px; /* Marges latérales augmentées */
         display: flex;
         align-items: center;
       }
       .portfolio-container {
-        height: 100%;
+        height: 90%;
         max-width: 1300px;
         margin: 0 auto;
         width: 100%;
@@ -45,16 +48,16 @@
         text-transform: uppercase;
         font-family: 'sharpie-extrabold', sans-serif;
         letter-spacing: 3px;
+        /* On peut réduire un peu l'espace inférieur */
+        margin-bottom: 10px;
       }
       .text-and-image {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         gap: 20px;
         flex: 1;
       }
       .portfolio-small-image {
-      
-        height: auto;
         border-radius: 8px;
         filter: grayscale(100%);
         transition: filter 0.3s ease, transform 0.3s ease;
@@ -69,37 +72,45 @@
       }
       .subtitle-row {
         width: 100%;
+        /* Réduction de la marge inférieure pour rapprocher du titre */
+        margin-bottom: 50px;
       }
       .portfolio-subtitle {
-        font-size: 1.3em;
         font-weight: normal;
+        font-size: 1.3em;
         font-family: 'ubuntu-medium', sans-serif;
-        line-height: 1.4;
+      
         text-align: justify;
       }
-      .portfolio-section.toggled .portfolio-subtitle {
-     
-        border-radius: 3px;
+      
+      /* Grille Portfolio : 3 colonnes x 2 lignes, images légèrement agrandies et au format rectangle */
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, auto);
+        gap: 20px;
       }
-      .portfolio-large-image {
+      .portfolio-grid img {
         width: 100%;
-        max-height: 500px; /* Hauteur réduite */
+        /* Pour obtenir un rectangle légèrement plus large */
+        aspect-ratio: 6 / 5;
         object-fit: cover;
-        display: block;
         border-radius: 20px;
         filter: grayscale(100%);
         transition: filter 0.3s ease;
       }
-      .portfolio-large-image:hover {
+      .portfolio-grid img:hover {
         filter: grayscale(0%);
       }
-     
+      .toggled .portfolio-grid img {
+        filter: none;
+      }
       .slider-toggles {
         display: flex;
         align-items: center;
         gap: 10px;
         margin-left: 10px;
-        margin-top: 40px; /* Plus éloigné de l'image */
+        margin-top: 40px;
       }
       .toggle-line {
         display: inline-block;
@@ -108,3 +119,12 @@
         background-color: #000;
         border-radius: 2px;
       }
+  
+      .toggled .toggle-highlight {
+    background-color: #ff67e3; /* ou la couleur hexadécimale souhaitée */
+    padding: 0 5px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+  
+  

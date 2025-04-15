@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
         portfolioSection.classList.add("toggled");
         portfolioSmallImage.src = "assets/pictos/colored-pic/book-ouvert.png";
         portfolioLargeImage.style.filter = "none";
-        portfolioSubtitle.style.padding = "0 5px";
+        
         portfolioSubtitle.style.borderRadius = "3px";
         h1Portfolio.style.color = "#2DDFF3";
       } else {

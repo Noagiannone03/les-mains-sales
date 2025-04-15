@@ -82,11 +82,12 @@
       color: inherit;
     }
     .concept-content p {
-      line-height: 1.3;
-      font-size: 1.5em;
+
+      font-size: 1.4em;
+      font-weight: normal;
       text-align: justify;
       font-family: 'ubuntu-medium', sans-serif;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
     .toggle-highlight {
       transition: all 0.3s ease;
