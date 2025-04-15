@@ -7,8 +7,8 @@
   <!-- Préchargement des images actives -->
   <link rel="preload" href="assets/pictos/colored-pic/ampoule-active.png" as="image">
   <link rel="preload" href="assets/hand-button/voir-plus-colored.png" as="image">
-  <link rel="preload" href="assets/pictos/colored-pic/mind-active.png" as="image">
   <link rel="preload" href="assets/images/Rectangle 117-colored.png" as="image">
+  <link rel="preload" href="assets/pictos/colored-pic/book-ouvert.png" as="image">
 
 
     <!-- Chargement des styles css -->
@@ -109,7 +109,7 @@
         <h1 class="portfolio-title">PORTFOLIO</h1>
         <div class="text-and-image">
           <img class="portfolio-small-image" 
-               src="assets/pictos/black-pic/mind-black.png" 
+               src="assets/pictos/black-pic/book-ferme.png" 
                alt="Portfolio Image">
         </div>
       </div>
@@ -187,58 +187,8 @@
     </div>
   </section>
 
-  <!-- JavaScript pour le toggle des sections -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // Toggle pour la section Concept
-      const conceptImage = document.querySelector(".concept-image img");
-      const conceptSection = document.querySelector(".concept-section");
-      const conceptGridImages = document.querySelectorAll(".concept-section .images-grid img");
-      const conceptVoirPlusBtn = document.querySelector(".concept-content .voir-plus img");
-      const h1Concept = document.querySelector(".concept-content h1");
-      let conceptToggled = false;
-      conceptImage.addEventListener("click", function() {
-        conceptToggled = !conceptToggled;
-        if(conceptToggled) {
-          conceptSection.classList.add("toggled");
-          conceptGridImages.forEach(img => { img.style.filter = "none"; });
-          conceptVoirPlusBtn.src = "assets/hand-button/voir-plus-colored.png";
-          conceptImage.src = "assets/pictos/colored-pic/ampoule-active.png";
-          h1Concept.style.color = "#2DDFF3";
-        } else {
-          conceptSection.classList.remove("toggled");
-          conceptGridImages.forEach(img => { img.style.filter = ""; });
-          conceptVoirPlusBtn.src = "assets/hand-button/voir-plus-black.png";
-          conceptImage.src = "assets/pictos/black-pic/ampoule.png";
-          h1Concept.style.color = "";
-        }
-      });
-      
-      // Toggle pour la section Portfolio
-      const portfolioSection = document.querySelector(".portfolio-section");
-      const portfolioSmallImage = document.querySelector(".portfolio-small-image");
-      const portfolioLargeImage = document.querySelector(".portfolio-large-image");
-      const portfolioSubtitle = document.querySelector(".portfolio-subtitle");
-      let portfolioToggled = false;
-      portfolioSmallImage.addEventListener("click", function() {
-        portfolioToggled = !portfolioToggled;
-        if(portfolioToggled) {
-          portfolioSection.classList.add("toggled");
-          portfolioSmallImage.src = "assets/pictos/colored-pic/mind-active.png";
-          portfolioLargeImage.style.filter = "none";
-          portfolioSubtitle.style.padding = "0 5px";
-          portfolioSubtitle.style.borderRadius = "3px";
-        } else {
-          portfolioSection.classList.remove("toggled");
-          portfolioSmallImage.src = "assets/pictos/black-pic/mind-black.png";
-          portfolioLargeImage.style.filter = "grayscale(100%)";
-          portfolioSubtitle.style.backgroundColor = "";
-          portfolioSubtitle.style.padding = "";
-          portfolioSubtitle.style.borderRadius = "";
-        }
-      });
-    });
-  </script>
+  <!-- JavaScript -->
+<script src="script.js" defer></script>
 
 </body>
 </html>

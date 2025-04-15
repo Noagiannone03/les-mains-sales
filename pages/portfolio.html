@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les Mains Sales - Accueil</title>
+  <!-- Préchargement des images actives -->
+  <link rel="preload" href="assets/pictos/colored-pic/ampoule-active.png" as="image">
+  <link rel="preload" href="assets/hand-button/voir-plus-colored.png" as="image">
+  <link rel="preload" href="assets/pictos/colored-pic/mind-active.png" as="image">
+  <link rel="preload" href="assets/images/Rectangle 117-colored.png" as="image">
+
+
+  <link rel="stylesheet" href="../styles/styles/footer.css">
+  <style>
+    /* Importation des polices */
+    @font-face {
+      font-family: 'Ubuntu';
+      src: url('../../fonts/ubuntu-regular.woff2') format('woff2'),
+           url('../../fonts/ubuntu-regular.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'sharpie-extrabold';
+      src: url('../../assets/fonts/sharpie/Sharpie-Extrabold.otf') format('truetype');
+    }
+    @font-face {
+      font-family: 'ubuntu-medium';
+      src: url('../../assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
+    }
+
+
+      /* Réinitialisation */
+   * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Ubuntu', sans-serif;
+    overflow-x: hidden;
+    overflow-x: hidden;
+  }
+
+    /* ======================= */
+    /*        NAVBAR         */
+    /* ======================= */
+    .navbar {
+  position: relative;
+  z-index: 1000;
+  height: 80px;
+  /* Fond blanc avec dégradé en bas : haut opaque, bas transparent */
+  background: linear-gradient(to bottom, #fff 0%, #fff 80%, transparent 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  /* La bordure inférieure est limitée à l’espace interne (marges de la nav) */
+  border-bottom: 2px solid #ccc;
+}
+
+    .navbar .logo img {
+ 
+      height: 55px;
+      display: block;
+    }
+    .navbar nav {
+      display: flex;
+      gap: 30px;
+    }
+    .navbar nav a {
+      font-family: 'Ubuntu', sans-serif;
+      color: #000;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 1em;
+      position: relative;
+      padding: 5px 0;
+    }
+    .navbar nav a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+    .navbar nav a:hover::before {
+      opacity: 1;
+    }
+    /* Images de fond différentes pour chaque lien */
+    .nav-home::before {
+      background-image: url("../../assets/navbar-title-background/navbar-home.png");
+    }
+    .nav-portfolio::before {
+      background-image: url("../../assets/navbar-title-background/navbar-portfolio.png");
+    }
+    .nav-concept::before {
+      background-image: url("../../assets/navbar-title-background/navbar-concept.png");
+    }
+    .nav-contact::before {
+      background-image: url("../../assets/navbar-title-background/navbar-contact.png");
+    }
+
+    /* ======================= */
+    /*   SECTION PORTFOLIO   */
+    /* ======================= */
+    .portfolio-section {
+      min-height: 80vh;
+      padding: 50px 80px; /* Marges latérales augmentées */
+      display: flex;
+      align-items: center;
+    }
+    .portfolio-container {
+      height: 90%;
+      max-width: 1300px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .top-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      align-items: center;
+    }
+    .portfolio-title {
+      flex: 0 0 auto;
+      font-size: 5.5em;
+      text-transform: uppercase;
+      font-family: 'sharpie-extrabold', sans-serif;
+      letter-spacing: 3px;
+      /* On peut réduire un peu l'espace inférieur */
+      margin-bottom: 10px;
+    }
+    .text-and-image {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex: 1;
+    }
+    .portfolio-small-image {
+      border-radius: 8px;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+    .portfolio-small-image:hover {
+      animation: shake 0.5s;
+      filter: grayscale(0%);
+    }
+    .portfolio-section.toggled .portfolio-small-image {
+      filter: none;
+    }
+    .subtitle-row {
+      width: 100%;
+      /* Réduction de la marge inférieure pour rapprocher du titre */
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .portfolio-subtitle {
+      font-size: 1.5em;
+      font-family: 'ubuntu-medium', sans-serif;
+      line-height: 1.4;
+      text-align: justify;
+    }
+    
+    /* Grille Portfolio : 3 colonnes x 2 lignes, images légèrement agrandies et au format rectangle */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 20px;
+    }
+    .portfolio-grid img {
+      width: 100%;
+      /* Pour obtenir un rectangle légèrement plus large */
+      aspect-ratio: 6 / 5;
+      object-fit: cover;
+      border-radius: 20px;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+    .portfolio-grid img:hover {
+      filter: grayscale(0%);
+    }
+    .toggled .portfolio-grid img {
+      filter: none;
+    }
+    .slider-toggles {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 10px;
+      margin-top: 40px;
+    }
+    .toggle-line {
+      display: inline-block;
+      width: 40px;
+      height: 3px;
+      background-color: #000;
+      border-radius: 2px;
+    }
+
+    /* ======================= */
+    /*   SECTION NOS PROJETS   */
+    /* ======================= */
+    .nos-projets-section {
+      min-height: 90vh;
+      padding: 50px 80px;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nos-projets-container {
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .nos-projets-title {
+      font-size: 3em; /* Plus petit que le titre habituel */
+      font-family: 'sharpie-extrabold', sans-serif;
+   
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    .projet-entry {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+    .projet-image {
+      flex: 0 0 40%;
+    }
+    .projet-image img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+    .projet-image img:hover {
+      filter: grayscale(0%);
+    }
+    .projet-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      text-align: left;
+    }
+    .projet-title {
+      font-size: 1.5em;
+      font-family: 'sharpie-extrabold', sans-serif;
+      margin: 0;
+    }
+    .projet-paragraph {
+      font-size: 1em;
+      font-family: 'ubuntu-medium', sans-serif;
+      margin: 0;
+    }
+    /* Bouton présenté sous forme d'image (remplace le bouton traditionnel) */
+    .projet-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .projet-button img {
+      width: 150px; /* Ajustez la taille de l'image bouton */
+      transition: transform 0.3s ease;
+    }
+    .projet-button img:hover {
+      transform: scale(1.05);
+    }
+    .projet-separator {
+      width: 100%;
+      border: none;
+      border-top: 2px solid #000;
+
+    }
+
+
+    #footer{
+        
+        position: relative;
+        min-height: 20vh;
+       
+    }
+
+    .footer-pill-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        min-width: 600px;
+      }
+    
+
+    /* Animation Shake */
+    @keyframes shake {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(-2px, 2px); }
+      50% { transform: translate(2px, -2px); }
+      75% { transform: translate(-2px, -2px); }
+      100% { transform: translate(0, 0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <a href="index.html"><img src="../assets/logos/lesmainssales-noir.png" alt="Logo"></a>
+    </div>
+    <nav>
+      <a href="#home" class="nav-home">Home</a>
+      <a href="#portfolio" class="nav-portfolio">Portfolio</a>
+      <a href="#concept" class="nav-concept">Concept</a>
+      <a href="#contact" class="nav-contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- SECTION PORTFOLIO -->
+  <section class="portfolio-section" id="portfolio">
+    <div class="portfolio-container">
+      <!-- Ligne Titre + Image Small -->
+      <div class="top-row">
+        
+        <div class="text-and-image">
+            <h1 class="portfolio-title">PORTFOLIO</h1>
+          <img class="portfolio-small-image" 
+               src="../assets/pictos/black-pic/book-ferme.png" 
+               alt="Portfolio Image">
+        </div>
+      </div>
+      <!-- Sous-titre -->
+      <div class="subtitle-row">
+        <h2 class="portfolio-subtitle">
+          Redéfinir l’utilisation d’un espace urbain, laisser une empreinte artistique, requalifier des zones abandonnées, apporter une nouvelle dimension : découvrez les objectifs des <span class="toggle-highlight">MAINS SALES</span>.
+        </h2>
+      </div>
+      <!-- Grille Portfolio : 3 colonnes x 2 lignes -->
+      <div class="portfolio-grid">
+        <img src="../assets/images/Rectangle 120.png" alt="Portfolio 1">
+        <img src="../assets/images/Rectangle 126.png" alt="Portfolio 2">
+        <img src="../assets/images/Rectangle 126.png" alt="Portfolio 3">
+        <img src="../assets/images/Rectangle 120.png" alt="Portfolio 4">
+        <img src="../assets/images/Rectangle 126.png" alt="Portfolio 5">
+        <img src="../assets/images/Rectangle 120.png" alt="Portfolio 6">
+      </div>
+      <!-- Slider toggles -->
+      
+    </div>
+  </section>
+
+  <!-- SECTION NOS PROJETS -->
+  <section class="nos-projets-section" id="nos-projets">
+    <div class="nos-projets-container">
+      <h1 class="nos-projets-title">Nos projets</h1>
+      <!-- Projet 1 -->
+      <div class="projet-entry">
+        <div class="projet-image">
+          <img src="../assets/images/Rectangle 120.png" alt="Projet 1">
+        </div>
+        <div class="projet-text">
+          <h2 class="projet-title">Titre Projet 1</h2>
+          <p class="projet-paragraph">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
+          </p>
+          <button class="projet-button">
+            <img src="assets/pictos/colored-pic/button-voirplus.png" alt="Voir plus">
+          </button>
+        </div>
+      </div>
+      <hr class="projet-separator">
+      <!-- Projet 2 -->
+      <div class="projet-entry">
+        <div class="projet-image">
+          <img src="../assets/images/Rectangle 120.png" alt="Projet 2">
+        </div>
+        <div class="projet-text">
+          <h2 class="projet-title">Titre Projet 2</h2>
+          <p class="projet-paragraph">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
+          </p>
+          <button class="projet-button">
+            <img src="assets/pictos/colored-pic/button-voirplus.png" alt="Voir plus">
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION FOOTER -->
+  <section class="footer-section" id="footer">
+    <div class="footer-container">
+      <!-- Petite image en haut à gauche -->
+      
+      <!-- Conteneur central -->
+      <div class="footer-center">
+        <!-- Grande image centrale -->
+       
+        <!-- Bloc pillule dans le footer -->
+        <div class="footer-pill">
+          <!-- Partie supérieure : Navigation avec images et liens -->
+          <div class="footer-pill-top">
+            <div class="left-img">
+              <img src="../assets/pictos/black-pic/picto-faceboook.png" style="width: 30px;" alt="Icône gauche">
+            </div>
+            <div class="footer-nav">
+              <a href="#home">Home</a>
+              <span class="sep">|</span>
+              <a href="#portfolio">Portfolio</a>
+              <span class="sep">|</span>
+              <a href="#concept">Concept</a>
+              <span class="sep">|</span>
+              <a href="#contact">Contact</a>
+            </div>
+            <div class="right-img">
+              <img src="../assets/pictos/black-pic/picto-instagram.png" alt="Icône droite">
+            </div>
+          </div>
+          <!-- Partie inférieure : Liens légaux -->
+          <div class="footer-pill-bottom">
+            <div class="legal-links">
+              <a href="#">Mentions légales</a>
+              <span class="sep">|</span>
+              <a href="#">Conditions d'utilisation</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-below">
+            <img src="../assets/images/machicouli.png" alt="Décoration Footer">
+          </div>
+      </div>
+      <!-- Image décorative collée directement en dessous de la pillule -->
+    
+    </div>
+  </section>
+
+  <!-- JavaScript pour le toggle de la section Portfolio -->
+  <script>
+    // Toggle pour la section Portfolio
+    const portfolioSection = document.querySelector(".portfolio-section");
+    const portfolioSmallImage = document.querySelector(".portfolio-small-image");
+    const portfolioLargeImage = document.querySelector(".portfolio-large-image");
+    const portfolioSubtitle = document.querySelector(".portfolio-subtitle");
+    const h1Portfolio = document.querySelector(".portfolio-title");
+    let portfolioToggled = false;
+    portfolioSmallImage.addEventListener("click", function() {
+      portfolioToggled = !portfolioToggled;
+      if (portfolioToggled) {
+        portfolioSection.classList.add("toggled");
+        portfolioSmallImage.src = "assets/pictos/colored-pic/book-ouvert.png";
+        portfolioLargeImage.style.filter = "none";
+        portfolioSubtitle.style.padding = "0 5px";
+        portfolioSubtitle.style.borderRadius = "3px";
+        h1Portfolio.style.color = "#2DDFF3";
+      } else {
+        portfolioSection.classList.remove("toggled");
+        portfolioSmallImage.src = "assets/pictos/black-pic/book-ferme.png";
+        portfolioLargeImage.style.filter = "grayscale(100%)";
+        portfolioSubtitle.style.backgroundColor = "";
+        portfolioSubtitle.style.padding = "";
+        portfolioSubtitle.style.borderRadius = "";
+        h1Portfolio.style.color = "";
+      }
+    });
+  </script>
+</body>
+</html>
