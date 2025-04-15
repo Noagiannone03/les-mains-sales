@@ -1,0 +1,109 @@
+/* Importation des polices */
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('fonts/ubuntu-regular.woff2') format('woff2'),
+         url('fonts/ubuntu-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'sharpie-extrabold';
+    src: url('assets/fonts/sharpie/Sharpie-Extrabold.otf') format('truetype');
+  }
+  @font-face {
+    font-family: 'ubuntu-medium';
+    src: url('assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
+  }
+
+   /* ======================= */
+    /*   NOUVELLE SECTION PORTFOLIO   */
+    /* ======================= */
+    .portfolio-section {
+        min-height: 90vh;
+        padding: 50px 80px; /* Marges latérales augmentées */
+        display: flex;
+        align-items: center;
+      }
+      .portfolio-container {
+        height: 100%;
+        max-width: 1300px;
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .top-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        align-items: center;
+      }
+      .portfolio-title {
+        flex: 0 0 auto;
+        font-size: 5.5em;
+        text-transform: uppercase;
+        font-family: 'sharpie-extrabold', sans-serif;
+        letter-spacing: 3px;
+      }
+      .text-and-image {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        flex: 1;
+      }
+      .portfolio-small-image {
+      
+        height: auto;
+        border-radius: 8px;
+        filter: grayscale(100%);
+        transition: filter 0.3s ease, transform 0.3s ease;
+        cursor: pointer;
+      }
+      .portfolio-small-image:hover {
+        animation: shake 0.5s;
+        filter: grayscale(0%);
+      }
+      .portfolio-section.toggled .portfolio-small-image {
+        filter: none;
+      }
+      .subtitle-row {
+        width: 100%;
+      }
+      .portfolio-subtitle {
+        font-size: 1.5em;
+        font-family: 'ubuntu-medium', sans-serif;
+        line-height: 1.4;
+        text-align: justify;
+      }
+      .portfolio-section.toggled .portfolio-subtitle {
+     
+        border-radius: 3px;
+      }
+      .portfolio-large-image {
+        width: 100%;
+        max-height: 500px; /* Hauteur réduite */
+        object-fit: cover;
+        display: block;
+        border-radius: 20px;
+        filter: grayscale(100%);
+        transition: filter 0.3s ease;
+      }
+      .portfolio-large-image:hover {
+        filter: grayscale(0%);
+      }
+     
+      .slider-toggles {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-left: 10px;
+        margin-top: 40px; /* Plus éloigné de l'image */
+      }
+      .toggle-line {
+        display: inline-block;
+        width: 40px;
+        height: 3px;
+        background-color: #000;
+        border-radius: 2px;
+      }
