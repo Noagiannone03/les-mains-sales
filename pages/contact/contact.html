@@ -110,8 +110,9 @@
        SECTION CONTACT
     ============================ */
     .contact-section {
-      min-height: 80vh; 
-      padding: 50px 80px;
+      min-height: 60vh; 
+      padding: 00px 80px;
+      padding-top: 4vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -160,12 +161,24 @@
     }
     .contact-form-column, .contact-info-column {
       flex: 0 0 45%;
+      gap: 30px;
     }
+    .contact-form-column {
+  flex: 0 0 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  /* Pousse le premier élément en haut et le dernier en bas */
+  min-height: 300px;               /* Ajustez cette valeur selon vos besoins */
+  gap: 40px;                       /* Augmentation de l'espacement entre les éléments */
+}
+
     /* Formulaire */
     .contact-input-group {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      justify-content: space-between;
+      align-items: stretch;
+      gap: 30px;
     }
     .contact-input {
       border: none;
@@ -187,7 +200,6 @@
       padding: 5px 0;
       outline: none;
       transition: border-color 0.3s ease;
-      height: 100px;
       width: 100%;
     }
     .contact-textarea:focus {
@@ -202,13 +214,14 @@
     }
     /* Bouton "Envoyer" en mode initial : style avec image */
     .contact-button {
-      width: 120px;
-      height: 50px; /* Ajustez selon l'image */
-      background: url("../../assets/pictos/colored-pic/button-envoyer.png") center/cover no-repeat;
+      width: 100px;
+      height: 30px; /* Ajustez selon l'image */
+      background: url("../../assets/hand-button/btn-envoyer-normal.png") center/cover no-repeat;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       font-family: 'ubuntu-medium', sans-serif;
+      background-size: cover;
       text-transform: uppercase;
       transition: background-color 0.3s ease;
       margin-top: 20px;
@@ -229,23 +242,24 @@
       gap: 30px;
     }
     .contact-description {
-      font-size: 1.2em;
-      line-height: 1.4;
+      font-size: 1.35em;
+  
       text-align: justify;
+      font-family: 'ubuntu-medium', sans-serif;
     }
     .contact-icons {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 20px;
     }
     .contact-icons a {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 20px;
       text-decoration: none;
       color: #000;
-      font-size: 1em;
-      font-family: 'Ubuntu', sans-serif;
+      font-size: 1.3em;
+      font-family: 'ubuntu-medium', sans-serif;
     }
     /* Pour le numéro de téléphone, on appliquera un effet highlight en mode toggle */
     .phone-text {
@@ -289,7 +303,7 @@
       border: none;
       /* Remplacer le bouton par une autre image */
       background-image: url("../../assets/hand-button/btn-envoyer-clic.png");
-      background-size: cover;
+      background-size:cover;
       background-position: center;
       /* On conserve les dimensions */
     }
@@ -297,6 +311,41 @@
       filter: none;
     }
     
+
+
+    /* ===============================
+         SECTION: GRILLE DYNAMIQUE
+       (70vh de hauteur)
+    =============================== */
+    .dynamic-grid-section {
+      height: 70vh;
+      width: 100%;
+      margin-top: 40px;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .grid-container {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+    }
+    .grid-cell {
+      background-color: #fff;
+     
+      position: relative;
+      overflow: hidden;
+    }
+    .grid-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
     /* ===========================
        RESPONSIVE (si nécessaire)
     =========================== */
@@ -337,7 +386,7 @@
             <input id="email" type="email" class="contact-input" placeholder="Email" />
           </div>
           <div class="contact-input-group">
-            <textarea id="message" class="contact-textarea" placeholder="Votre message ici..."></textarea>
+            <input type="text" id="message" class="contact-textarea" placeholder="Message"/>
           </div>
           <button class="contact-button">Envoyer</button>
         </div>
@@ -365,6 +414,13 @@
     </div>
   </section>
 
+   <!-- SECTION: DYNAMIC GRID -->
+   <section class="dynamic-grid-section">
+    <div class="grid-container" id="gridContainer">
+      <!-- Les 36 cellules seront générées par JavaScript -->
+    </div>
+  </section>
+
   <!-- JavaScript pour toggle mode dans la section Contact -->
   <script>
     // Toggle de mode contact via clic sur l'icône contact (petite image)
@@ -384,6 +440,145 @@
         contactSmallImage.src = "../../assets/pictos/black-pic/contact-original.png";
       }
     });
+  </script>
+
+<script>
+    // Tableau de base d'images (ajustez avec vos URL réelles)
+    const imageBase = [
+  "../../assets/images/rectangles-contact-grid/Rectangle-01.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-02.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-03.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-04.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-05.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-06.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-07.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-08.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-09.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-10.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-11.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-12.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-13.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-14.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-15.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-16.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-17.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-18.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-19.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-20.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-21.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-22.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-23.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-24.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-25.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-26.png",
+  "../../assets/images/rectangles-contact-grid/Rectangle-27.png"
+];
+
+
+    
+
+    const gridContainer = document.getElementById("gridContainer");
+    const totalCells = 9 * 4; // 36 cellules
+    // Stocke l'image affichée pour chaque cellule, par index
+    let gridImages = new Array(totalCells).fill(null);
+
+    // Crée la grille initiale : remplit aléatoirement environ 50% des cellules avec une image.
+    function createGrid() {
+      for (let i = 0; i < totalCells; i++) {
+        const cell = document.createElement("div");
+        cell.classList.add("grid-cell");
+        if (Math.random() < 0.5) { // 50% de probabilité de remplir
+          const randomImg = imageBase[Math.floor(Math.random() * imageBase.length)];
+          const img = document.createElement("img");
+          img.src = randomImg;
+          cell.appendChild(img);
+          gridImages[i] = randomImg;
+        }
+        gridContainer.appendChild(cell);
+      }
+    }
+    createGrid();
+
+    // Récupère les indices des cellules contenant une image
+    function getFilledCellIndices() {
+      const indices = [];
+      const cells = gridContainer.querySelectorAll(".grid-cell");
+      cells.forEach((cell, index) => {
+        if (cell.querySelector("img")) {
+          indices.push(index);
+        }
+      });
+      return indices;
+    }
+
+    // Récupère les indices des cellules vides
+    function getEmptyCellIndices() {
+      const indices = [];
+      const cells = gridContainer.querySelectorAll(".grid-cell");
+      cells.forEach((cell, index) => {
+        if (!cell.querySelector("img")) {
+          indices.push(index);
+        }
+      });
+      return indices;
+    }
+
+    // Récupère la liste des images actuellement affichées dans la grille
+    function getCurrentImages() {
+      return gridImages.filter(src => src !== null);
+    }
+
+    // Choisit une image aléatoire de la base qui n'est pas déjà affichée
+    function getRandomImageExcluding(exclusions) {
+      const available = imageBase.filter(src => !exclusions.includes(src));
+      if (available.length === 0) return null;
+      return available[Math.floor(Math.random() * available.length)];
+    }
+
+    // Animation : disparaître une image (fade out) et apparaître deux images (fade in)
+    function animateGrid() {
+      const filledIndices = getFilledCellIndices();
+      const emptyIndices = getEmptyCellIndices();
+      if (filledIndices.length > 0 && emptyIndices.length >= 3) {
+        // Choisir aléatoirement une cellule remplie pour enlever son image
+        const removeIndex = filledIndices[Math.floor(Math.random() * filledIndices.length)];
+        const cellToClear = gridContainer.children[removeIndex];
+        const imgToRemove = cellToClear.querySelector("img");
+        if (imgToRemove) {
+          imgToRemove.style.opacity = "0";
+          setTimeout(() => {
+            cellToClear.innerHTML = "";
+            cellToClear.classList.add("empty");
+            gridImages[removeIndex] = null;
+
+            // Maintenant, ajouter deux images dans deux cellules vides
+            const newEmptyIndices = getEmptyCellIndices();
+            if (newEmptyIndices.length >= 2) {
+              for (let i = 0; i < 3; i++) {
+                const emptyIndex = newEmptyIndices[Math.floor(Math.random() * newEmptyIndices.length)];
+                const cell = gridContainer.children[emptyIndex];
+                const currentDisplayed = getCurrentImages();
+                const newImgSrc = getRandomImageExcluding(currentDisplayed);
+                if (newImgSrc) {
+                  const newImg = document.createElement("img");
+                  newImg.src = newImgSrc;
+                  newImg.style.opacity = "0";
+                  cell.appendChild(newImg);
+                  cell.classList.remove("empty");
+                  gridImages[emptyIndex] = newImgSrc;
+                  setTimeout(() => {
+                    newImg.style.opacity = "1";
+                  }, 50);
+                }
+              }
+            }
+          }, 500); // Durée du fade out (500ms)
+        }
+      }
+    }
+
+    // Lancer l'animation toutes les 5 secondes
+    setInterval(animateGrid, 5000);
   </script>
 </body>
 </html>

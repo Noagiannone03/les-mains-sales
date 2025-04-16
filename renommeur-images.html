@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Renommer et Télécharger des Images</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      text-align: center;
+    }
+    #drop-area {
+      border: 2px dashed #ccc;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 600px;
+      padding: 20px;
+      margin: 20px auto;
+      color: #aaa;
+    }
+    #drop-area.hover {
+      border-color: #333;
+      color: #333;
+    }
+    #file-list {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: left;
+    }
+    #file-list li {
+      margin: 5px 0;
+      padding: 5px;
+      border-bottom: 1px solid #eee;
+    }
+    #download-all {
+      display: inline-block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    label.button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Renommage et Téléchargement d'Images</h1>
+  <div id="drop-area">
+    <p>Glissez et déposez vos images ici</p>
+    <input type="file" id="fileElem" multiple accept="image/*" style="display:none">
+    <label class="button" for="fileElem">Ou sélectionnez des fichiers</label>
+  </div>
+  <ul id="file-list"></ul>
+  <button id="download-all">Télécharger tous les fichiers renommés</button>
+
+  <!-- Inclusion de JSZip via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+  <script>
+    const dropArea = document.getElementById('drop-area');
+    const fileInput = document.getElementById('fileElem');
+    const fileList = document.getElementById('file-list');
+    const downloadAllBtn = document.getElementById('download-all');
+
+    // Tableau qui stocke les images et leur nouveau nom
+    let filesData = [];
+
+    // Prévenir les comportements par défaut (drag & drop)
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      dropArea.addEventListener(eventName, preventDefaults, false);
+      document.body.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    // Ajout/Suppression d'une classe pour changer le style lors du drag
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropArea.addEventListener(eventName, () => dropArea.classList.add('hover'), false);
+    });
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropArea.addEventListener(eventName, () => dropArea.classList.remove('hover'), false);
+    });
+
+    // Gestion de l'événement de dépôt
+    dropArea.addEventListener('drop', handleDrop, false);
+    fileInput.addEventListener('change', handleFiles, false);
+
+    function handleDrop(e) {
+      let dt = e.dataTransfer;
+      let files = dt.files;
+      handleFiles({ target: { files } });
+    }
+
+    // Traite chaque fichier déposé ou sélectionné
+    function handleFiles(e) {
+      let files = e.target.files;
+      [...files].forEach(file => {
+        // On ne traite que les fichiers images
+        if (file.type.startsWith('image/')) {
+          // Déterminer le nouveau nom de fichier sous la forme "Rectangle-xx"
+          let extension = file.name.split('.').pop();
+          let newName = 'Rectangle-' + (filesData.length + 1).toString().padStart(2, '0') + '.' + extension;
+          filesData.push({ file, newName });
+
+          // Afficher la correspondance dans la liste
+          let li = document.createElement('li');
+          li.textContent = file.name + ' => ' + newName;
+          fileList.appendChild(li);
+        }
+      });
+    }
+
+    // Fonction pour créer et télécharger le fichier ZIP
+    downloadAllBtn.addEventListener('click', () => {
+      if (filesData.length === 0) {
+        alert("Aucune image à télécharger.");
+        return;
+      }
+
+      const zip = new JSZip();
+      const imgFolder = zip.folder("images");
+      let remaining = filesData.length;
+
+      // Pour chaque image, lire le contenu en Base64 et l'ajouter à l'archive
+      filesData.forEach(item => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          // Extraction des données Base64 (après la virgule)
+          let data = e.target.result.split(',')[1];
+          imgFolder.file(item.newName, data, { base64: true });
+          remaining--;
+          // Lorsque toutes les images ont été traitées, générer le ZIP
+          if (remaining === 0) {
+            zip.generateAsync({type:"blob"}).then(function(content) {
+              // Création d'un lien de téléchargement temporaire
+              const a = document.createElement('a');
+              a.href = URL.createObjectURL(content);
+              a.download = "renamed_images.zip";
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+            });
+          }
+        };
+        reader.readAsDataURL(item.file);
+      });
+    });
+
+    const imageBase = Array.from({ length: 27 }, (_, i) => {
+  const numero = (i + 1).toString().padStart(2, '0');
+  return `../../assets/images/rectangles-contact-grid/Rectangle-${numero}.png`;
+});
+
+console.log(imageBase);
+
+  </script>
+</body>
+</html>

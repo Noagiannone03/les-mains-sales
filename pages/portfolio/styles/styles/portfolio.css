@@ -20,10 +20,10 @@
     /*   SECTION PORTFOLIO   */
     /* ======================= */
     .portfolio-section {
-        margin-top: 10vh;
+        margin-top: 15vh;
         min-height: 80vh; /* réduit de 89vh à 80vh */
-  
-        padding: 50px 80px; /* Marges latérales augmentées */
+
+        padding: 00px 80px; /* Marges latérales augmentées */
         display: flex;
         align-items: center;
       }
