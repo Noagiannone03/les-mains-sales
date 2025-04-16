@@ -3,266 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Les Mains Sales - Nouvelle Page</title>
+  <title>Les Mains Sales | CONCEPT</title>
   
   <!-- Préchargement éventuel d'images -->
   <link rel="preload" href="../../assets/pictos/colored-pic/ampoule-active.png" as="image">
   <link rel="preload" href="../../assets/pictos/colored-pic/book-ouvert.png" as="image">
+  <link rel="preload" href="../../assets/light-icone/lumiere+file.png" as="image">
+
   
-  <style>
-    /* ===========================
-       POLICES & RESET
-    ============================ */
-    @font-face {
-      font-family: 'Ubuntu';
-      src: url('../../fonts/ubuntu-regular.woff2') format('woff2'),
-           url('../../fonts/ubuntu-regular.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
-    @font-face {
-      font-family: 'sharpie-extrabold';
-      src: url('../../assets/fonts/sharpie/Sharpie-Extrabold.otf') format('truetype');
-    }
-    @font-face {
-      font-family: 'ubuntu-medium';
-      src: url('../../assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
-    }
-    * {
-      margin: 0; padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Ubuntu', sans-serif;
-      overflow-x: hidden;
-    }
+  
+  <link rel="stylesheet" href="../../styles/styles/footer.css">
+  <link rel="stylesheet" href="styles/styles/navbar.css" />
+  <link rel="stylesheet" href="styles/styles/manifeste.css" />
+  <link rel="stylesheet" href="styles/styles/interstitielle.css" />
+  <link rel="stylesheet" href="styles/styles/header.css" />
+  <link rel="stylesheet" href="styles/styles/concept-main.css" />
+  <link rel="stylesheet" href="styles/styles/artistes.css" />
 
-    /* ===========================
-       NAVBAR (identique)
-    ============================ */
-    .navbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      height: 80px;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 30px;
-      border-bottom: 2px solid #383838;
-    }
-    .navbar .logo img {
-      height: 55px;
-      display: block;
-    }
-    .navbar nav {
-      display: flex;
-      gap: 30px;
-    }
-    .navbar nav a {
-      font-family: 'Ubuntu', sans-serif;
-      color: #000;
-      font-weight: bold;
-      text-decoration: none;
-      text-transform: uppercase;
-      font-size: 1.2em;
-      position: relative;
-      padding: 5px 0;
-    }
-    .navbar nav a::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: -1;
-    }
-    .navbar nav a:hover::before {
-      opacity: 1;
-    }
-    .nav-home::before {
-      background-image: url("../../assets/navbar-title-background/navbar-home.png");
-    }
-    .nav-portfolio::before {
-      background-image: url("../../assets/navbar-title-background/navbar-portfolio.png");
-    }
-    .nav-concept::before {
-      background-image: url("../../assets/navbar-title-background/navbar-concept.png");
-    }
-    .nav-contact::before {
-      background-image: url("../../assets/navbar-title-background/navbar-contact.png");
-    }
-    body {
-      margin-top: 80px;
-    }
 
-    /* ===========================
-       SECTION HEADER (75vh)
-    ============================ */
-    .header-section {
-        min-height: 40vh;
-      padding: 0px 80px;
-      
-      display: flex;
-      overflow-x: hidden;
-      flex-direction: column;
-      justify-content:center;
-    }
-    .header-top {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      margin-bottom: 30px;
-    }
-    .header-title {
-      font-size: 5.5em;
-      font-family: 'sharpie-extrabold', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-    }
-    .header-icon {
 
-      border-radius: 8px;
-      transition: filter 0.3s ease, transform 0.3s ease;
-      cursor: pointer;
-    }
-    .header-icon:hover {
-      animation: shake 0.5s;
-    }
 
-    /* ===========================
-       SECTION SLIDER
-    ============================ */
-    .slider-section {
-      margin-top: -9vh;
-      padding: 0px 80px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-    }
-    .slider-container {
-      display: flex;
-      gap: 1px;
-    }
-    .slider-container .slide {
-      flex: 0 0 calc((100% + 14%) / 3); /* 3 images visibles */
-      scroll-snap-align: start;
-      position: relative;
-    }
-    .slider-container .slide img {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      filter: grayscale(100%);
-      transition: filter 0.3s ease;
-    }
-    .slider-container .slide img:hover {
-      filter: grayscale(0%);
-    }
-    .slider-indicators {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-    }
-    .slider-indicators .indicator {
-      width: 40px;
-      height: 3px;
-      background-color: #000;
-      border-radius: 2px;
-    }
 
-    /* ===========================
-       SECTION INTERSTITIELLE (Concept)
-       (Hauteur variable)
-    ============================ */
-    .interstitial-section {
-      padding: 50px 80px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-    }
-    .interstitial-container {
-      position: relative;
-      width: 80%;
-      max-width: 80%;
-      margin: 0 auto;
-      padding: 5px;
-    }
-   
-    .interstitial-title {
-      font-family: 'ubuntu-medium', sans-serif;
-      font-size: 4em;
-      margin-bottom: 20px;
-    }
-    .interstitial-subtitle {
-      font-family: 'ubuntu-medium', sans-serif;
-      font-size: 1.9em;
-      max-width: 800px;
-      font-weight: bold;
-      margin: 0 auto;
-    }
-    .interstitial-left-img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 40px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-   
-    .interstitial-right-img {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 40px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    
-
-    /* ===========================
-       ANIMATION SHAKING
-    ============================ */
-    @keyframes shake {
-      0% { transform: translate(0,0); }
-      25% { transform: translate(-2px, 2px); }
-      50% { transform: translate(2px, -2px); }
-      75% { transform: translate(-2px, -2px); }
-      100% { transform: translate(0,0); }
-    }
-
-    /* ===========================
-       MODE TOGGLE (Global)
-       Quand le mode est activé, le slider passe en couleur et le titre "CONCEPT"
-       change de couleur, et les icônes de la section interstitielle changent.
-    ============================ */
-    .toggled .slider-container .slide img {
-      filter: none;
-    }
-    .toggled .interstitial-left-img {
-      content: url("../../assets/pictos/colored-pic/left-active.png");
-    }
-    .toggled .interstitial-right-img {
-      content: url("../../assets/pictos/colored-pic/right-active.png");
-    }
-    .toggled .interstitial-title {
-      color: #FF8300;
-    }
-    .toggled .contact-icons a .phone-text {
-      background-color: #FF8300;
-      padding: 0 5px;
-      border-radius: 3px;
-    }
-  </style>
 </head>
 <body>
   <!-- NAVBAR -->
@@ -286,22 +47,15 @@
     </div>
   </section>
 
-  <!-- SECTION SLIDER -->
-  <section class="slider-section">
-    <div class="slider-container" id="sliderContainer">
-      <div class="slide"><img src="../../assets/images/Property 1=Rectangle 135.png" alt="Slide 1"></div>
-      <div class="slide"><img src="../../assets/images/Property 1=Rectangle 135.png" alt="Slide 2"></div>
-      <div class="slide"><img src="../../assets/images/Property 1=Rectangle 135.png" alt="Slide 3"></div>
-      <div class="slide"><img src="../../assets/images/Property 1=Rectangle 135.png" alt="Slide 4"></div>
-      <div class="slide"><img src="../../assets/images/Property 1=Rectangle 135.png" alt="Slide 5"></div>
-      <div class="slide"><img src="../../assets/images/Property 1=Rectangle 135.png" alt="Slide 6"></div>
-    </div>
-    <div class="slider-indicators">
-      <span class="indicator"></span>
-      <span class="indicator"></span>
-      <span class="indicator"></span>
-    </div>
-  </section>
+ <!-- SECTION IMAGES (Trois images carrées en pleine largeur) -->
+<section class="carousel-section">
+  <div class="carousel-container">
+    <img src="../../assets/images/Property 1=Rectangle 135.png" alt="Image 1">
+    <img src="../../assets/images/Property 1=Rectangle 135.png" alt="Image 2">
+    <img src="../../assets/images/Property 1=Rectangle 135.png" alt="Image 3">
+  </div>
+</section>
+
 
   <!-- SECTION INTERSTITIELLE (Concept) -->
   <section class="interstitial-section">
@@ -309,13 +63,121 @@
       <img class="interstitial-left-img" src="../../assets/quote-icone/black-quote-gauche.png" alt="Left Icon" id="leftIcon">
       <div class="interstitial-content">
         <p class="interstitial-subtitle">
-          Ensemble, ils conjugent créativité et innovation pour concevoir des installaions qui captent l'attention et encouragent la participation du public.
+          Ensemble, ils conjugent créativité et <span class="toggle-highlight">innovation</span> pour <span class="toggle-highlight">concevoir</span> des installaions qui captent l'attention et encouragent la <span class="toggle-highlight">participation</span> du public.
         </p>
       </div>
       <img class="interstitial-right-img" src="../../assets/quote-icone/black-quote-droit.png" alt="Right Icon" id="rightIcon">
     </div>
   </section>
 
+
+  <section class="custom-section">
+    <!-- Partie Supérieure -->
+    <div class="upper-part">
+      <div class="text-column" id="textColumn">
+        <h2 class="section-title" id="sectionTitle">Des artistes engagé.e.s</h2>
+        <p class="section-paragraph">
+          Mais le collectif MAINS SALES ne se contente pas de transformer les espaces urbains en toiles géantes ; le collectif s’engage dans un processus créatif expérimental, remettant en question la notion traditionnelle d’œuvre d’art et d’espace d’exposition.</br> 
+          À travers le médium de l’Urban Hacking, ils repensent la relation entre l’art, la ville et ses habitants, explorant de nouvelles façons d’habiter et de percevoir l’espace urbain.</br></br>
+          
+          Le collectif révèlent la beauté cachée des espaces souvent négligés, offrant de nouveaux terrains de jeu pour la ville. Chaque projet est une opportunité d’intégrer des technologies de pointe de manière harmonieuse, créant ainsi des expériences où l’art, la technologie et l’urbanisme se fondent en une symbiose captivante.     </p>
+      </div>
+      <div class="image-column">
+        <img src="../../assets/pictos/black-pic/coeur-concept.png" alt="Image concept">
+      </div>
+    </div>
+    
+    <!-- Partie Inférieure -->
+    <div class="lower-part">
+      <img class="lower-image" src="../../assets/images/disturbed-photo.png" alt="Grande image">
+    </div>
+  </section>
+
+
+
+  <section class="manifest-section">
+    <!-- En-tête avec le titre qui toggle le background -->
+    <div class="manifest-header">
+      <h2 class="manifest-title" id="manifestTitle">Manifeste</h2>
+    </div>
+    <!-- Grille de cartes -->
+    <div class="card-container">
+      <div class="card">
+        <div class="card-image">
+          <img src="../../assets/images/DSC00440.JPG" alt="Image 1">
+        </div>
+        <h3 class="card-title">Fusion art-ville</h3>
+        <p class="card-description">
+          Notre travail consiste à imbriquer des œuvres à la ville telles des greffes artistiques en créant des nouveaux espaces de dialogue, où l’espace public devient un lieu de rencontre entre artistes et passants. Dans le prolongement du street art, en remontant jusqu’aux traditions du muralisme Mexicain qui se déclarait comme un art populaire et monumental parce qu'il est propriété publique.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="../../assets/images/DSC00459.JPG" alt="Image 2">
+        </div>
+        <h3 class="card-title">Réinvention urbaine</h3>
+        <p class="card-description">
+          Embellissement, revalorisation, attractivité….Des plus-values multiples pour des territoires à échelle variable. C’est une véritable réinterprétation de lieux jugés souvent austères et sous exploités, que nous souhaitons ré-adapter en espace utiles et agréables pour les habitants et visiteurs d’une ville. Traverser une œuvre en parcourant la ville, en utilisant des espaces urbains comme des nouveaux terrains de jeux, où le sens fusionne avec l’esthétique en y ajoutant parfois une couche de nouvelles technologies.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-image">
+          <img src="../../assets/images/DSC00464.JPG" alt="Image 3">
+        </div>
+        <h3 class="card-title">L'objectif</h3>
+        <p class="card-description">
+          Laisser une empreinte en intégrant l’intervention artistique comme un élément d’accompagnement du projet urbain et redéfinir l’utilisation d’un espace en y apportant une nouvelle dimension artistique et des installations interactives qui jouent avec le passant et son parcours. L’apport des nouvelles technologies par ce biais peut nous renseigner sur de nombreux nouveaux comportements et usages sur ce site nouvellement adapté..
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION FOOTER -->
+  <section class="footer-section" id="footer">
+    <div class="footer-container">
+      <!-- Petite image en haut à gauche -->
+      
+      <!-- Conteneur central -->
+      <div class="footer-center">
+        <!-- Grande image centrale -->
+       
+        <!-- Bloc pillule dans le footer -->
+        <div class="footer-pill">
+          <!-- Partie supérieure : Navigation avec images et liens -->
+          <div class="footer-pill-top">
+            <div class="left-img">
+              <img src="../../assets/pictos/black-pic/picto-faceboook.png" style="width: 30px;" alt="Icône gauche">
+            </div>
+            <div class="footer-nav">
+              <a href="../../index.html">Home</a>
+              <span class="sep">|</span>
+              <a href="../portfolio/portfolio.html">Portfolio</a>
+              <span class="sep">|</span>
+              <a href="concept.html">Concept</a>
+              <span class="sep">|</span>
+              <a href="../contact/contact.html">Contact</a>
+            </div>
+            <div class="right-img">
+              <img src="../../assets/pictos/black-pic/picto-instagram.png" alt="Icône droite">
+            </div>
+          </div>
+          <!-- Partie inférieure : Liens légaux -->
+          <div class="footer-pill-bottom">
+            <div class="legal-links">
+              <a href="#">Mentions légales</a>
+              <span class="sep"></span>
+              <a href="#">Conditions d'utilisation</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-below">
+            <img src="../../assets/images/machicouli.png" alt="Décoration Footer">
+          </div>
+      </div>
+      <!-- Image décorative collée directement en dessous de la pillule -->
+    
+    </div>
+  </section>
   <!-- Vous pouvez ajouter un footer ou d’autres sections ici -->
 
   <!-- JavaScript pour toggle mode global -->
@@ -326,22 +188,53 @@
     const rightIcon = document.getElementById('rightIcon');
     const sliderContainer = document.getElementById('sliderContainer');
     const interstitialTitle = document.querySelector('.interstitial-title');
+    const sectionTitle = document.getElementById('sectionTitle');
+    const manifestTitle = document.getElementById('manifestTitle');
+   let highlighted = document.querySelectorAll('.toggle-highlight'); // ✅ retourne une NodeList
+   const h1Portfolio = document.querySelector(".header-title");
+
+
+
     let globalToggled = false;
     
     headerIcon.addEventListener('click', function() {
       globalToggled = !globalToggled;
       if(globalToggled) {
+        highlighted.forEach(highlighted => {
+          highlighted.classList.toggle("toggled");
+                });
+                
+                h1Portfolio.style.color = "#83f52c";
+
         headerIcon.src = "../../assets/light-icone/lumiere+file.png";
-        sliderContainer.classList.add("toggled");
+      
         
         leftIcon.src = "../../assets/quote-icone/colored-quote-gauche.png";
         rightIcon.src = "../../assets/quote-icone/colored-quote-droit.png";
+        sectionTitle.classList.add("toggled");
+        manifestTitle.classList.add('toggled');
+       
+
       } else {
-        headerIcon.src = "../../assets/light-icone/ampoule-eteinte.png";
-        sliderContainer.classList.remove("toggled");
+        h1Portfolio.style.color = "";
+
+        highlighted.forEach(highlighted => {
+          highlighted.classList.toggle("toggled");
+                });    
+                
+                
+
+         headerIcon.src = "../../assets/light-icone/ampoule-eteinte.png";
+      
        
         leftIcon.src = "../../assets/quote-icone/black-quote-gauche.png";
         rightIcon.src = "../../assets/quote-icone/black-quote-droit.png";
+        sectionTitle.classList.remove("toggled");
+        manifestTitle.classList.remove('toggled');
+        document.querySelector('.custom-section').classList.remove('toggled');
+        
+
+
       }
     });
   </script>

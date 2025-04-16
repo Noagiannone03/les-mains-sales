@@ -1,0 +1,109 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../../../../fonts/ubuntu-regular.woff2') format('woff2'),
+         url('../../../../fonts/ubuntu-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'sharpie-extrabold';
+    src: url('../../../../assets/fonts/sharpie/Sharpie-Extrabold.otf') format('truetype');
+  }
+  @font-face {
+    font-family: 'ubuntu-medium';
+    src: url('../../../../assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'ubuntu-bold';
+    src: url('../../../../assets/fonts/ubuntu/Ubuntu-B.ttf') format('truetype');
+  }
+
+
+   /* ===========================
+       SECTION SUPÉRIEURE – DEUX COLONNES
+       (Le titre et le paragraphe à gauche, image à droite)
+    ============================ */
+    .custom-section {
+        width: 100%;
+        padding: 50px 80px;
+        /* Ajustez la hauteur globale si besoin */
+      }
+      .upper-part {
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+      }
+      .text-column {
+        width: 70%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* Pour le toggle, on définit une transition sur le background */
+        transition: background 0.3s ease;
+      }
+      .section-title {
+        font-size: 2.6em;
+        width: fit-content;
+        font-family: 'sharpie-extrabold', sans-serif;
+        margin-bottom: 10px;
+        cursor: pointer;
+        
+      }
+  
+      .section-title.toggled {
+        background-image: url('../../../../assets/background-paint-title/artistes-concept-underlined.png');
+        background-size: cover;
+        background-position: center;
+      }
+      .section-paragraph {
+        font-size: 1.2em;
+        font-family: 'ubuntu-medium', sans-serif;
+        text-align: justify;
+        
+      }
+      .image-column {
+        width: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .image-column img {
+        align-self: center;
+        width: 70%;
+        height: 70%;
+        object-fit: cover;
+      }
+      
+      /* ===========================
+         SECTION INFÉRIEURE – IMAGE RECTANGULAIRE
+      ============================ */
+      .lower-part {
+        width: 100%;
+        margin-top: 20px;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        border-radius: 20px;
+      }
+      
+  
+  
+      .lower-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    overflow: hidden;
+    filter: grayscale(100%);
+    transition: transform 0.3s ease, filter 0.3s ease;
+  
+  }
+  
+  
+  .lower-image:hover  {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+  }
+  
+   
+  

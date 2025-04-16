@@ -1,0 +1,157 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../../../../fonts/ubuntu-regular.woff2') format('woff2'),
+         url('../../../../fonts/ubuntu-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'sharpie-extrabold';
+    src: url('../../../../assets/fonts/sharpie/Sharpie-Extrabold.otf') format('truetype');
+  }
+  @font-face {
+    font-family: 'ubuntu-medium';
+    src: url('../../../../assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'ubuntu-bold';
+    src: url('../../../../assets/fonts/ubuntu/Ubuntu-B.ttf') format('truetype');
+  }
+
+
+
+  /* ===========================
+       SECTION MANIFEST
+    ============================ */
+    .manifest-section {
+        width: 100%;
+        padding: 40px 80px;
+        background-color: #fff;
+      }
+      /* En-tête de section avec le titre "Manifest" */
+      .manifest-header {
+        margin-bottom: 30px;
+      }
+      .manifest-title {
+        font-size: 2.6em;
+        font-family: 'sharpie-extrabold', sans-serif;
+     
+        letter-spacing: 2px;
+        cursor: pointer;
+      margin-left: 20px;
+        transition: background 0.3s ease, color 0.3s ease;
+        display: inline-block;
+      }
+      /* Toggle background sur le titre lorsqu'on clique */
+      .manifest-title.toggled {
+        background-image: url('../../../../assets/background-paint-title/manifeste-concept-underlined.png'); /* Remplacez par votre image */
+        background-size: cover;
+        background-position: center;
+      }
+  
+      /* Grille de 3 cartes */
+      .card-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+  /* Style des cartes */
+  .card {
+    background: #fff;
+    padding: 5px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  /* Images en noir et blanc par défaut */
+  .card img {
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+  }
+  
+  /* Survol de la carte */
+  .card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border: 2px solid #83f52c;
+  }
+  
+  /* Survol : image en couleur */
+  .card:hover img {
+    filter: grayscale(0%);
+  }
+  
+  
+      .card-image {
+        border-radius: 20px;
+    height: 260px; /* Ajustez cette valeur selon vos besoins */
+    overflow: hidden;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  
+  
+  
+  
+   .toggle-highlight.toggled {
+    background-color: #83f52c;  /* Couleur de surlignage en bleu clair (vous pouvez modifier la valeur) */
+    padding: 0 5px;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+  }
+  
+  
+      .card-title {
+        margin-top: 20px;
+        font-size: 1.5em;
+        text-align: left;
+        text-transform: uppercase;
+        font-family: 'ubuntu-bold', sans-serif;
+        margin-bottom: 10px;
+      }
+      .card-description {
+        font-size: 1.2em;
+        font-family: 'ubuntu-regular', sans-serif;
+        text-align: left;
+      }
+      
+      /* ===========================
+         STYLE TOGGLE BACKGROUND POUR LE TEXTE
+      ============================ */
+      .background-active {
+        background-image: url('../../../../assets/path-to-background.jpg'); /* Remplacez par votre image */
+        background-size: cover;
+        background-position: center;
+      }
+      /* ===========================
+         MODE TOGGLE (Global)
+         Quand le mode est activé, le slider passe en couleur et le titre "CONCEPT"
+         change de couleur, et les icônes de la section interstitielle changent.
+      ============================ */
+      .toggled .slider-container .slide img {
+        filter: none;
+      }
+      .toggled .interstitial-left-img {
+        content: url("../../../../assets/pictos/colored-pic/left-active.png");
+      }
+      .toggled .interstitial-right-img {
+        content: url("../../../../assets/pictos/colored-pic/right-active.png");
+      }
+      .toggled .interstitial-title {
+        color: #FF8300;
+      }
+      .toggled .contact-icons a .phone-text {
+        background-color: #FF8300;
+        padding: 0 5px;
+        border-radius: 3px;
+      }

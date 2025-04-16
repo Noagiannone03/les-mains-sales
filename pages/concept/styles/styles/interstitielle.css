@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../../../../fonts/ubuntu-regular.woff2') format('woff2'),
+         url('../../../../fonts/ubuntu-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'sharpie-extrabold';
+    src: url('../../../../assets/fonts/sharpie/Sharpie-Extrabold.otf') format('truetype');
+  }
+  @font-face {
+    font-family: 'ubuntu-medium';
+    src: url('../../../../assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'ubuntu-bold';
+    src: url('../../../../assets/fonts/ubuntu/Ubuntu-B.ttf') format('truetype');
+  }
+
+
+
+  /* ===========================
+       SECTION INTERSTITIELLE (Concept)
+    ============================ */
+    .interstitial-section {
+        padding: 50px 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .interstitial-container {
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        padding: 5px;
+      }
+      .interstitial-title {
+        font-family: 'ubuntu-medium', sans-serif;
+        font-size: 4em;
+        margin-bottom: 20px;
+        transition: color 0.3s ease;
+      }
+      .interstitial-subtitle {
+        font-family: 'ubuntu-medium', sans-serif;
+        font-size: 1.9em;
+        max-width: 800px;
+        font-weight: bold;
+        margin: 0 auto;
+      }
+      .interstitial-left-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 40px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      .interstitial-right-img {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 40px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      
+  
+      /* ===========================
+         ANIMATION SHAKING
+      ============================ */
+      @keyframes shake {
+        0% { transform: translate(0,0); }
+        25% { transform: translate(-2px, 2px); }
+        50% { transform: translate(2px, -2px); }
+        75% { transform: translate(-2px, -2px); }
+        100% { transform: translate(0,0); }
+      }
+  
+  
+  

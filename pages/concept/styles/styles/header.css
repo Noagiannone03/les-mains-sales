@@ -1,0 +1,90 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../../../../fonts/ubuntu-regular.woff2') format('woff2'),
+         url('../../../../fonts/ubuntu-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'sharpie-extrabold';
+    src: url('../../../../assets/fonts/sharpie/Sharpie-Extrabold.otf') format('truetype');
+  }
+  @font-face {
+    font-family: 'ubuntu-medium';
+    src: url('../../../../assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'ubuntu-bold';
+    src: url('../../../../assets/fonts/ubuntu/Ubuntu-B.ttf') format('truetype');
+  }
+
+
+  
+    /* ===========================
+       SECTION HEADER (75vh)
+    ============================ */
+    .header-section {
+        min-height: 40vh;
+      padding: 0px 80px;
+      
+      display: flex;
+      overflow-x: hidden;
+      flex-direction: column;
+      justify-content:center;
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    .header-title {
+      font-size: 5.5em;
+      font-family: 'sharpie-extrabold', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+    .header-icon {
+
+      border-radius: 8px;
+      transition: filter 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+    .header-icon:hover {
+      animation: shake 0.5s;
+    }
+
+
+
+     /* ===========================
+       SECTION SLIDER
+    ============================ */
+   
+
+
+    .carousel-section {
+        margin-top: -9vh;
+   /* Ajustez le padding selon vos besoins */
+  }
+  
+  .carousel-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  
+  .carousel-container img {
+    border-radius: 0px;
+    width: 100%;
+    aspect-ratio: 1/1;      /* Pour garantir le format carré */
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+  }
+  
+  .carousel-container img:hover {
+    filter: grayscale(0%);
+    
+  }
+  
+  

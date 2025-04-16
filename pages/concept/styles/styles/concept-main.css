@@ -1,5 +1,4 @@
-  /* Importation des polices */
-  @font-face {
+@font-face {
     font-family: 'Ubuntu';
     src: url('../../../../fonts/ubuntu-regular.woff2') format('woff2'),
          url('../../../../fonts/ubuntu-regular.woff') format('woff');
@@ -14,24 +13,13 @@
     font-family: 'ubuntu-medium';
     src: url('../../../../assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
   }
+  @font-face {
+    font-family: 'ubuntu-bold';
+    src: url('../../../../assets/fonts/ubuntu/Ubuntu-B.ttf') format('truetype');
+  }
 
 
-
-
-      /* Réinitialisation */
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        font-family: 'Ubuntu', sans-serif;
-        overflow-x: hidden;
-        overflow-x: hidden;
-        margin-top: 80px; 
-      }
-
-      
+  
 #footer{
         
     position: relative;
@@ -46,13 +34,20 @@
     gap: 20px;
     min-width: 600px;
   }
+/* ===========================
+   POLICES & RESET
+============================ */
 
-
-/* Animation Shake */
-@keyframes shake {
-  0% { transform: translate(0, 0); }
-  25% { transform: translate(-2px, 2px); }
-  50% { transform: translate(2px, -2px); }
-  75% { transform: translate(-2px, -2px); }
-  100% { transform: translate(0, 0); }
+* {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
 }
+body {
+  font-family: 'Ubuntu', sans-serif;
+  overflow-x: hidden;
+}
+
+
+body {
+    margin-top: 80px;
+  }
