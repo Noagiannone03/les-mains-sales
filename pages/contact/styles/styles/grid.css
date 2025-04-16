@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../../../../fonts/ubuntu-regular.woff2') format('woff2'),
+         url('../../../../fonts/ubuntu-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'sharpie-extrabold';
+    src: url('../../../../assets/fonts/sharpie/Sharpie-Extrabold.otf') format('truetype');
+  }
+  @font-face {
+    font-family: 'ubuntu-medium';
+    src: url('../../../../assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
+  }
+
+
+
+
+  /* ===============================
+         SECTION: GRILLE DYNAMIQUE
+       (70vh de hauteur)
+    =============================== */
+    .dynamic-grid-section {
+        height: 70vh;
+        width: 100%;
+        margin-top: 40px;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .grid-container {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+      }
+      .grid-cell {
+        background-color: #fff;
+       
+        position: relative;
+        overflow: hidden;
+      }
+      .grid-cell img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+      }

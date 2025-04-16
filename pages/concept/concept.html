@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Les Mains Sales - Nouvelle Page</title>
+  
+  <!-- Préchargement éventuel d'images -->
+  <link rel="preload" href="../../assets/pictos/colored-pic/ampoule-active.png" as="image">
+  <link rel="preload" href="../../assets/pictos/colored-pic/book-ouvert.png" as="image">
+  
+  <style>
+    /* ===========================
+       POLICES & RESET
+    ============================ */
+    @font-face {
+      font-family: 'Ubuntu';
+      src: url('../../fonts/ubuntu-regular.woff2') format('woff2'),
+           url('../../fonts/ubuntu-regular.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'sharpie-extrabold';
+      src: url('../../assets/fonts/sharpie/Sharpie-Extrabold.otf') format('truetype');
+    }
+    @font-face {
+      font-family: 'ubuntu-medium';
+      src: url('../../assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
+    }
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Ubuntu', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ===========================
+       NAVBAR (identique)
+    ============================ */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: 80px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      border-bottom: 2px solid #383838;
+    }
+    .navbar .logo img {
+      height: 55px;
+      display: block;
+    }
+    .navbar nav {
+      display: flex;
+      gap: 30px;
+    }
+    .navbar nav a {
+      font-family: 'Ubuntu', sans-serif;
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 1.2em;
+      position: relative;
+      padding: 5px 0;
+    }
+    .navbar nav a::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+    .navbar nav a:hover::before {
+      opacity: 1;
+    }
+    .nav-home::before {
+      background-image: url("../../assets/navbar-title-background/navbar-home.png");
+    }
+    .nav-portfolio::before {
+      background-image: url("../../assets/navbar-title-background/navbar-portfolio.png");
+    }
+    .nav-concept::before {
+      background-image: url("../../assets/navbar-title-background/navbar-concept.png");
+    }
+    .nav-contact::before {
+      background-image: url("../../assets/navbar-title-background/navbar-contact.png");
+    }
+    body {
+      margin-top: 80px;
+    }
+
+    /* ===========================
+       SECTION HEADER (75vh)
+    ============================ */
+    .header-section {
+        min-height: 40vh;
+      padding: 0px 80px;
+      
+      display: flex;
+      overflow-x: hidden;
+      flex-direction: column;
+      justify-content:center;
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    .header-title {
+      font-size: 5.5em;
+      font-family: 'sharpie-extrabold', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+    .header-icon {
+
+      border-radius: 8px;
+      transition: filter 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+    .header-icon:hover {
+      animation: shake 0.5s;
+    }
+
+    /* ===========================
+       SECTION SLIDER
+    ============================ */
+    .slider-section {
+      margin-top: -9vh;
+      padding: 0px 80px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+    }
+    .slider-container {
+      display: flex;
+      gap: 1px;
+    }
+    .slider-container .slide {
+      flex: 0 0 calc((100% + 14%) / 3); /* 3 images visibles */
+      scroll-snap-align: start;
+      position: relative;
+    }
+    .slider-container .slide img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+    .slider-container .slide img:hover {
+      filter: grayscale(0%);
+    }
+    .slider-indicators {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .slider-indicators .indicator {
+      width: 40px;
+      height: 3px;
+      background-color: #000;
+      border-radius: 2px;
+    }
+
+    /* ===========================
+       SECTION INTERSTITIELLE (Concept)
+       (Hauteur variable)
+    ============================ */
+    .interstitial-section {
+      padding: 50px 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+    .interstitial-container {
+      position: relative;
+      width: 80%;
+      max-width: 80%;
+      margin: 0 auto;
+      padding: 5px;
+    }
+   
+    .interstitial-title {
+      font-family: 'ubuntu-medium', sans-serif;
+      font-size: 4em;
+      margin-bottom: 20px;
+    }
+    .interstitial-subtitle {
+      font-family: 'ubuntu-medium', sans-serif;
+      font-size: 1.9em;
+      max-width: 800px;
+      font-weight: bold;
+      margin: 0 auto;
+    }
+    .interstitial-left-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+   
+    .interstitial-right-img {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 40px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+
+    /* ===========================
+       ANIMATION SHAKING
+    ============================ */
+    @keyframes shake {
+      0% { transform: translate(0,0); }
+      25% { transform: translate(-2px, 2px); }
+      50% { transform: translate(2px, -2px); }
+      75% { transform: translate(-2px, -2px); }
+      100% { transform: translate(0,0); }
+    }
+
+    /* ===========================
+       MODE TOGGLE (Global)
+       Quand le mode est activé, le slider passe en couleur et le titre "CONCEPT"
+       change de couleur, et les icônes de la section interstitielle changent.
+    ============================ */
+    .toggled .slider-container .slide img {
+      filter: none;
+    }
+    .toggled .interstitial-left-img {
+      content: url("../../assets/pictos/colored-pic/left-active.png");
+    }
+    .toggled .interstitial-right-img {
+      content: url("../../assets/pictos/colored-pic/right-active.png");
+    }
+    .toggled .interstitial-title {
+      color: #FF8300;
+    }
+    .toggled .contact-icons a .phone-text {
+      background-color: #FF8300;
+      padding: 0 5px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <a href="../../index.html"><img src="../../assets/logos/lesmainssales-noir.png" alt="Logo"></a>
+    </div>
+    <nav>
+      <a href="../../index.html" class="nav-home">Home</a>
+      <a href="../portfolio/portfolio.html" class="nav-portfolio">Portfolio</a>
+      <a href="concept.html" class="nav-concept">Concept</a>
+      <a href="../contact/contact.html" class="nav-contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- SECTION HEADER (75vh) -->
+  <section class="header-section">
+    <div class="header-top">
+      <h1 class="header-title">CONCEPT</h1>
+      <img class="header-icon" src="../../assets/light-icone/ampoule-eteinte.png" alt="Icon Contact" id="headerIcon">
+    </div>
+  </section>
+
+  <!-- SECTION SLIDER -->
+  <section class="slider-section">
+    <div class="slider-container" id="sliderContainer">
+      <div class="slide"><img src="../../assets/images/Property 1=Rectangle 135.png" alt="Slide 1"></div>
+      <div class="slide"><img src="../../assets/images/Property 1=Rectangle 135.png" alt="Slide 2"></div>
+      <div class="slide"><img src="../../assets/images/Property 1=Rectangle 135.png" alt="Slide 3"></div>
+      <div class="slide"><img src="../../assets/images/Property 1=Rectangle 135.png" alt="Slide 4"></div>
+      <div class="slide"><img src="../../assets/images/Property 1=Rectangle 135.png" alt="Slide 5"></div>
+      <div class="slide"><img src="../../assets/images/Property 1=Rectangle 135.png" alt="Slide 6"></div>
+    </div>
+    <div class="slider-indicators">
+      <span class="indicator"></span>
+      <span class="indicator"></span>
+      <span class="indicator"></span>
+    </div>
+  </section>
+
+  <!-- SECTION INTERSTITIELLE (Concept) -->
+  <section class="interstitial-section">
+    <div class="interstitial-container">
+      <img class="interstitial-left-img" src="../../assets/quote-icone/black-quote-gauche.png" alt="Left Icon" id="leftIcon">
+      <div class="interstitial-content">
+        <p class="interstitial-subtitle">
+          Ensemble, ils conjugent créativité et innovation pour concevoir des installaions qui captent l'attention et encouragent la participation du public.
+        </p>
+      </div>
+      <img class="interstitial-right-img" src="../../assets/quote-icone/black-quote-droit.png" alt="Right Icon" id="rightIcon">
+    </div>
+  </section>
+
+  <!-- Vous pouvez ajouter un footer ou d’autres sections ici -->
+
+  <!-- JavaScript pour toggle mode global -->
+  <script>
+    // Toggle global mode (pour le slider, interstitielle, etc.)
+    const headerIcon = document.getElementById('headerIcon');
+    const leftIcon = document.getElementById('leftIcon');
+    const rightIcon = document.getElementById('rightIcon');
+    const sliderContainer = document.getElementById('sliderContainer');
+    const interstitialTitle = document.querySelector('.interstitial-title');
+    let globalToggled = false;
+    
+    headerIcon.addEventListener('click', function() {
+      globalToggled = !globalToggled;
+      if(globalToggled) {
+        headerIcon.src = "../../assets/light-icone/lumiere+file.png";
+        sliderContainer.classList.add("toggled");
+        
+        leftIcon.src = "../../assets/quote-icone/colored-quote-gauche.png";
+        rightIcon.src = "../../assets/quote-icone/colored-quote-droit.png";
+      } else {
+        headerIcon.src = "../../assets/light-icone/ampoule-eteinte.png";
+        sliderContainer.classList.remove("toggled");
+       
+        leftIcon.src = "../../assets/quote-icone/black-quote-gauche.png";
+        rightIcon.src = "../../assets/quote-icone/black-quote-droit.png";
+      }
+    });
+  </script>
+</body>
+</html>

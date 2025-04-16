@@ -1,0 +1,225 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../../../../fonts/ubuntu-regular.woff2') format('woff2'),
+         url('../../../../fonts/ubuntu-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'sharpie-extrabold';
+    src: url('../../../../assets/fonts/sharpie/Sharpie-Extrabold.otf') format('truetype');
+  }
+  @font-face {
+    font-family: 'ubuntu-medium';
+    src: url('../../../../assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
+  }
+
+
+
+   /* ===========================
+       SECTION CONTACT
+    ============================ */
+    .contact-section {
+        min-height: 60vh; 
+        padding: 00px 80px;
+        padding-top: 4vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .contact-container {
+        width: 100%;
+        max-width: 1300px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+  
+      /* Ligne de Titre & icône */
+      .contact-top-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        align-items: center;
+      }
+      .contact-title {
+        font-size: 5.5em;
+        text-transform: uppercase;
+        font-family: 'sharpie-extrabold', sans-serif;
+        letter-spacing: 3px;
+       
+      }
+      .contact-small-image {
+        border-radius: 8px;
+        filter: grayscale(100%);
+        transition: filter 0.3s ease, transform 0.3s ease;
+        cursor: pointer;
+      }
+      .contact-small-image:hover {
+        animation: shake 0.5s;
+        filter: grayscale(0%);
+      }
+      
+      /* Contenu en deux colonnes */
+      .contact-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+      .contact-form-column, .contact-info-column {
+        flex: 0 0 45%;
+        gap: 30px;
+      }
+      .contact-form-column {
+    flex: 0 0 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;  /* Pousse le premier élément en haut et le dernier en bas */
+    min-height: 300px;               /* Ajustez cette valeur selon vos besoins */
+    gap: 40px;                       /* Augmentation de l'espacement entre les éléments */
+  }
+  
+      /* Formulaire */
+      .contact-input-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+        gap: 30px;
+      }
+      .contact-input {
+        border: none;
+        border-bottom: 2px solid #000;
+        font-size: 1em;
+        padding: 5px 0;
+        outline: none;
+        transition: border-color 0.3s ease;
+        width: 100%;
+      }
+      .contact-input:focus {
+        border-bottom-color: #999;
+      }
+      .contact-textarea {
+        resize: none;
+        border: none;
+        border-bottom: 2px solid #000;
+        font-size: 1em;
+        padding: 5px 0;
+        outline: none;
+        transition: border-color 0.3s ease;
+        width: 100%;
+      }
+      .contact-textarea:focus {
+        border-bottom-color: #999;
+      }
+      /* Placeholders stylisés : bold, Ubuntu, noir profond */
+      .contact-input::placeholder,
+      .contact-textarea::placeholder {
+        font-weight: bold;
+        color: #000;
+        font-family: 'Ubuntu', sans-serif;
+      }
+      /* Bouton "Envoyer" en mode initial : style avec image */
+      .contact-button {
+        width: 100px;
+        height: 30px; /* Ajustez selon l'image */
+        background: url("../../../../assets/hand-button/btn-envoyer-normal.png") center/cover no-repeat;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: 'ubuntu-medium', sans-serif;
+        background-size: cover;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease;
+        margin-top: 20px;
+        align-self: flex-start;
+        /* Masquer le texte (si présent) */
+        color: transparent;
+      }
+      .contact-button:hover {
+        /* Optionnel, vous pouvez ajouter un léger scale */
+        transform: scale(1.05);
+      }
+      
+      /* Colonne Info */
+      .contact-info-column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 30px;
+      }
+      .contact-description {
+        font-size: 1.35em;
+    
+        text-align: justify;
+        font-family: 'ubuntu-medium', sans-serif;
+      }
+      .contact-icons {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .contact-icons a {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        text-decoration: none;
+        color: #000;
+        font-size: 1.3em;
+        font-family: 'ubuntu-medium', sans-serif;
+      }
+      /* Pour le numéro de téléphone, on appliquera un effet highlight en mode toggle */
+      .phone-text {
+        transition: all 0.3s ease;
+      }
+      
+      .contact-icons img {
+        width: 25px;
+        filter: grayscale(100%);
+        transition: filter 0.3s ease;
+      }
+      .contact-icons a:hover img {
+        filter: grayscale(0%);
+      }
+      
+      /* ===========================
+         ANIMATION SHAKING
+      =========================== */
+      @keyframes shake {
+        0% { transform: translate(0, 0); }
+        25% { transform: translate(-2px, 2px); }
+        50% { transform: translate(2px, -2px); }
+        75% { transform: translate(-2px, -2px); }
+        100% { transform: translate(0, 0); }
+      }
+      
+      /* ===========================
+         MODE TOGGLE (Contact)
+      =========================== */
+      .contact-section.toggled .contact-title {
+        color: #FF8300;
+      }
+      .contact-section.toggled .phone-text {
+        /* Highlight effet pour le numéro */
+        background-color: #FF8300;
+        padding: 0 5px;
+        border-radius: 3px;
+      }
+      .contact-section.toggled .contact-button {
+        background: none;
+        border: none;
+        /* Remplacer le bouton par une autre image */
+        background-image: url("../../../../assets/hand-button/btn-envoyer-clic.png");
+        background-size:cover;
+        background-position: center;
+        /* On conserve les dimensions */
+      }
+      .contact-section.toggled .contact-small-image {
+        filter: none;
+      }
+      
+  
+  
