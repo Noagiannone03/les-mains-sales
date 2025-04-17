@@ -71,10 +71,10 @@
         width: 100%;
       }
       .portfolio-subtitle {
-        font-size: 1.3em;
+        font-size: 1.6em;
         font-weight: normal;
         font-family: 'ubuntu-medium', sans-serif;
-        line-height: 1.4;
+        line-height: 1.2;
         text-align: justify;
       }
       .portfolio-section.toggled .portfolio-subtitle {

@@ -8,6 +8,7 @@
   <!-- GLightbox -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <link rel="stylesheet" href="../../../styles/styles/footer.css">
 
   <!-- POLICES & RESET -->
   <style>
@@ -23,6 +24,10 @@
     @font-face {
       font-family: 'ubuntu-medium';
       src: url('../../../assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'ubuntu-bold';
+      src: url('../../../assets/fonts/ubuntu/Ubuntu-B.ttf') format('truetype');
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Ubuntu',sans-serif; overflow-x:hidden; margin-top:80px; }
@@ -86,7 +91,7 @@
     }
     .interstitial-content { display:flex; gap:40px; }
     .interstitial-left {
-      flex:0 0 30%; display:flex; flex-direction:column; gap:20px;
+      flex:0 0 30%; display:flex; flex-direction:column; gap:10px;
     }
     .interstitial-left .item {
       display:flex; align-items:center; gap:10px; font-size:1.25em;
@@ -96,7 +101,7 @@
     }
     .interstitial-right {
       flex:1; font-family:'ubuntu-medium',sans-serif;
-      font-size:1.4em; text-align:justify;
+      font-size:1.5em; text-align:justify;
     }
 
     /* GALLERY – Masonry CSS Columns */
@@ -105,15 +110,17 @@
       padding:50px 80px 20px;
     }
     .gallery-title {
-      font-family:'ubuntu-medium',sans-serif; font-size:3em;
-      position:relative; padding-bottom:10px;
-      background: url('../../../assets/background-paint-title/gallery-underlined.png') center/cover no-repeat;
+      font-family:'ubuntu-medium',sans-serif; 
+      font-size:3em;
+      position:relative; 
+      padding-bottom:10px;
+      background-image: url('../../../assets/background-paint-title/coupoeil.png') center/cover no-repeat;
     }
     .gallery-icon {
-      width:50px; cursor:pointer; transition:filter .3s;
+      width:50px; ; transition:filter .3s;
     }
     .gallery-icon:hover {
-      content: url('../../../assets/pictos/colored-pic/gallery-icon-active.png');
+      content: url('../../../assets/oeil-picto/oeil-ouvert.png');
     }
 
 
@@ -121,67 +128,251 @@
 
      /* === GALLERY – CSS COLUMNS amélioré === */
      .gallery-section {
-      padding: 50px 80px 80px;  /* padding maître */
+      padding: 50px 80px;  /* padding maître */
       background: #fff;
     }
     .gallery-header {
-      display:flex; align-items:center; gap:30px; margin-bottom:20px;
-    }
-    .gallery-title {
-      font-family:'ubuntu-medium',sans-serif; font-size:3em;
-      padding-bottom:10px;
-      background: url('../../../assets/background-paint-title/gallery-underlined.png') center/cover no-repeat;
-    }
-    .gallery-icon {
-      width:50px; cursor:pointer;
-    }
-    .gallery-icon:hover {
-      content: url('../../../assets/pictos/colored-pic/gallery-icon-active.png');
-    }
+  display: flex;               /* on active le flex pour l’alignement */
+  align-items: center;         /* aligne verticalement */
+  justify-content: flex-start; /* colle tout à gauche */
+  gap: 30px;  
+  padding-left: 0px;
+  padding-bottom: 0%;                 
+  margin-bottom: 20px;
+}
+
+.gallery-title {
+  font-family: 'sharpie-extrabold', sans-serif;
+  font-size: 3em;
+  width: fit-content;
+  height: fit-content;
+  /* underline en background */
+  background-image: url('../../../assets/background-paint-title/coupoeil.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding-right: 3vh;
+}
+
+.gallery-icon {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+
+  /* icône fermée par défaut */
+  background-image: url('../../../assets/oeil-picto/oeil-ferme.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.gallery-icon:hover {
+  /* icône ouverte au survol */
+  background-image: url('../../../assets/pictos/colored-pic/gallery-icon-active.png');
+}
+
 
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: auto auto auto auto;
-      grid-template-areas:
-        "big big small1 small2"
-        "big big rect1 rect1"
-        "small3 small4 tall squareA"
-        "rect2 rect2 tall squareB";
+      grid-auto-rows: 200px; /* hauteur de base (ajuster selon tes images) */
       gap: 16px;
     }
-    .gallery-item { position: relative; overflow: hidden; border-radius:4px; cursor:pointer; }
+
+    /* Ligne 1 */
+    .gallery-grid .gallery-item:nth-child(1) {
+      grid-column: 1 / 3;
+      grid-row:    1 / 3;  /* Grand carré à gauche */
+    }
+    .gallery-grid .gallery-item:nth-child(2) {
+      grid-column: 3 / 4;
+      grid-row:    1 / 2;  /* Petit carré 1 */
+    }
+    .gallery-grid .gallery-item:nth-child(3) {
+      grid-column: 4 / 5;
+      grid-row:    1 / 2;  /* Petit carré 2 */
+    }
+    .gallery-grid .gallery-item:nth-child(4) {
+      grid-column: 3 / 5;
+      grid-row:    2 / 3;  /* Rectangle sous les petits carrés */
+    }
+
+    /* Ligne 2 */
+    .gallery-grid .gallery-item:nth-child(5) {
+      grid-column: 1 / 2;
+      grid-row:    3 / 4;  /* Petit carré 1 */
+    }
+    .gallery-grid .gallery-item:nth-child(6) {
+      grid-column: 2 / 3;
+      grid-row:    3 / 4;  /* Petit carré 2 */
+    }
+    .gallery-grid .gallery-item:nth-child(7) {
+      grid-column: 1 / 3;
+      grid-row:    4 / 5;  /* Rectangle sous ces deux-là */
+    }
+    .gallery-grid .gallery-item:nth-child(8) {
+      grid-column: 3 / 5;
+      grid-row:    3 / 4;  /* Grand rectangle en haut à droite */
+    }
+    .gallery-grid .gallery-item:nth-child(9) {
+      grid-column: 3 / 4;
+      grid-row:    4 / 5;  /* Petit carré 1 en bas à droite */
+    }
+    .gallery-grid .gallery-item:nth-child(10) {
+      grid-column: 4 / 5;
+      grid-row:    4 / 5;  /* Petit carré 2 en bas à droite */
+    }
+
     .gallery-item img {
-      width:100%; height:auto; display:block;
-      filter: grayscale(100%); transition:filter .3s ease;
+      width:100%; height:100%; object-fit:cover;
+      border-radius:10px; display:block;
+      filter:grayscale(100%); transition:filter .3s ease;
     }
-    .gallery-item:hover img { filter: none; }
+    .gallery-item:hover img {
+      filter:none;
+    }
 
-    /* Affectation des zones */
-    .item1 { grid-area: big; }
-    .item2 { grid-area: small1; }
-    .item3 { grid-area: small2; }
-    .item4 { grid-area: rect1; }
-    .item5 { grid-area: small3; }
-    .item6 { grid-area: small4; }
-    .item7 { grid-area: rect2; }
-    .item8 { grid-area: tall; }
-    .item9 { grid-area: squareA; }
-    .item10 { grid-area: squareB; }
 
-    @media (max-width: 800px) {
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-areas:
-          "big big"
-          "rect1 rect1"
-          "small1 small2"
-          "small3 small4"
-          "tall tall"
-          "squareA squareB"
-          "rect2 rect2";
+
+    /* === SECTION STATS === */
+.stats-section {
+  height: 100vh;
+  padding: 50px 80px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.stats-title {
+  font-family: 'sharpie-extrabold', sans-serif;
+  font-size: 3em;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  background-image: url('../../../assets/background-paint-title/chiffres-portfolio.png');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
+  text-align: center;
+  width: 100%;
+}
+
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  height: calc(100% - 100px); /* laisse de la place pour le titre */
+}
+
+.card {
+  border: 2px solid #cccccc39;
+  background-color: rgba(255, 192, 203, 0.037);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  transition: border 0.3s ease;
+}
+
+.card:hover {
+  border: 2px solid #ff67e3;
+}
+
+.card .number {
+  font-size: 4em;
+  color: #ff67e3;
+  font-family: 'ubuntu-bold', sans-serif;
+  margin-bottom: 10px;
+}
+
+.card .label {
+  font-size: 1.6em;
+  color: #171616;
+  text-align: center;
+  margin-left: 1vh;
+  margin-right: 1vh;
+  font-family: 'Ubuntu', sans-serif;
+
+  padding: 0 10px;
+}
+
+
+/* === SECTION “ON PARLE DE NOUS” === */
+.mentions-section {
+  padding: 50px 80px;
+  background: #fff;
+  text-align: center;
+}
+
+.mentions-title {
+  font-family: 'sharpie-extrabold', sans-serif;
+  font-size: 3em;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  background-image: url('../../../assets/background-paint-title/parledenous-portfolio.png');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
+  text-align: center;
+  width: 100%;
+}
+
+.mentions-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 30px;
+  gap: 20px;
+}
+
+.mention-img {
+  width: calc((100% - 40px) / 3);
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  transition: transform .3s;
+}
+
+.mention-img:hover {
+  transform: scale(1.02);
+}
+
+.mentions-button-wrapper {
+  text-align: center;
+}
+
+.mentions-toggle {
+  width: 100px;
+  height: auto;
+  cursor: pointer;
+  transition: transform .3s;
+}
+
+.mentions-toggle:hover {
+  transform: scale(1.1);
+}
+
+
+#footer{
+        
+        position: relative;
+        min-height: 30vh;
+       
+    }
+    
+    .footer-pill-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        min-width: 600px;
       }
-    }
+
   </style>
 
     
@@ -196,10 +387,10 @@
       </a>
     </div>
     <nav>
-      <a href="../../index.html" class="nav-home">Home</a>
-      <a href="../portfolio/portfolio.html" class="nav-portfolio">Portfolio</a>
-      <a href="concept.html" class="nav-concept">Concept</a>
-      <a href="../contact/contact.html" class="nav-contact">Contact</a>
+      <a href="../../../index.html" class="nav-home">Home</a>
+      <a href="../../portfolio/portfolio.html" class="nav-portfolio">Portfolio</a>
+      <a href="../../concept.html" class="nav-concept">Concept</a>
+      <a href="../../contact/contact.html" class="nav-contact">Contact</a>
     </nav>
   </header>
 
@@ -243,13 +434,12 @@
     </div>
   </section>
 
-  <!-- GALLERY -->
   <section class="gallery-section">
-    <div class="gallery-header">
-      <h2 class="gallery-title">Galerie</h2>
-      <img id="galleryIcon" class="gallery-icon" src="../../../assets/pictos/black-pic/gallery-icon.png" alt="Icon galerie"/>
-    </div>
-
+    <!-- HTML : on remplace la balise <img> par un <div> pour piloter le background-image en CSS -->
+<div class="gallery-header">
+  <h2 class="gallery-title">Coup d'oeil</h2>
+  <div class="gallery-icon"></div>
+</div>
     <div class="gallery-grid" id="galleryGrid">
       <a href="../../../assets/images/DSC00218.JPG" class="gallery-item glightbox" data-gallery="mainsales">
         <img src="../../../assets/images/DSC00218.JPG" alt="">
@@ -281,10 +471,106 @@
       <a href="../../../assets/images/DSC00463.JPG" class="gallery-item glightbox" data-gallery="mainsales">
         <img src="../../../assets/images/DSC00463.JPG" alt="">
       </a>
-      <!-- … jusqu’à 10 items -->
     </div>
   </section>
 
+
+  <!-- -------------------
+     SECTION “EN QUELQUES CHIFFRES…”
+-------------------- -->
+<section class="stats-section">
+  <h2 class="stats-title">En quelques chiffres…</h2>
+  <div class="stats-cards">
+    <div class="card">
+      <div class="number">321</div>
+      <div class="label">Litres de peinture utilisées</div>
+    </div>
+    <div class="card">
+      <div class="number">6</div>
+      <div class="label">Artistes mobilisés</div>
+    </div>
+    <div class="card">
+      <div class="number">1</div>
+      <div class="label">Tunnel décoré</div>
+    </div>
+    <div class="card">
+      <div class="number">10 000</div>
+      <div class="label">Visites quotidiennes</div>
+    </div>
+    <div class="card">
+      <div class="number">2023</div>
+      <div class="label">Année de lancement</div>
+    </div>
+    <div class="card">
+      <div class="number">5</div>
+      <div class="label">Mois de réalisation</div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="mentions-section">
+  <h2 class="mentions-title">On parle de nous</h2>
+  <div class="mentions-container">
+    <img class="mention-img" src="../../../assets/on-parle-de-nous-img/facebook-commentaires-1.png" alt="Article 1">
+    <img class="mention-img" src="../../../assets/on-parle-de-nous-img/facebook-commentaires-2.png" alt="Article 2">
+    <img class="mention-img" src="../../../assets/on-parle-de-nous-img/facebook-commentaires-1.png" alt="Article 3">
+  </div>
+  <div class="mentions-button-wrapper">
+    <img id="mentionsToggleBtn"
+         class="mentions-toggle"
+         src="../../../assets/hand-button/voir-plus-colored-details.png"
+         alt="Voir plus">
+  </div>
+</section>
+
+ <!-- SECTION FOOTER -->
+ <section class="footer-section" id="footer">
+  <div class="footer-container">
+    <!-- Petite image en haut à gauche -->
+    
+    <!-- Conteneur central -->
+    <div class="footer-center">
+      <!-- Grande image centrale -->
+     
+      <!-- Bloc pillule dans le footer -->
+      <div class="footer-pill">
+        <!-- Partie supérieure : Navigation avec images et liens -->
+        <div class="footer-pill-top">
+          <div class="left-img">
+            <img src="../../../assets/pictos/black-pic/picto-faceboook.png" style="width: 30px;" alt="Icône gauche">
+          </div>
+          <div class="footer-nav">
+            <a href="../../../index.html">Home</a>
+            <span class="sep">|</span>
+            <a href="../../portfolio/portfolio.html">Portfolio</a>
+            <span class="sep">|</span>
+            <a href="../../concept.html">Concept</a>
+            <span class="sep">|</span>
+            <a href="../../contact/contact.html">Contact</a>
+          </div>
+          <div class="right-img">
+            <img src="../../../assets/pictos/black-pic/picto-instagram.png" alt="Icône droite">
+          </div>
+        </div>
+        <!-- Partie inférieure : Liens légaux -->
+        <div class="footer-pill-bottom">
+          <div class="legal-links">
+            <a href="#">Mentions légales</a>
+            <span class="sep"></span>
+            <a href="#">Conditions d'utilisation</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-below">
+          <img src="../../../assets/images/machicouli.png" alt="Décoration Footer">
+        </div>
+    </div>
+    <!-- Image décorative collée directement en dessous de la pillule -->
+  
+  </div>
+</section>
   <!-- SCRIPTS -->
   <script>
     // Slider
@@ -315,5 +601,37 @@
     });
   </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const imgs = Array.from(document.querySelectorAll('.mention-img'));
+    const btn  = document.getElementById('mentionsToggleBtn');
+    let toggled = false;
+
+    // Liste de tes 6 images (3 avant / 3 après)
+    const set1 = [
+      '../../../assets/on-parle-de-nous-img/facebook-commentaires-1.png',
+      '../../../assets/on-parle-de-nous-img/facebook-commentaires-2.png',
+      '../../../assets/on-parle-de-nous-img/facebook-commentaires-1.png'
+    ];
+    const set2 = [
+      '../../../assets/on-parle-de-nous-img/facebook-commentaires-2-extended.png',
+      '../../../assets/on-parle-de-nous-img/facebook-commentaires-1-extended.png',
+      '../../../assets/on-parle-de-nous-img/facebook-commentaires-2-extended.png'
+    ];
+
+    // Boutons avant / après
+    const btns = [
+      '../../../assets/hand-button/voir-plus-colored-details.png',
+      '../../../assets/hand-button/voir-moins.png'
+    ];
+
+    btn.addEventListener('click', () => {
+      toggled = !toggled;
+      const source = toggled ? set2 : set1;
+      imgs.forEach((img, i) => img.src = source[i]);
+      btn.src = toggled ? btns[1] : btns[0];
+    });
+  });
+</script>
 </body>
 </html>

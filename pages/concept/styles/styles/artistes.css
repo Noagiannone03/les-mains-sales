@@ -57,7 +57,7 @@
         background-position: center;
       }
       .section-paragraph {
-        font-size: 1.2em;
+        font-size: 1.3em;
         font-family: 'ubuntu-medium', sans-serif;
         text-align: justify;
         
@@ -70,7 +70,7 @@
       }
       .image-column img {
         align-self: center;
-        width: 70%;
+        width: fit-content;
         height: 70%;
         object-fit: cover;
       }
