@@ -10,6 +10,9 @@
   <link rel="preload" href="assets/images/Rectangle 117-colored.png" as="image">
   <link rel="preload" href="assets/pictos/colored-pic/book-ouvert.png" as="image">
 
+  <!-- ADD Fabric.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.6.0/fabric.min.js"></script>
+
 
     <!-- Chargement des styles css -->
   <link rel="stylesheet" href="styles/styles/main.css">
@@ -134,62 +137,124 @@
     </div>
   </section>
 
-  <!-- SECTION FOOTER -->
-  <section class="footer-section" id="footer">
-    <div class="footer-container">
-      <!-- Petite image en haut à gauche -->
-      <img
-        class="footer-small-image"
-        src="assets/pictos/colored-pic/palette-accueil.png"
-        alt="Petite image en haut à gauche">
-      <!-- Conteneur central -->
-      <div class="footer-center">
-        <!-- Grande image centrée -->
+ <!-- SECTION FOOTER -->
+<!-- ====================
+     SECTION FOOTER AVEC DESSIN
+     ==================== -->
+     <section class="footer-section" id="footer">
+      <div class="footer-container">
+    
+        <!-- Toggle dessin -->
         <img
-          class="footer-large-image"
-          src="assets/logos/mainssales-large-logo.png"
-          alt="Grande image de footer">
-        <!-- Bloc pillule dans le footer -->
-        <div class="footer-pill">
-          <!-- Partie supérieure : Navigation avec images et liens -->
-          <div class="footer-pill-top">
-            <div class="left-img">
-              <img src="assets/pictos/black-pic/picto-faceboook.png" style="width: 30px;" alt="Icône gauche">
+          id="footerDrawToggle"
+          class="footer-small-image"
+          src="assets/pictos/colored-pic/palette-accueil.png"
+          alt="Activer le mode dessin">
+    
+        <!-- Canvas de dessin, caché par défaut -->
+        <canvas id="footerDrawCanvas"></canvas>
+    
+        <!-- Conteneur central -->
+        <div class="footer-center">
+          <img
+            class="footer-large-image"
+            src="assets/logos/mainssales-large-logo.png"
+            alt="Grande image de footer">
+          <div class="footer-pill">
+            <div class="footer-pill-top">
+              <div class="left-img">
+                <img src="assets/pictos/black-pic/picto-faceboook.png" alt="Facebook">
+              </div>
+              <div class="footer-nav">
+                <a href="index.html">Home</a><span class="sep">|</span>
+                <a href="pages/portfolio/portfolio.html">Portfolio</a><span class="sep">|</span>
+                <a href="pages/concept/concept.html">Concept</a><span class="sep">|</span>
+                <a href="pages/contact/contact.html">Contact</a>
+              </div>
+              <div class="right-img">
+                <img src="assets/pictos/black-pic/picto-instagram.png" alt="Instagram">
+              </div>
             </div>
-            <div class="footer-nav">
-              <a href="index.html">Home</a>
-              <span class="sep">|</span>
-              <a href="pages/portfolio/portfolio.html">Portfolio</a>
-              <span class="sep">|</span>
-              <a href="pages/concept/concept.html">Concept</a>
-              <span class="sep">|</span>
-              <a href="pages/contact/contact.html">Contact</a>
-            </div>
-            <div class="right-img">
-              <img src="assets/pictos/black-pic/picto-instagram.png" alt="Icône droite">
+            <div class="footer-pill-bottom">
+              <div class="legal-links">
+                <a href="#">Mentions légales</a><span class="sep">|</span>
+                <a href="#">Conditions d'utilisation</a>
+              </div>
             </div>
           </div>
-          <!-- Partie inférieure : Liens légaux -->
-          <div class="footer-pill-bottom">
-            <div class="legal-links">
-              <a href="#">Mentions légales</a>
-              <span class="sep"></span>
-
-              <a href="#">Conditions d'utilisation</a>
-            </div>
-          </div>
-        </div>
-        <div class="footer-below">
+          <div class="footer-below">
             <img src="assets/images/machicouli.png" alt="Décoration Footer">
           </div>
+        </div>
+    
       </div>
-      <!-- Image collée en dessous de la pillule -->
-      
-    </div>
-  </section>
+    </section>
+    
+
 
   <!-- JavaScript -->
 <script src="script.js" defer></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('footerDrawToggle');
+    const canvas = document.getElementById('footerDrawCanvas');
+    const ctx    = canvas.getContext('2d');
+    const footer = document.getElementById('footer');
+    let drawing  = false;
+    let lastPos  = { x: 0, y: 0 };
+  
+    // redimensionne le canvas
+    function resize() {
+      canvas.width  = footer.clientWidth;
+      canvas.height = footer.clientHeight;
+      canvas.style.width  = footer.clientWidth + 'px';
+      canvas.style.height = footer.clientHeight + 'px';
+    }
+    window.addEventListener('resize', resize);
+    resize();
+  
+    // toggle dessin
+    toggle.addEventListener('click', () => {
+      const active = canvas.style.pointerEvents === 'none';
+      canvas.style.pointerEvents = active ? 'auto' : 'none';
+      toggle.style.opacity       = active ? 0.5 : 1;
+    });
+  
+    // dessin uniquement si pointer-events = auto
+    canvas.addEventListener('mousedown', (e) => {
+      if (canvas.style.pointerEvents === 'none') return;
+      drawing = true;
+      lastPos = { x: e.offsetX, y: e.offsetY };
+    });
+    canvas.addEventListener('mouseup',   () => drawing = false);
+    canvas.addEventListener('mouseleave',() => drawing = false);
+  
+    canvas.addEventListener('mousemove', (e) => {
+      if (!drawing) return;
+      const x = e.offsetX, y = e.offsetY;
+  
+      // dégradé clair bleu→violet
+      const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      grad.addColorStop(0, ' #4ac9f5 ');
+      grad.addColorStop(1, ' #ef46f1 ');
+  
+      ctx.strokeStyle = grad;
+      ctx.lineWidth   = 15;
+      ctx.lineCap     = 'round';
+      ctx.lineJoin    = 'round';
+  
+      ctx.beginPath();
+      ctx.moveTo(lastPos.x, lastPos.y);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+  
+      lastPos = { x, y };
+    });
+  });
+  </script>
+  
+
 
 </body>
 </html>

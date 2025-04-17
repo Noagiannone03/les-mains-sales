@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Dessin Canvas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0; padding: 0;
+      height: 100%; overflow: hidden;
+    }
+    canvas {
+      display: block;
+      cursor: crosshair;
+    }
+    #info {
+      position: absolute;
+      top: 10px; left: 10px;
+      background: rgba(255,255,255,0.8);
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-family: sans-serif;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="info">Clique et trace avec la souris 🖌️</div>
+  <canvas id="drawCanvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById('drawCanvas');
+    const ctx    = canvas.getContext('2d');
+    let drawing  = false;
+    let lastPos  = { x: 0, y: 0 };
+
+    function resize() {
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    canvas.addEventListener('mousedown', (e) => {
+      drawing = true;
+      lastPos = { x: e.clientX, y: e.clientY };
+    });
+    canvas.addEventListener('mouseup',   () => drawing = false);
+    canvas.addEventListener('mouseleave',() => drawing = false);
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (!drawing) return;
+      const x = e.clientX, y = e.clientY;
+
+      // Nouveau dégradé clair bleu pâle → violet pâle
+      const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      grad.addColorStop(0, ' #26ddf7 ');  // lightblue
+      grad.addColorStop(1, ' #df79e1 ');  // plum (light violet)
+
+      ctx.strokeStyle = grad;
+      ctx.lineWidth   = 15;          // trait plus épais
+      ctx.lineCap     = 'round';     // extrémités arrondies
+      ctx.lineJoin    = 'round';     // jonctions arrondies
+
+      ctx.beginPath();
+      ctx.moveTo(lastPos.x, lastPos.y);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+
+      lastPos = { x, y };
+    });
+  </script>
+
+</body>
+</html>

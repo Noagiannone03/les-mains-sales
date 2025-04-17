@@ -23,7 +23,8 @@
 #footer{
         
     position: relative;
-    min-height: 30vh;
+    height: 27vh;
+    margin-top: 10vh;
    
 }
 
