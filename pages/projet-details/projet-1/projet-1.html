@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Les Mains Sales - Nouvelle Page</title>
+
+  <!-- GLightbox -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+  <!-- POLICES & RESET -->
+  <style>
+    @font-face {
+      font-family: 'Ubuntu';
+      src: url('../../../fonts/ubuntu-regular.woff2') format('woff2'),
+           url('../../../fonts/ubuntu-regular.woff') format('woff');
+    }
+    @font-face {
+      font-family: 'sharpie-extrabold';
+      src: url('../../../assets/fonts/sharpie/Sharpie-Extrabold.otf') format('truetype');
+    }
+    @font-face {
+      font-family: 'ubuntu-medium';
+      src: url('../../../assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Ubuntu',sans-serif; overflow-x:hidden; margin-top:80px; }
+
+    /* NAVBAR */
+    .navbar {
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      height:80px; background:#fff;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 30px; border-bottom:2px solid #383838;
+    }
+    .navbar .logo img { height:55px; }
+    .navbar nav { display:flex; gap:30px; }
+    .navbar nav a {
+      font-family:'Ubuntu',sans-serif; color:#000; font-weight:bold;
+      text-decoration:none; text-transform:uppercase; font-size:1.2em;
+      position:relative; padding:5px 0;
+    }
+    .navbar nav a::before {
+      content:""; position:absolute; top:0; left:0; width:100%; height:100%;
+      background-size:contain; background-position:center; background-repeat:no-repeat;
+      opacity:0; transition:opacity .3s; z-index:-1;
+    }
+    .navbar nav a:hover::before { opacity:1; }
+    .nav-home::before      { background-image:url("../../assets/navbar-title-background/navbar-home.png"); }
+    .nav-portfolio::before { background-image:url("../../assets/navbar-title-background/navbar-portfolio.png"); }
+    .nav-concept::before   { background-image:url("../../assets/navbar-title-background/navbar-concept.png"); }
+    .nav-contact::before   { background-image:url("../../assets/navbar-title-background/navbar-contact.png"); }
+
+    /* SLIDER */
+    .slider-section {
+      position: relative; height: 70vh; overflow: hidden;
+    }
+    .slider-container {
+      display: flex; height: 100%; transition: transform 0.6s ease-in-out;
+    }
+    .slide { flex: 0 0 100%; }
+    .slide img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: grayscale(100%); transition: filter .3s ease;
+    }
+    .slide img:hover { filter: none; }
+    .slider-indicators {
+      display: flex; justify-content: center; gap:10px; margin-top:20px;
+    }
+    .indicator {
+      width:40px; height:3px; background:#000; opacity:0.4;
+      border-radius:10px; transition:opacity .3s;
+    }
+    .indicator.active {
+      opacity:1; background:#ff67e3;
+    }
+
+    /* INTERSTITIEL */
+    .interstitial-section {
+      padding:50px 80px; background:#fff;
+    }
+    .interstitial-section h2 {
+      font-family:'sharpie-extrabold',sans-serif; font-size:3em;
+      text-align:center; margin-bottom:15vh; color:#ff67e3; text-transform:uppercase;
+    }
+    .interstitial-content { display:flex; gap:40px; }
+    .interstitial-left {
+      flex:0 0 30%; display:flex; flex-direction:column; gap:20px;
+    }
+    .interstitial-left .item {
+      display:flex; align-items:center; gap:10px; font-size:1.25em;
+    }
+    .interstitial-left .item img {
+      width:35px; height:35px; object-fit:contain;
+    }
+    .interstitial-right {
+      flex:1; font-family:'ubuntu-medium',sans-serif;
+      font-size:1.4em; text-align:justify;
+    }
+
+    /* GALLERY – Masonry CSS Columns */
+    .gallery-header {
+      display:flex; align-items:center; gap:30px;
+      padding:50px 80px 20px;
+    }
+    .gallery-title {
+      font-family:'ubuntu-medium',sans-serif; font-size:3em;
+      position:relative; padding-bottom:10px;
+      background: url('../../../assets/background-paint-title/gallery-underlined.png') center/cover no-repeat;
+    }
+    .gallery-icon {
+      width:50px; cursor:pointer; transition:filter .3s;
+    }
+    .gallery-icon:hover {
+      content: url('../../../assets/pictos/colored-pic/gallery-icon-active.png');
+    }
+
+
+
+
+     /* === GALLERY – CSS COLUMNS amélioré === */
+     .gallery-section {
+      padding: 50px 80px 80px;  /* padding maître */
+      background: #fff;
+    }
+    .gallery-header {
+      display:flex; align-items:center; gap:30px; margin-bottom:20px;
+    }
+    .gallery-title {
+      font-family:'ubuntu-medium',sans-serif; font-size:3em;
+      padding-bottom:10px;
+      background: url('../../../assets/background-paint-title/gallery-underlined.png') center/cover no-repeat;
+    }
+    .gallery-icon {
+      width:50px; cursor:pointer;
+    }
+    .gallery-icon:hover {
+      content: url('../../../assets/pictos/colored-pic/gallery-icon-active.png');
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto auto auto;
+      grid-template-areas:
+        "big big small1 small2"
+        "big big rect1 rect1"
+        "small3 small4 tall squareA"
+        "rect2 rect2 tall squareB";
+      gap: 16px;
+    }
+    .gallery-item { position: relative; overflow: hidden; border-radius:4px; cursor:pointer; }
+    .gallery-item img {
+      width:100%; height:auto; display:block;
+      filter: grayscale(100%); transition:filter .3s ease;
+    }
+    .gallery-item:hover img { filter: none; }
+
+    /* Affectation des zones */
+    .item1 { grid-area: big; }
+    .item2 { grid-area: small1; }
+    .item3 { grid-area: small2; }
+    .item4 { grid-area: rect1; }
+    .item5 { grid-area: small3; }
+    .item6 { grid-area: small4; }
+    .item7 { grid-area: rect2; }
+    .item8 { grid-area: tall; }
+    .item9 { grid-area: squareA; }
+    .item10 { grid-area: squareB; }
+
+    @media (max-width: 800px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+          "big big"
+          "rect1 rect1"
+          "small1 small2"
+          "small3 small4"
+          "tall tall"
+          "squareA squareB"
+          "rect2 rect2";
+      }
+    }
+  </style>
+
+    
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <a href="../../../index.html">
+        <img src="../../../assets/logos/lesmainssales-noir.png" alt="Logo">
+      </a>
+    </div>
+    <nav>
+      <a href="../../index.html" class="nav-home">Home</a>
+      <a href="../portfolio/portfolio.html" class="nav-portfolio">Portfolio</a>
+      <a href="concept.html" class="nav-concept">Concept</a>
+      <a href="../contact/contact.html" class="nav-contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- SLIDER -->
+  <section class="slider-section">
+    <div class="slider-container" id="sliderContainer">
+      <div class="slide"><img src="../../../assets/images/disturbed-photo.png" alt="Slide 1"></div>
+      <div class="slide"><img src="../../../assets/images/disturbed-photo.png" alt="Slide 2"></div>
+      <div class="slide"><img src="../../../assets/images/disturbed-photo.png" alt="Slide 3"></div>
+    </div>
+  </section>
+  <div class="slider-indicators" id="sliderIndicators">
+    <span class="indicator"></span>
+    <span class="indicator"></span>
+    <span class="indicator"></span>
+  </div>
+
+  <!-- INTERSTITIEL -->
+  <section class="interstitial-section">
+    <h2>Le metro debarque enfin à toulon !</h2>
+    <div class="interstitial-content">
+      <div class="interstitial-left">
+        <div class="item">
+          <img src="../../../assets/pictos/black-pic/Group.png" alt="">
+          <span>6 artistes</span>
+        </div>
+        <div class="item">
+          <img src="../../../assets/pictos/black-pic/Pin.png" alt="">
+          <span>Tunnel de la gare routière de Toulon</span>
+        </div>
+        <div class="item">
+          <img src="../../../assets/pictos/black-pic/Calendar.png" alt="">
+          <span>2023</span>
+        </div>
+      </div>
+      <div class="interstitial-right">
+        <p>
+          Le tunnel piéton de la gare de Toulon, reliant le centre-ville à la zone nord en plein essor, est transformé en une galerie urbaine par le collectif "MAINS SALES", offrant une fusion innovante d'art numérique et de street art pour les voyageurs quotidiens, créant l'illusion d'un wagon de métro unique en son genre.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section">
+    <div class="gallery-header">
+      <h2 class="gallery-title">Galerie</h2>
+      <img id="galleryIcon" class="gallery-icon" src="../../../assets/pictos/black-pic/gallery-icon.png" alt="Icon galerie"/>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <a href="../../../assets/images/DSC00218.JPG" class="gallery-item glightbox" data-gallery="mainsales">
+        <img src="../../../assets/images/DSC00218.JPG" alt="">
+      </a>
+      <a href="../../../assets/images/DSC00228.JPG" class="gallery-item glightbox" data-gallery="mainsales">
+        <img src="../../../assets/images/DSC00228.JPG" alt="">
+      </a>
+      <a href="../../../assets/images/DSC00250.JPG" class="gallery-item glightbox" data-gallery="mainsales">
+        <img src="../../../assets/images/DSC00250.JPG" alt="">
+      </a>
+      <a href="../../../assets/images/DSC00419.JPG" class="gallery-item glightbox" data-gallery="mainsales">
+        <img src="../../../assets/images/DSC00419.JPG" alt="">
+      </a>
+      <a href="../../../assets/images/DSC00428.JPG" class="gallery-item glightbox" data-gallery="mainsales">
+        <img src="../../../assets/images/DSC00428.JPG" alt="">
+      </a>
+      <a href="../../../assets/images/DSC00440.JPG" class="gallery-item glightbox" data-gallery="mainsales">
+        <img src="../../../assets/images/DSC00440.JPG" alt="">
+      </a>
+      <a href="../../../assets/images/DSC00452.JPG" class="gallery-item glightbox" data-gallery="mainsales">
+        <img src="../../../assets/images/DSC00452.JPG" alt="">
+      </a>
+      <a href="../../../assets/images/DSC00459.JPG" class="gallery-item glightbox" data-gallery="mainsales">
+        <img src="../../../assets/images/DSC00459.JPG" alt="">
+      </a>
+      <a href="../../../assets/images/DSC00462.JPG" class="gallery-item glightbox" data-gallery="mainsales">
+        <img src="../../../assets/images/DSC00462.JPG" alt="">
+      </a>
+      <a href="../../../assets/images/DSC00463.JPG" class="gallery-item glightbox" data-gallery="mainsales">
+        <img src="../../../assets/images/DSC00463.JPG" alt="">
+      </a>
+      <!-- … jusqu’à 10 items -->
+    </div>
+  </section>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Slider
+    (function(){
+      const slides = document.getElementById('sliderContainer');
+      const dots = Array.from(document.querySelectorAll('#sliderIndicators .indicator'));
+      let idx = 0, total = slides.children.length;
+      function go(i){
+        slides.style.transform = `translateX(-${i*100}%)`;
+        dots.forEach((d,j)=> d.classList.toggle('active', i===j));
+      }
+      go(0);
+      setInterval(()=> go((idx = (idx+1)%total)), 6000);
+    })();
+
+    // GLightbox
+    document.addEventListener('DOMContentLoaded', ()=>{
+      GLightbox({
+        selector: '.glightbox',
+        openEffect: 'zoom',
+        closeEffect: 'fade',
+        slideEffect: 'slide',
+        plyr: {
+          css: 'https://cdn.plyr.io/3.6.2/plyr.css',
+          js: 'https://cdn.plyr.io/3.6.2/plyr.js'
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -69,15 +69,15 @@
         opacity: 1;
       }
       .nav-home::before {
-        background-image: url("../../assets/navbar-title-background/navbar-home.png");
+        background-image: url("../../../../assets/navbar-title-background/navbar-home.png");
       }
       .nav-portfolio::before {
-        background-image: url("../../assets/navbar-title-background/navbar-portfolio.png");
+        background-image: url("../../../../assets/navbar-title-background/navbar-portfolio.png");
       }
       .nav-concept::before {
-        background-image: url("../../assets/navbar-title-background/navbar-concept.png");
+        background-image: url("../../../../assets/navbar-title-background/navbar-concept.png");
       }
       .nav-contact::before {
-        background-image: url("../../assets/navbar-title-background/navbar-contact.png");
+        background-image: url("../../../../assets/navbar-title-background/navbar-contact.png");
       }
       
