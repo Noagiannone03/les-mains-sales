@@ -1,0 +1,51 @@
+
+/* =============================== */
+/*           RESPONSIVE           */
+/* =============================== */
+/* Desktop ≥ 900px */
+@media (min-width: 900px) {
+    .portfolio-grid { display: grid; }
+    .portfolio-slider { display: none; }
+  }
+  
+  /* Tablet/Mobile ≤ 899px */
+  @media (max-width: 899px) {
+    .portfolio-section {
+      padding: 0 40px;
+    }
+    .portfolio-grid { display: none; }
+    .portfolio-slider { display: block; }
+    .portfolio-title { font-size: 3em; }
+    .portfolio-small-image { width: 50px; }
+    .portfolio-subtitle {
+      font-size: 1em;
+      margin-bottom: 20px;
+    }
+    .slide img { height: 50vh; }  /* garde 50vh aussi en tablette/mobile */
+  }
+  
+  /* Mobile étroit ≤ 599px */
+  @media (max-width: 599px) {
+    .portfolio-section {
+      min-height: fit-content;
+      padding: 0 20px;
+    }
+    .slide img {
+      height: 45vh;   /* toujours 50vh pour mobile */
+    }
+    .subtitle-row {
+      margin-bottom: 0px;
+    }
+    .slider-toggles .toggle-line {
+      width: 25px;
+    }
+    .portfolio-title {
+      font-size: 2.7em;
+    }
+    .portfolio-container{
+      justify-content:flex-start;
+    }
+    .portfolio-subtitle {
+      font-size: 1.2em;
+    }
+  }

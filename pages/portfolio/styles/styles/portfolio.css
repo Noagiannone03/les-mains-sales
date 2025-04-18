@@ -1,130 +1,152 @@
-  /* Importation des polices */
-  @font-face {
-    font-family: 'Ubuntu';
-    src: url('../../../../fonts/ubuntu-regular.woff2') format('woff2'),
-         url('../../../../fonts/ubuntu-regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'sharpie-extrabold';
-    src: url('../../../../assets/fonts/sharpie/Sharpie-Extrabold.otf') format('truetype');
-  }
-  @font-face {
-    font-family: 'ubuntu-medium';
-    src: url('../../../../assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
-  }
+/* ======================= */
+/*   SECTION PORTFOLIO     */
+/* ======================= */
+.portfolio-section {
+  margin-top: 15vh;
+  min-height: 80vh;
+  padding: 0 80px;
+  display: flex;
+  align-items: center;
+}
+.portfolio-container {
+  height: 90%;
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.top-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: center;
+}
+.portfolio-title {
+  flex: 0 0 auto;
+  font-size: 5.5em;
+  text-transform: uppercase;
+  font-family: 'sharpie-extrabold', sans-serif;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+.text-and-image {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+.portfolio-small-image {
+  border-radius: 8px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+.portfolio-small-image:hover {
+  animation: shake 0.5s;
+  filter: grayscale(0%);
+}
+.portfolio-section.toggled .portfolio-small-image {
+  filter: none;
+}
+.subtitle-row {
+  width: 100%;
+  margin-bottom: 50px;
+}
+.portfolio-subtitle {
+  font-weight: normal;
+  font-size: 1.3em;
+  font-family: 'ubuntu-medium', sans-serif;
+  text-align: justify;
+}
 
+/* Grille Desktop */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 20px;
+}
+.portfolio-grid img {
+  width: 100%;
+  aspect-ratio: 6 / 5;
+  object-fit: cover;
+  border-radius: 20px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+.portfolio-grid img:hover {
+  filter: grayscale(0%);
+}
+.toggled .portfolio-grid img {
+  filter: none;
+}
 
-   /* ======================= */
-    /*   SECTION PORTFOLIO   */
-    /* ======================= */
-    .portfolio-section {
-        margin-top: 15vh;
-        min-height: 80vh; /* réduit de 89vh à 80vh */
+/* Titre highlight */
+.toggled .toggle-highlight {
+  background-color: #ff67e3;
+  padding: 0 5px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
 
-        padding: 00px 80px; /* Marges latérales augmentées */
-        display: flex;
-        align-items: center;
-      }
-      .portfolio-container {
-        height: 90%;
-        max-width: 1300px;
-        margin: 0 auto;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-      .top-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
-        align-items: center;
-      }
-      .portfolio-title {
-        flex: 0 0 auto;
-        font-size: 5.5em;
-        text-transform: uppercase;
-        font-family: 'sharpie-extrabold', sans-serif;
-        letter-spacing: 3px;
-        /* On peut réduire un peu l'espace inférieur */
-        margin-bottom: 10px;
-      }
-      .text-and-image {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        flex: 1;
-      }
-      .portfolio-small-image {
-        border-radius: 8px;
-        filter: grayscale(100%);
-        transition: filter 0.3s ease, transform 0.3s ease;
-        cursor: pointer;
-      }
-      .portfolio-small-image:hover {
-        animation: shake 0.5s;
-        filter: grayscale(0%);
-      }
-      .portfolio-section.toggled .portfolio-small-image {
-        filter: none;
-      }
-      .subtitle-row {
-        width: 100%;
-        /* Réduction de la marge inférieure pour rapprocher du titre */
-        margin-bottom: 50px;
-      }
-      .portfolio-subtitle {
-        font-weight: normal;
-        font-size: 1.3em;
-        font-family: 'ubuntu-medium', sans-serif;
-      
-        text-align: justify;
-      }
-      
-      /* Grille Portfolio : 3 colonnes x 2 lignes, images légèrement agrandies et au format rectangle */
-      .portfolio-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, auto);
-        gap: 20px;
-      }
-      .portfolio-grid img {
-        width: 100%;
-        /* Pour obtenir un rectangle légèrement plus large */
-        aspect-ratio: 6 / 5;
-        object-fit: cover;
-        border-radius: 20px;
-        filter: grayscale(100%);
-        transition: filter 0.3s ease;
-      }
-      .portfolio-grid img:hover {
-        filter: grayscale(0%);
-      }
-      .toggled .portfolio-grid img {
-        filter: none;
-      }
-      .slider-toggles {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-left: 10px;
-        margin-top: 40px;
-      }
-      .toggle-line {
-        display: inline-block;
-        width: 40px;
-        height: 3px;
-        background-color: #000;
-        border-radius: 2px;
-      }
-  
-      .toggled .toggle-highlight {
-    background-color: #ff67e3; /* ou la couleur hexadécimale souhaitée */
-    padding: 0 5px;
-    border-radius: 3px;
-    transition: all 0.3s ease;
-  }
-  
-  
+/* Animation shake */
+@keyframes shake {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, 2px); }
+  50% { transform: translate(2px, -2px); }
+  75% { transform: translate(-2px, -2px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* =============================== */
+/*        SLIDER MOBILE           */
+/* =============================== */
+.portfolio-slider {
+  display: none;
+}
+.portfolio-slider-wrapper {
+  overflow: hidden;
+  width: 100%;
+  border-radius: 20px;
+}
+.slider-container {
+  display: flex;
+  transition: transform 0.6s ease;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-drag: none;
+  touch-action: pan-y;
+  cursor: grab;
+}
+.slider-container.grabbing {
+  cursor: grabbing;
+}
+.slide {
+  flex: 0 0 100%;
+}
+.slide img {
+  display: block;
+  width: 100%;
+  height: 50vh;       /* maintenant minimum 50vh */
+  object-fit: cover;
+}
+.slider-toggles {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+.slider-toggles .toggle-line {
+  width: 30px;
+  height: 4px;
+  background: #000;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.slider-toggles .toggle-line.active {
+  background: #ff67e3;
+  transform: scaleY(1.5);
+}

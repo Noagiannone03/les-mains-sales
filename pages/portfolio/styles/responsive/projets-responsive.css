@@ -1,0 +1,75 @@
+/* ===========================
+   NOS PROJETS RESPONSIVE
+   =========================== */
+
+/* Tablette portrait (≤ 899px) */
+@media (max-width: 899px) {
+    .nos-projets-section {
+      padding: 50px 40px;
+    }
+    .nos-projets-container {
+      gap: 30px;
+    }
+    .projet-entry {
+      flex-direction: column;
+      gap: 10px;               /* espace réduit entre blocs */
+    }
+    .projet-image {
+      width: 100%;
+    }
+    .projet-image img {
+      width: 100%;
+      height: auto;
+    }
+    .projet-text {
+      width: 100%;
+      text-align: left;
+      gap: 10px;               /* espace réduit entre titre-texte-bouton */
+    }
+    .projet-title {
+      font-size: 1.8em;
+      margin: 0 0 5px 0;       /* marge inférieure réduite */
+    }
+    .projet-paragraph {
+      font-size: 1.15em;
+      margin: 0 0 5px 0;       /* marge inférieure réduite */
+    }
+    .projet-button {
+      align-self: flex-end;
+      margin-top: 0;
+    }
+    .projet-button img {
+      width: 130px;
+    }
+    .projet-separator {
+      margin: 10px 0;          /* marge réduite */
+    }
+  }
+  
+  /* Mobile (≤ 599px) */
+  @media (max-width: 599px) {
+    .nos-projets-section {
+      padding: 50px 20px;
+    }
+    .nos-projets-title {
+      font-size: 2.5em;
+    }
+    .projet-entry {
+      gap: 8px;                /* encore moins d’espace */
+    }
+    .projet-title {
+      font-size: 1.6em;
+      margin: 0 0 4px 0;
+    }
+    .projet-paragraph {
+      font-size: 1em;
+      margin: 0 0 4px 0;
+    }
+    .projet-button img {
+      width: 110px;
+    }
+    .projet-separator {
+      margin: 8px 0;
+    }
+  }
+  

@@ -20,54 +20,112 @@
   <link rel="stylesheet" href="styles/styles/portfolio.css">
   <link rel="stylesheet" href="styles/styles/projets.css">
   
+
+  <!-- Importations styles css responsive -->
+  <link rel="stylesheet" href="../../styles/styles/footer.css">
+  <link rel="stylesheet" href="styles/responsive/portfolio-responsive.css">
+  <link rel="stylesheet" href="styles/responsive/navbar.css">
+  <link rel="stylesheet" href="styles/responsive/portfolio.css">
+  <link rel="stylesheet" href="styles/responsive/projets-responsive.css">
+  
 </head>
 <body>
 
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo">
-      <a href="../../index.html"><img src="../../assets/logos/lesmainssales-noir.png" alt="Logo"></a>
+      <a href="../../index.html">
+        <img src="../../assets/logos/lesmainssales-noir.png" alt="Logo">
+      </a>
     </div>
-    <nav>
-      <a href="../../index.html" class="nav-home">Home</a>
-      <a href="portfolio.html" class="nav-portfolio">Portfolio</a>
-      <a href="../concept/concept.html" class="nav-concept">Concept</a>
-      <a href="../../pages/contact/contact.html" class="nav-contact">Contact</a>
+    <nav class="nav-menu">
+      <a href="index.html" class="nav-home">Home</a>
+      <a href="pages/portfolio/portfolio.html" class="nav-portfolio">Portfolio</a>
+      <a href="pages/concept/concept.html" class="nav-concept">Concept</a>
+      <a href="pages/contact/contact.html" class="nav-contact">Contact</a>
     </nav>
-  </header>
-
-  <!-- SECTION PORTFOLIO -->
-  <section class="portfolio-section" id="portfolio">
-    <div class="portfolio-container">
-      <!-- Ligne Titre + Image Small -->
-      <div class="top-row">
-        
-        <div class="text-and-image">
-            <h1 class="portfolio-title">PORTFOLIO</h1>
-          <img class="portfolio-small-image" 
-               src="../../assets/pictos/black-pic/book-ferme.png" 
-               alt="Portfolio Image">
-        </div>
-      </div>
-      <!-- Sous-titre -->
-      <div class="subtitle-row">
-        <h2 class="portfolio-subtitle">
-          Redéfinir l’utilisation d’un espace urbain, laisser une empreinte artistique, requalifier des zones abandonnées, apporter une nouvelle dimension : découvrez les objectifs des <span class="toggle-highlight">MAINS SALES</span>.
-        </h2>
-      </div>
-      <!-- Grille Portfolio : 3 colonnes x 2 lignes -->
-      <div class="portfolio-grid">
-        <img src="../../assets/images/Rectangle 120.png" alt="Portfolio 1">
-        <img src="../../assets/images/Rectangle 126.png" alt="Portfolio 2">
-        <img src="../../assets/images/Rectangle 126.png" alt="Portfolio 3">
-        <img src="../../assets/images/Rectangle 120.png" alt="Portfolio 4">
-        <img src="../../assets/images/Rectangle 126.png" alt="Portfolio 5">
-        <img src="../../assets/images/Rectangle 120.png" alt="Portfolio 6">
-      </div>
-      <!-- Slider toggles -->
-      
+    <div id="navToggle" class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-  </section>
+  </header>
+  
+  <!-- MOBILE OVERLAY -->
+  <div id="mobileOverlay" class="mobile-overlay">
+    <div class="overlay-menu">
+      <a href="../../index.html">Home</a>
+      <a href="../portfolio/portfolio.html">Portfolio</a>
+      <a href="../concept/concept.html">Concept</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="overlay-footer">
+      <div class="social-text">Rejoignez-nous sur les réseaux sociaux</div>
+      <div class="social-icons">
+        <img src="assets/pictos/black-pic/picto-facebook.png" alt="Facebook">
+        <img src="assets/pictos/black-pic/picto-instagram.png" alt="Instagram">
+      </div>
+    </div>
+  </div>
+
+ <!-- SECTION PORTFOLIO -->
+<section class="portfolio-section" id="portfolio">
+  <div class="portfolio-container">
+
+    <!-- Ligne Titre + Image Small -->
+    <div class="top-row">
+      <div class="text-and-image">
+        <h1 class="portfolio-title">PORTFOLIO</h1>
+        <img class="portfolio-small-image"
+             src="../../assets/pictos/black-pic/book-ferme.png"
+             alt="Portfolio Image">
+      </div>
+    </div>
+
+    <!-- Sous-titre -->
+    <div class="subtitle-row">
+      <h2 class="portfolio-subtitle">
+        Les Mains Sales transforment les espaces urbains en lieux de dialogue artistique, réinventant les traditions pour créer des environnements <span class="toggle-highlight">attractifs et réfléchis</span>, stimulant l'implication citoyenne dans une urbanité alternative et inclusive. .
+      </h2>
+    </div>
+
+    <!-- Grille Desktop -->
+    <div class="portfolio-grid">
+      <img src="../../assets/images/Rectangle 120.png" alt="Portfolio 1">
+      <img src="../../assets/images/Rectangle 126.png" alt="Portfolio 2">
+      <img src="../../assets/images/Rectangle 126.png" alt="Portfolio 3">
+      <img src="../../assets/images/Rectangle 120.png" alt="Portfolio 4">
+      <img src="../../assets/images/Rectangle 126.png" alt="Portfolio 5">
+      <img src="../../assets/images/Rectangle 120.png" alt="Portfolio 6">
+    </div>
+
+    <!-- Carousel Mobile/Tablet -->
+     <!-- Carousel Mobile/Tablet -->
+  <div class="portfolio-slider">
+    <div class="portfolio-slider-wrapper">
+      <div class="slider-container" id="portfolioCarousel">
+        <div class="slide"><img src="../../assets/images/Rectangle 120.png" alt="Portfolio 1"></div>
+        <div class="slide"><img src="../../assets/images/Rectangle 126.png" alt="Portfolio 2"></div>
+        <div class="slide"><img src="../../assets/images/Rectangle 126.png" alt="Portfolio 3"></div>
+        <div class="slide"><img src="../../assets/images/Rectangle 120.png" alt="Portfolio 4"></div>
+        <div class="slide"><img src="../../assets/images/Rectangle 126.png" alt="Portfolio 5"></div>
+        <div class="slide"><img src="../../assets/images/Rectangle 120.png" alt="Portfolio 6"></div>
+      </div>
+    </div>
+    <div class="slider-toggles" id="portfolioToggles">
+      <span class="toggle-line"></span>
+      <span class="toggle-line"></span>
+      <span class="toggle-line"></span>
+      <span class="toggle-line"></span>
+      <span class="toggle-line"></span>
+      <span class="toggle-line"></span>
+    </div>
+  </div>
+
+
+  </div>
+</section>
+
 
   <!-- SECTION NOS PROJETS -->
   <section class="nos-projets-section" id="nos-projets">
@@ -224,5 +282,70 @@
   });
   
   </script>
-</body>
+
+<script>// responsive javascript
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle  = document.getElementById('navToggle');
+    const overlay = document.getElementById('mobileOverlay');
+    const body    = document.body;
+  
+    toggle.addEventListener('click', () => {
+      const isOpen = overlay.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+  
+      // Bloque le scroll du body quand overlay ouvert
+      if (isOpen) {
+        body.style.overflow = 'hidden';
+      } else {
+        body.style.overflow = '';
+      }
+    });
+  });
+  </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const slider    = document.getElementById('portfolioCarousel');
+    const toggles   = Array.from(document.querySelectorAll('#portfolioToggles .toggle-line'));
+    const wrapper   = slider.parentElement;
+    const total     = slider.children.length;
+    let current = 0;
+  
+    function goTo(idx) {
+      current = (idx + total) % total;
+      slider.style.transform = `translateX(-${current * wrapper.clientWidth}px)`;
+      toggles.forEach((t,i) => t.classList.toggle('active', i === current));
+    }
+    // click toggles
+    toggles.forEach((t,i) => t.addEventListener('click', ()=>goTo(i)));
+  
+    // drag/swipe
+    let isDown=false, startX=0, prev=0, curr=0;
+    wrapper.addEventListener('pointerdown', e => {
+      isDown=true; startX=e.clientX; prev=-current*wrapper.clientWidth;
+      slider.style.transition='none'; slider.classList.add('grabbing');
+    });
+    wrapper.addEventListener('pointermove', e => {
+      if(!isDown) return;
+      curr = prev + (e.clientX-startX);
+      slider.style.transform = `translateX(${curr}px)`;
+    });
+    ['pointerup','pointerleave','pointercancel'].forEach(ev =>
+      wrapper.addEventListener(ev, () => {
+        if(!isDown) return;
+        isDown=false; slider.style.transition=''; slider.classList.remove('grabbing');
+        const moved = curr - prev;
+        if(moved < -100) goTo(current+1);
+        else if(moved > 100) goTo(current-1);
+        else goTo(current);
+      })
+    );
+  
+    // init
+    goTo(0);
+  });
+  </script>
+  
 </html>

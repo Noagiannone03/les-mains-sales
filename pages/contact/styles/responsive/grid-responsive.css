@@ -1,0 +1,55 @@
+/* ================================
+   DYNAMIC GRID SECTION RESPONSIVE
+   ================================ */
+
+/* Tablette portrait & petits écrans (≤ 899px) */
+@media (max-width: 899px) {
+    .dynamic-grid-section {
+      height: auto;
+      margin-top: 5vh;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: 1fr;
+      gap: 1px;
+    }
+    .grid-cell {
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+    .grid-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  /* MOBILE (≤ 599px) : restreindre à 4×4 et masquer le reste */
+@media (max-width: 599px) {
+    .dynamic-grid-section {
+      margin-top: 5vh;
+      
+      height: auto;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 0px;
+    }
+    .grid-cell {
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+    .grid-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* Ne garder que les 16 premières cases */
+    .grid-cell:nth-child(n + 17) {
+      display: none;
+    }
+  }
+  

@@ -21,6 +21,7 @@
 .navbar {
   position: relative;
   z-index: 1000;
+  width: 100%;
   height: 90px;
   background: linear-gradient(to bottom, #000 0%, #000 80%, transparent 100%);
   display: flex;
@@ -104,80 +105,93 @@
 @media (max-width: 599px) {
   /* Navbar adaptation */
   .navbar {
-    background: #000;  /* plus de gradient */
+    background: #000;
     padding: 0 15px;
   }
   .navbar .nav-menu {
-    display: none;     /* masque le menu desktop */
+    display: none;
   }
   .nav-toggle {
-    display: flex;     /* affiche hamburger */
-  }
-
-  /* Overlay actif en mobile */
-  .mobile-overlay {
-    position: fixed;
-    top: 90px;                          /* juste sous la navbar */
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 90px);         /* tout l’espace visible restant */
-    background: #000;                   /* opaque total */
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow-y: auto;                   /* scroll interne dans overlay */
-    transform: translateY(-100%);       /* caché hors écran */
-    transition: transform .4s ease;
-    z-index: 900;                       /* sous la navbar (1000) */
-    pointer-events: none;               /* non interactif quand fermé */
-  }
-  .mobile-overlay.open {
-    transform: translateY(0);           /* apparaît en glissant */
-    pointer-events: auto;               /* interactif quand ouvert */
   }
 
-  /* Liens menu overlay */
+  /* Overlay caché par défaut, plein écran */
+  .mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow-y: auto;
+    z-index: 900;
+    opacity: 0;
+    transition: opacity .3s ease;
+  }
+  /* Quand ouvert */
+  .mobile-overlay.open {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;         /* active les clics */
+
+  }
+
+  /* Bloquer le scroll du body quand overlay ouvert */
+  body.overlay-open {
+    overflow: hidden;
+  }
+
+  /* Menu vertical centré */
   .mobile-overlay .overlay-menu {
+    width: 80%;
+    max-width: 400px;
+    margin-top: 10vh;
+   margin-left: auto;
+   margin-right: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 80%;
-    max-width: 400px;
   }
   .mobile-overlay .overlay-menu a {
     display: block;
+    width: 100%;
+    font-family: 'sharpie-extrabold', sans-serif;
+    text-transform: uppercase;
     color: #fff;
     text-decoration: none;
-    font-size: 2em;
-    margin: 20px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.5);
-    padding-bottom: 10px;
+    font-size: 2.9em;
+    margin: 30px 0;             /* plus d’espace entre les liens */
+    padding: 0 10px 10px;       /* padding-bottom pour écarter la barre */
+    border-bottom: 1px solid #fff;
     opacity: 0;
-    transform: translateY(-20px);
-    animation: slideIn .5s forwards;
+    animation: fadeIn 0.4s forwards;
   }
   .mobile-overlay.open .overlay-menu a:nth-child(1) { animation-delay: .1s; }
   .mobile-overlay.open .overlay-menu a:nth-child(2) { animation-delay: .2s; }
   .mobile-overlay.open .overlay-menu a:nth-child(3) { animation-delay: .3s; }
   .mobile-overlay.open .overlay-menu a:nth-child(4) { animation-delay: .4s; }
 
-  @keyframes slideIn {
-    to { opacity: 1; transform: translateY(0); }
+  @keyframes fadeIn {
+    to { opacity: 1; }
   }
 
-  /* Footer social collé en bas de l’overlay */
+  /* Footer social collé en bas */
   .overlay-footer {
-    margin-top: auto;                   /* pousse en bas */
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
     text-align: center;
-    padding-bottom: 30px;
+    padding: 0;
+    margin: 0;
   }
   .overlay-footer .social-text {
     color: #fff;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
   .overlay-footer .social-icons {
     display: flex;
+    justify-content: center;
     gap: 20px;
   }
   .overlay-footer .social-icons img {
@@ -202,6 +216,23 @@
   .navbar .nav-menu a { font-size: 1em; }
 }
 
+/* Images différentes pour chaque lien */
+.nav-home::before {
+  background-image: url("../../assets/navbar-title-background/navbar-home.png");
+  background-size: contain;
+}
+.nav-portfolio::before {
+  background-image: url("../../assets/navbar-title-background/navbar-portfolio.png");
+  background-size: contain;
+}
+.nav-concept::before {
+  background-image: url("../../assets/navbar-title-background/navbar-concept.png");
+  background-size: contain;
+}
+.nav-contact::before {
+  background-image: url("../../assets/navbar-title-background/navbar-contact.png");
+  background-size: contain;
+}
 
       
           /* Images différentes pour chaque lien */
