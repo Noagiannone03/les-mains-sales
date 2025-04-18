@@ -131,3 +131,107 @@ document.addEventListener("DOMContentLoaded", function() {
     footerCanvas.addEventListener("mouseout", stopDrawing);
   });
   
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const slider       = document.getElementById('imageCarousel');
+  const toggles      = Array.from(document.querySelectorAll('#carouselToggles .toggle-line'));
+  const wrapper      = slider.parentElement;
+  const total        = slider.children.length;
+  let currentIndex   = 0;
+  let autoSlideInt;
+
+  function goTo(idx) {
+    currentIndex = (idx + total) % total;
+    const w = wrapper.clientWidth;
+    slider.style.transform = `translateX(-${currentIndex * w}px)`;
+    toggles.forEach((t,i) => t.classList.toggle('active', i === currentIndex));
+  }
+
+  function startAuto() {
+    stopAuto();
+    autoSlideInt = setInterval(() => goTo(currentIndex + 1), 5000);
+  }
+  function stopAuto() {
+    clearInterval(autoSlideInt);
+  }
+
+  // click toggles
+  toggles.forEach((t,i) => t.addEventListener('click', () => {
+    goTo(i);
+    startAuto();
+  }));
+
+  // drag vars
+  let isDragging = false, startX = 0, prevTranslate = 0, currentTranslate = 0;
+
+  wrapper.addEventListener('pointerdown', e => {
+    e.preventDefault();
+    stopAuto();
+    isDragging = true;
+    startX = e.clientX;
+    prevTranslate = -currentIndex * wrapper.clientWidth;
+    slider.style.transition = 'none';
+    slider.classList.add('grabbing');
+  });
+
+  wrapper.addEventListener('pointermove', e => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const diff = e.clientX - startX;
+    currentTranslate = prevTranslate + diff;
+    slider.style.transform = `translateX(${currentTranslate}px)`;
+  });
+
+  ['pointerup','pointerleave','pointercancel'].forEach(evt =>
+    wrapper.addEventListener(evt, () => {
+      if (!isDragging) return;
+      isDragging = false;
+      slider.style.transition = '';
+      slider.classList.remove('grabbing');
+      const moved = currentTranslate - prevTranslate;
+      if (moved < -100) goTo(currentIndex + 1);
+      else if (moved > 100) goTo(currentIndex - 1);
+      else goTo(currentIndex);
+      startAuto();
+    })
+  );
+
+  window.addEventListener('resize', () => goTo(currentIndex));
+
+  // init
+  goTo(0);
+  startAuto();
+});
+
+
+
+
+
+// responsive javascript
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle  = document.getElementById('navToggle');
+  const overlay = document.getElementById('mobileOverlay');
+  const body    = document.body;
+
+  toggle.addEventListener('click', () => {
+    const isOpen = overlay.classList.toggle('open');
+    toggle.classList.toggle('open', isOpen);
+
+    // Bloque le scroll du body quand overlay ouvert
+    if (isOpen) {
+      body.style.overflow = 'hidden';
+    } else {
+      body.style.overflow = '';
+    }
+  });
+});
+
+
+
+
+

@@ -1,0 +1,35 @@
+/* Tablette portrait (largeur ≤ 899px) */
+@media (max-width: 899px) {
+    .video-container {
+      height: 50vh;
+    }
+    .scroll-down img {
+        width: 50px;
+        height: auto;
+      }
+  }
+  
+  /* Mobile (largeur ≤ 599px) */
+  @media (max-width: 599px) {
+    .video-container {
+      height: 30vh;
+    }
+    .scroll-down img {
+        width: 30px;
+        height: auto;
+      }
+  }
+
+  /* Ajustements éventuellement par breakpoint */
+
+  @media (max-width: 899px) {
+    .fullwidth-bg { height: 7vh; }
+  }
+  @media (max-width: 599px) {
+    .spacer {
+        height: 1px;
+        width: 100%;
+      }
+    .fullwidth-bg { height: 5vh; }
+  }
+  

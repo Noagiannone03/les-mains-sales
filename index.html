@@ -12,7 +12,8 @@
 
   <!-- ADD Fabric.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.6.0/fabric.min.js"></script>
-
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
     <!-- Chargement des styles css -->
   <link rel="stylesheet" href="styles/styles/main.css">
@@ -33,18 +34,44 @@
 <body>
 
   <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="logo">
-      <a href="index.html"> <img src="assets/logos/lesmainssales.png" alt="Logo"></a>
+  <!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">
+    <a href="index.html">
+      <img src="assets/logos/lesmainssales.png" alt="Logo">
+    </a>
+  </div>
+  <nav class="nav-menu">
+    <a href="index.html" class="nav-home">Home</a>
+    <a href="pages/portfolio/portfolio.html" class="nav-portfolio">Portfolio</a>
+    <a href="pages/concept/concept.html" class="nav-concept">Concept</a>
+    <a href="pages/contact/contact.html" class="nav-contact">Contact</a>
+  </nav>
+  <div id="navToggle" class="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<!-- MOBILE OVERLAY -->
+<div id="mobileOverlay" class="mobile-overlay">
+  <div class="overlay-menu">
+    <a href="index.html">Home</a>
+    <a href="pages/portfolio/portfolio.html">Portfolio</a>
+    <a href="pages/concept/concept.html">Concept</a>
+    <a href="pages/contact/contact.html">Contact</a>
+  </div>
+  <div class="overlay-footer">
+    <div class="social-text">Rejoignez-nous sur les réseaux sociaux</div>
+    <div class="social-icons">
+      <img src="assets/pictos/black-pic/picto-facebook.png" alt="Facebook">
+      <img src="assets/pictos/black-pic/picto-instagram.png" alt="Instagram">
     </div>
-    <nav>
-        <a href="index.html" class="nav-home">Home</a>
-        <a href="pages/portfolio/portfolio.html" class="nav-portfolio">Portfolio</a>
-        <a href="pages/concept/concept.html" class="nav-concept">Concept</a>
-        <a href="pages/contact/contact.html" class="nav-contact">Contact</a>
-      </nav>
-      
-  </header>
+  </div>
+</div>
+
+  
 
   <!-- SECTION VIDÉO -->
   <section class="video-container">
@@ -59,8 +86,9 @@
 
   <!-- IMAGE PLEIN LARGEUR -->
   <div class="fullwidth-image-container">
-    <img src="assets/pictos/bandeau.png" alt="Bandeau Art">
+<div class="fullwidth-bg"></div>
   </div>
+
 
   <!-- ESPACE AVANT LA SECTION CONCEPT -->
   <div class="spacer"></div>
@@ -122,19 +150,21 @@
           Redéfinir l’utilisation d’un espace urbain, laisser une empreinte artistique, requalifier des zones abandonnées, apporter une nouvelle dimension : découvrez les objectifs des <span class="toggle-highlight">MAINS SALES</span>.
         </h2>
       </div>
-      <!-- Grosse image réduite en hauteur -->
-      <div class="fullwidth-image-container">
-        <img class="portfolio-large-image" 
-             src="assets/images/Rectangle 117.png" 
-             alt="Grande image Portfolio">
-      </div>
-      <!-- Slider toggles -->
-      <div class="slider-toggles">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
+     <!-- HTML à injecter dans ta section portfolio -->
+     <div class="fullwidth-image-container">
+      <div class="slider-container" id="imageCarousel">
+        <div class="slide"><img draggable="false" src="assets/images/Rectangle 117.png" alt="Slide 1"></div>
+        <div class="slide"><img draggable="false" src="assets/images/Rectangle 120.png" alt="Slide 2"></div>
+        <div class="slide"><img draggable="false" src="assets/images/Rectangle 129.png" alt="Slide 3"></div>
       </div>
     </div>
+    <div class="slider-toggles" id="carouselToggles">
+      <span class="toggle-line"></span>
+      <span class="toggle-line"></span>
+      <span class="toggle-line"></span>
+    </div>
+    
+
   </section>
 
  <!-- SECTION FOOTER -->

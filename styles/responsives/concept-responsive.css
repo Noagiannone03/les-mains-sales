@@ -1,0 +1,99 @@
+/* === CONCEPT SECTION RESPONSIVE === */
+/* Tablette portrait et mobile (≤ 899px) : passer en 1 colonne et activer carousel */
+@media (max-width: 899px) {
+    .concept-section {
+        
+     
+        padding: 50px 0px;
+        display: flex;
+        align-items: center;
+      }
+    .concept-container {
+      display: block;            /* plus de grid, flux normal */
+    }
+    .head-bloc-container {
+          /* titre + picto empilés */
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .concept-content .text {
+      margin-top: 20px;
+    }
+    .concept-content .voir-plus {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+     /* Empilement : contenu d’abord, slider ensuite */
+  .concept-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .concept-content {
+    order: 1;
+    width: 100%;
+  }
+  /* Bouton “Voir plus” à gauche, avec marge */
+  .concept-content .voir-plus {
+    text-align: left;
+    margin: 20px 0;
+  }
+  /* Slider des images en bas */
+  .images-grid {
+    order: 2;
+    margin-top: 20px;
+  }
+  
+    /* Carousel tactile pour les images */
+    .images-grid {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 10px;
+      padding-bottom: 10px;
+      margin-top: 20px;
+    }
+    .images-grid img {
+      flex: 0 0 80%;
+      max-width: 80%;
+      height: auto;
+      scroll-snap-align: center;
+      border-radius: 8px;
+    }
+    /* masquer la scrollbar visuellement (optionnel) */
+    .images-grid {
+      -ms-overflow-style: none;  /* IE 10+ */
+      scrollbar-width: none;     /* Firefox */
+    }
+    .images-grid::-webkit-scrollbar { display: none; }
+  
+    /* Ajustements textuels */
+    .concept-content h1 {
+      font-size: 3.1em;
+    }
+    .concept-content p {
+      font-size: 1em;
+      line-height: 1.4;
+    }
+  }
+  
+  /* Mobile (≤ 599px) : carousel pleine largeur + textes réduits */
+  @media (max-width: 599px) {
+
+   
+    .images-grid img {
+      flex: 0 0 90%;
+      max-width: 92%;
+    }
+    .concept-content h1 {
+      font-size: 2.7em;
+    }
+    .concept-content p {
+      font-size: 0.9em;
+    }
+    .concept-section {
+      margin: 0 20px;
+      padding: 30px 0px;
+    }
+  }
+  

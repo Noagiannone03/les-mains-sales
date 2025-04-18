@@ -1,0 +1,132 @@
+/* ======================= */
+/*     FOOTER RESPONSIVE   */
+/* ======================= */
+
+/* Tablette paysage (≤ 1199px) */
+@media (max-width: 1199px) {
+    .footer-section {
+      height: 90vh;
+    }
+    .footer-small-image {
+      width: 60px;
+      top: 15px;
+      left: 15px;
+    }
+    .footer-large-image {
+      max-width: 400px;
+      margin-bottom: 20px;
+    }
+    .footer-pill {
+      min-width: 400px;
+      max-width: 90%;
+      padding: 15px;
+      gap: 8px;
+    }
+    .footer-pill-top {
+      gap: 15px;
+    }
+    .footer-nav {
+      gap: 15px;
+    }
+    .footer-nav a {
+      font-size: 0.9em;
+    }
+    .overlay-footer .social-icons img {
+      width: 35px;
+    }
+  }
+  
+  /* Tablette portrait (≤ 899px) */
+  @media (max-width: 899px) {
+    .footer-section {
+      height: auto;
+      padding: 40px 20px;
+    }
+    .footer-small-image {
+      width: 50px;
+      top: 10px;
+      left: 10px;
+    }
+    #footerDrawCanvas {
+      /* canvas still full but parent height auto */
+    }
+    .footer-center {
+      position: static;
+      transform: none;
+      display: block;
+      text-align: center;
+    }
+    .footer-large-image {
+      max-width: 300px;
+      margin: 0 auto 15px;
+    }
+    .footer-pill {
+      min-width: auto;
+      max-width: 100%;
+      width: 100%;
+      padding: 15px;
+    }
+    .footer-pill-top {
+      gap: 10px;
+    }
+    .footer-nav {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .footer-nav a {
+      font-size: 0.9em;
+    }
+    .footer-below img {
+      max-width: 100%;
+    }
+  }
+  
+  /* Mobile (≤ 599px) */
+  @media (max-width: 599px) {
+    .footer-section {
+        overflow: visible;
+      height: auto;
+      padding: 0px 15px;
+    }
+    .footer-small-image {
+      width: 50px;
+      top: -8px;
+      left: 8px;
+    }
+    .footer-large-image {
+      max-width: 300px;
+      margin: 0 auto 10px;
+    }
+    .footer-pill {
+      width: 100%;
+      padding: 10px;
+    }
+    .footer-pill-top {
+      flex-direction: row;
+      gap: 8px;
+    }
+    .left-img img, .right-img img {
+      width: 10px;
+      height: 10px;
+    }
+    .footer-nav {
+      flex-direction: row;
+      gap: 3px;
+    }
+    .footer-nav a {
+      font-size: 0.8em;
+    }
+    .footer-pill-bottom .legal-links {
+      flex-direction: row;
+      gap: 5px;
+    }
+    .legal-links a {
+      font-size: 0.8em;
+    }
+    .footer-below img {
+      max-width: 100%;
+      margin-top: -10px;
+    }
+  }
+  

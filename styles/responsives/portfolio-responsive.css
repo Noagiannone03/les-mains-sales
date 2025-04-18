@@ -1,0 +1,56 @@
+/* ======================= */
+/*   RESPONSIVE PORTFOLIO */
+/* ======================= */
+@media (max-width: 899px) {
+    .portfolio-section {
+      padding: 5px 30px;
+    }
+  
+    .top-row {
+      align-items: flex-start;
+      gap: 15px;
+    }
+  
+    .portfolio-title {
+      font-size: 2.7em;
+      text-align: left;
+    }
+  
+    .text-and-image {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  
+    .portfolio-small-image {
+      width: 50px;
+    }
+  
+    .subtitle-row {
+      margin-top: 10px;
+    }
+  
+    .portfolio-subtitle {
+      font-size: 1.1em;
+      line-height: normal;
+      text-align: justify;
+    }
+  
+    .fullwidth-image-container {
+      margin-top: 30px;
+      border-radius: 12px;
+    }
+  
+    .slide img {
+      height: 250px;
+    }
+  
+    .slider-toggles {
+      margin-top: 15px;
+    }
+  
+    .toggle-line {
+      width: 30px;
+      height: 3px;
+    }
+  }
+  

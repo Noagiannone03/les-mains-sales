@@ -57,29 +57,61 @@
     .nav-concept::before   { background-image:url("../../../assets/navbar-title-background/navbar-concept.png"); }
     .nav-contact::before   { background-image:url("../../../assets/navbar-title-background/navbar-contact.png"); }
 
-    /* SLIDER */
-    .slider-section {
-      position: relative; height: 70vh; overflow: hidden;
-    }
-    .slider-container {
-      display: flex; height: 100%; transition: transform 0.6s ease-in-out;
-    }
-    .slide { flex: 0 0 100%; }
-    .slide img {
-      width: 100%; height: 100%; object-fit: cover;
-      filter: grayscale(100%); transition: filter .3s ease;
-    }
-    .slide img:hover { filter: none; }
-    .slider-indicators {
-      display: flex; justify-content: center; gap:10px; margin-top:20px;
-    }
-    .indicator {
-      width:40px; height:3px; background:#000; opacity:0.4;
-      border-radius:10px; transition:opacity .3s;
-    }
-    .indicator.active {
-      opacity:1; background:#ff67e3;
-    }
+    /* ===== SLIDER ===== */
+.slider-section {
+  position: relative;
+  height: 70vh;
+  overflow: hidden;
+}
+
+.slider-container {
+  display: flex;
+  transition: transform 0.6s ease;
+  will-change: transform;
+  user-select: none;         /* empêche la sélection texte */
+  -webkit-user-drag: none;   /* empêche le drag natif */
+  touch-action: pan-y;       /* scroll vertical OK, horizontal capté */
+  cursor: grab;
+}
+.slider-container.grabbing {
+  cursor: grabbing;
+}
+
+.slide {
+  flex: 0 0 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: filter .3s ease;
+  border-radius: inherit;
+}
+.slide img:hover {
+  filter: grayscale(0);
+}
+
+.slider-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.indicator {
+  width: 40px;
+  height: 3px;
+  background: #000;
+  opacity: 0.4;
+  border-radius: 10px;
+  transition: opacity .3s, background .3s;
+  cursor: pointer;
+}
+.indicator.active {
+  opacity: 1;
+  background: #ff67e3;
+}
 
     /* INTERSTITIEL */
     .interstitial-section {
@@ -396,18 +428,26 @@
   </header>
 
   <!-- SLIDER -->
-  <section class="slider-section">
-    <div class="slider-container" id="sliderContainer">
-      <div class="slide"><img src="../../../assets/images/disturbed-photo.png" alt="Slide 1"></div>
-      <div class="slide"><img src="../../../assets/images/disturbed-photo.png" alt="Slide 2"></div>
-      <div class="slide"><img src="../../../assets/images/disturbed-photo.png" alt="Slide 3"></div>
+<!-- HTML : ajoute draggable="false" sur tes <img> -->
+<section class="slider-section">
+  <div class="slider-container" id="sliderContainer">
+    <div class="slide">
+      <img draggable="false" src="../../../assets/images/disturbed-photo.png" alt="Slide 1">
     </div>
-  </section>
-  <div class="slider-indicators" id="sliderIndicators">
-    <span class="indicator"></span>
-    <span class="indicator"></span>
-    <span class="indicator"></span>
+    <div class="slide">
+      <img draggable="false" src="../../../assets/images/disturbed-photo.png" alt="Slide 2">
+    </div>
+    <div class="slide">
+      <img draggable="false" src="../../../assets/images/disturbed-photo.png" alt="Slide 3">
+    </div>
   </div>
+</section>
+<div class="slider-indicators" id="sliderIndicators">
+  <span class="indicator"></span>
+  <span class="indicator"></span>
+  <span class="indicator"></span>
+</div>
+
 
   <!-- INTERSTITIEL -->
   <section class="interstitial-section">
@@ -575,17 +615,7 @@
   <!-- SCRIPTS -->
   <script>
     // Slider
-    (function(){
-      const slides = document.getElementById('sliderContainer');
-      const dots = Array.from(document.querySelectorAll('#sliderIndicators .indicator'));
-      let idx = 0, total = slides.children.length;
-      function go(i){
-        slides.style.transform = `translateX(-${i*100}%)`;
-        dots.forEach((d,j)=> d.classList.toggle('active', i===j));
-      }
-      go(0);
-      setInterval(()=> go((idx = (idx+1)%total)), 6000);
-    })();
+  
 
     // GLightbox
     document.addEventListener('DOMContentLoaded', ()=>{
@@ -634,5 +664,84 @@
     });
   });
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const slider       = document.getElementById('sliderContainer');
+    const wrapper      = slider.parentElement; // .slider-section
+    const toggles      = Array.from(document.querySelectorAll('#sliderIndicators .indicator'));
+    const total        = slider.children.length;
+    let currentIndex   = 0;
+    let autoSlideInt;
+  
+    function goTo(idx) {
+      currentIndex = (idx + total) % total;
+      const w = wrapper.clientWidth;
+      slider.style.transform = `translateX(-${currentIndex * w}px)`;
+      toggles.forEach((t,i) => t.classList.toggle('active', i === currentIndex));
+    }
+  
+    function startAuto() {
+      stopAuto();
+      autoSlideInt = setInterval(() => goTo(currentIndex + 1), 5000);
+    }
+    function stopAuto() {
+      clearInterval(autoSlideInt);
+    }
+  
+    // click sur les indicateurs
+    toggles.forEach((t,i) => {
+      t.addEventListener('click', () => {
+        goTo(i);
+        startAuto();
+      });
+    });
+  
+    // drag / swipe
+    let isDragging     = false;
+    let startX         = 0;
+    let prevTranslate = 0;
+    let currentTranslate = 0;
+  
+    wrapper.addEventListener('pointerdown', e => {
+      e.preventDefault();
+      stopAuto();
+      isDragging   = true;
+      startX       = e.clientX;
+      prevTranslate = -currentIndex * wrapper.clientWidth;
+      slider.style.transition = 'none';
+      slider.classList.add('grabbing');
+    });
+  
+    wrapper.addEventListener('pointermove', e => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const diff = e.clientX - startX;
+      currentTranslate = prevTranslate + diff;
+      slider.style.transform = `translateX(${currentTranslate}px)`;
+    });
+  
+    ['pointerup','pointerleave','pointercancel'].forEach(evt => {
+      wrapper.addEventListener(evt, () => {
+        if (!isDragging) return;
+        isDragging = false;
+        slider.style.transition = '';
+        slider.classList.remove('grabbing');
+        const moved = currentTranslate - prevTranslate;
+        if (moved < -100)     goTo(currentIndex + 1);
+        else if (moved > 100) goTo(currentIndex - 1);
+        else                  goTo(currentIndex);
+        startAuto();
+      });
+    });
+  
+    window.addEventListener('resize', () => goTo(currentIndex));
+  
+    // init
+    goTo(0);
+    startAuto();
+  });
+  </script>
+  
 </body>
 </html>

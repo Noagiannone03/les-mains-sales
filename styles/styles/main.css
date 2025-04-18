@@ -92,3 +92,13 @@
             width: 100%;
             height: auto;
           }
+
+          .fullwidth-bg {
+            width: 100%;
+            height: 6vh;  /* ajuster */
+            background-image: url('../../assets/pictos/bandeau.png');
+            background-size: cover;    /* force le zoom + recadrage */
+            background-position: center;
+            background-repeat: no-repeat;
+          }
+          
