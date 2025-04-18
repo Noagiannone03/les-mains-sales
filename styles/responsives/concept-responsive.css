@@ -78,7 +78,7 @@
   }
   
   /* Mobile (≤ 599px) : carousel pleine largeur + textes réduits */
-  @media (max-width: 599px) {
+  @media (max-width: 480px) {
 
    
     .images-grid img {

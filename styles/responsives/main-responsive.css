@@ -10,7 +10,7 @@
   }
   
   /* Mobile (largeur ≤ 599px) */
-  @media (max-width: 599px) {
+  @media (max-width: 480px) {
     .video-container {
       height: 30vh;
     }
@@ -25,7 +25,7 @@
   @media (max-width: 899px) {
     .fullwidth-bg { height: 7vh; }
   }
-  @media (max-width: 599px) {
+  @media (max-width: 480px) {
     .spacer {
         height: 1px;
         width: 100%;

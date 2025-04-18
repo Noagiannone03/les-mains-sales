@@ -83,7 +83,7 @@
   }
   
   /* Mobile (≤ 599px) */
-  @media (max-width: 599px) {
+  @media (max-width: 480px) {
     .footer-section {
         overflow: visible;
       height: auto;
