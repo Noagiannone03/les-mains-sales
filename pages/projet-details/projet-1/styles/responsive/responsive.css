@@ -398,3 +398,79 @@
       width: 80px;
     }
   }
+
+
+/* Correction pour la section Stats - 2 cards par ligne même en mobile */
+@media screen and (max-width: 767px) {
+    .stats-cards {
+      grid-template-columns: repeat(2, 1fr); /* Maintient 2 colonnes même en mobile */
+      grid-template-rows: repeat(3, 1fr);
+      gap: 10px; /* Réduit légèrement l'espace entre les cartes */
+    }
+    
+    .card {
+      padding: 15px 5px; /* Réduit le padding pour s'adapter à l'écran plus petit */
+    }
+    
+    .card .number {
+      font-size: 2.5em; /* Réduit légèrement la taille pour les petits écrans */
+    }
+    
+    .card .label {
+      font-size: 1em; /* Réduit la taille du texte */
+    }
+  }
+  
+  /* Correction pour que les images du slider prennent toute la hauteur */
+  .slider-section {
+    position: relative;
+    height: 70vh; /* Maintient la hauteur originale */
+    overflow: hidden;
+  }
+  
+  .slider-container {
+    display: flex;
+    transition: transform 0.6s ease;
+    will-change: transform;
+    user-select: none;
+    -webkit-user-drag: none;
+    touch-action: pan-y;
+    cursor: grab;
+    height: 100%; /* Assure que le conteneur prend toute la hauteur */
+  }
+  
+  .slide {
+    flex: 0 0 100%;
+    height: 100%; /* S'assure que chaque slide prend 100% de la hauteur */
+  }
+  
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* S'assure que l'image couvre tout l'espace */
+    filter: grayscale(100%);
+    transition: filter .3s ease;
+    border-radius: inherit;
+  }
+  
+  /* Maintient ces propriétés en responsive */
+  @media screen and (max-width: 1024px) {
+    .slider-section {
+      height: 50vh;
+    }
+    
+    .slide {
+      height: 100%;
+    }
+  }
+  
+  @media screen and (max-width: 767px) {
+    .slider-section {
+      height: 40vh;
+    }
+    
+    .slide {
+      height: 100%;
+    }
+  }
+  
