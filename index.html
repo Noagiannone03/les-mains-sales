@@ -65,8 +65,8 @@
   <div class="overlay-footer">
     <div class="social-text">Rejoignez-nous sur les réseaux sociaux</div>
     <div class="social-icons">
-      <img src="assets/pictos/black-pic/picto-facebook.png" alt="Facebook">
-      <img src="assets/pictos/black-pic/picto-instagram.png" alt="Instagram">
+      <img src="assets/pictos/black-pic/facebook.png" alt="Facebook">
+      <img src="assets/pictos/black-pic/instagram.png" alt="Instagram">
     </div>
   </div>
 </div>
@@ -126,7 +126,7 @@
           </p>
         </div>
         <div class="voir-plus">
-          <img src="assets/hand-button/voir-plus-black.png" alt="Voir plus">
+          <img src="assets/hand-button/voir-plus-black.png" onclick="window.location.href='pages/concept/concept.html'" alt="Voir plus">
         </div>
       </div>
     </div>
@@ -193,21 +193,21 @@
           <div class="footer-pill">
             <div class="footer-pill-top">
               <div class="left-img">
-                <img src="assets/pictos/black-pic/picto-faceboook.png" alt="Facebook">
+                <img src="assets/pictos/black-pic/facebook.png" alt="Facebook">
               </div>
               <div class="footer-nav">
-                <a href="index.html">Home</a><span class="sep">|</span>
-                <a href="pages/portfolio/portfolio.html">Portfolio</a><span class="sep">|</span>
-                <a href="pages/concept/concept.html">Concept</a><span class="sep">|</span>
+                <a href="index.html">Home</a><span class="sep"></span>
+                <a href="pages/portfolio/portfolio.html">Portfolio</a><span class="sep"></span>
+                <a href="pages/concept/concept.html">Concept</a><span class="sep"></span>
                 <a href="pages/contact/contact.html">Contact</a>
               </div>
               <div class="right-img">
-                <img src="assets/pictos/black-pic/picto-instagram.png" alt="Instagram">
+                <img src="assets/pictos/black-pic/instagram.png" alt="Instagram">
               </div>
             </div>
             <div class="footer-pill-bottom">
               <div class="legal-links">
-                <a href="#">Mentions légales</a><span class="sep">|</span>
+                <a href="#">Mentions légales</a><span class="sep"></span>
                 <a href="#">Conditions d'utilisation</a>
               </div>
             </div>
@@ -226,62 +226,97 @@
 <script src="script.js" defer></script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const toggle = document.getElementById('footerDrawToggle');
-    const canvas = document.getElementById('footerDrawCanvas');
-    const ctx    = canvas.getContext('2d');
-    const footer = document.getElementById('footer');
-    let drawing  = false;
-    let lastPos  = { x: 0, y: 0 };
-  
-    // redimensionne le canvas
-    function resize() {
-      canvas.width  = footer.clientWidth;
-      canvas.height = footer.clientHeight;
-      canvas.style.width  = footer.clientWidth + 'px';
-      canvas.style.height = footer.clientHeight + 'px';
-    }
-    window.addEventListener('resize', resize);
-    resize();
-  
-    // toggle dessin
-    toggle.addEventListener('click', () => {
-      const active = canvas.style.pointerEvents === 'none';
-      canvas.style.pointerEvents = active ? 'auto' : 'none';
-      toggle.style.opacity       = active ? 0.5 : 1;
-    });
-  
-    // dessin uniquement si pointer-events = auto
-    canvas.addEventListener('mousedown', (e) => {
-      if (canvas.style.pointerEvents === 'none') return;
-      drawing = true;
-      lastPos = { x: e.offsetX, y: e.offsetY };
-    });
-    canvas.addEventListener('mouseup',   () => drawing = false);
-    canvas.addEventListener('mouseleave',() => drawing = false);
-  
-    canvas.addEventListener('mousemove', (e) => {
-      if (!drawing) return;
-      const x = e.offsetX, y = e.offsetY;
-  
-      // dégradé clair bleu→violet
-      const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      grad.addColorStop(0, ' #4ac9f5 ');
-      grad.addColorStop(1, ' #ef46f1 ');
-  
-      ctx.strokeStyle = grad;
-      ctx.lineWidth   = 15;
-      ctx.lineCap     = 'round';
-      ctx.lineJoin    = 'round';
-  
-      ctx.beginPath();
-      ctx.moveTo(lastPos.x, lastPos.y);
-      ctx.lineTo(x, y);
-      ctx.stroke();
-  
-      lastPos = { x, y };
-    });
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('footerDrawToggle');
+  const canvas = document.getElementById('footerDrawCanvas');
+  const ctx    = canvas.getContext('2d');
+  const footer = document.getElementById('footer');
+  let drawing  = false;
+  let lastPos  = { x: 0, y: 0 };
+
+  // Redimensionne le canvas
+  function resize() {
+    canvas.width  = footer.clientWidth;
+    canvas.height = footer.clientHeight;
+    canvas.style.width  = footer.clientWidth + 'px';
+    canvas.style.height = footer.clientHeight + 'px';
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // Toggle dessin
+  toggle.addEventListener('click', () => {
+    const active = canvas.style.pointerEvents === 'none';
+    canvas.style.pointerEvents = active ? 'auto' : 'none';
+    toggle.style.opacity       = active ? 0.5 : 1;
   });
+
+  // Fonction pour dessiner une ligne
+  function drawLine(x, y) {
+    if (!drawing) return;
+
+    // Dégradé clair bleu→violet
+    const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    grad.addColorStop(0, '#4ac9f5');
+    grad.addColorStop(1, '#ef46f1');
+
+    ctx.strokeStyle = grad;
+    ctx.lineWidth   = 15;
+    ctx.lineCap     = 'round';
+    ctx.lineJoin    = 'round';
+
+    ctx.beginPath();
+    ctx.moveTo(lastPos.x, lastPos.y);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+
+    lastPos = { x, y };
+  }
+
+  // ===== SOURIS EVENTS =====
+  canvas.addEventListener('mousedown', (e) => {
+    if (canvas.style.pointerEvents === 'none') return;
+    drawing = true;
+    lastPos = { x: e.offsetX, y: e.offsetY };
+  });
+  
+  canvas.addEventListener('mousemove', (e) => {
+    if (!drawing) return;
+    drawLine(e.offsetX, e.offsetY);
+  });
+
+  canvas.addEventListener('mouseup', () => drawing = false);
+  canvas.addEventListener('mouseleave', () => drawing = false);
+
+  // ===== TOUCH EVENTS =====
+  canvas.addEventListener('touchstart', (e) => {
+    if (canvas.style.pointerEvents === 'none') return;
+    e.preventDefault(); // Empêche le scroll pendant le dessin
+    
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    
+    drawing = true;
+    lastPos = { x, y };
+  });
+
+  canvas.addEventListener('touchmove', (e) => {
+    if (!drawing) return;
+    e.preventDefault(); // Empêche le scroll pendant le dessin
+    
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    
+    drawLine(x, y);
+  });
+
+  canvas.addEventListener('touchend', () => drawing = false);
+  canvas.addEventListener('touchcancel', () => drawing = false);
+});
   </script>
   
 

@@ -20,7 +20,8 @@
   <link rel="stylesheet" href="styles/responsive/main-contact-responsive.css">
   <link rel="stylesheet" href="styles/responsive/navbar-responsive.css">
   <link rel="stylesheet" href="styles/responsive/form-responsive.css">
-  <link rel="stylesheet" href="styles/responsive/grid-responsive.css">
+  <link rel="stylesheet" href="styles/responsive/grid-responsive.css">  <link rel="stylesheet" href="../../styles/responsives/footer-responsive.css">
+
 </head>
 <body>
   <!-- NAVBAR -->
@@ -54,8 +55,8 @@
     <div class="overlay-footer">
       <div class="social-text">Rejoignez-nous sur les réseaux sociaux</div>
       <div class="social-icons">
-        <img src="assets/pictos/black-pic/picto-facebook.png" alt="Facebook">
-        <img src="assets/pictos/black-pic/picto-instagram.png" alt="Instagram">
+        <img src="../../assets/pictos/black-pic/facebook.png" alt="Facebook">
+        <img src="../../assets/pictos/black-pic/instagram.png" alt="Instagram">
       </div>
     </div>
   </div>
@@ -297,5 +298,123 @@
       });
     });
     </script>
+
+    <script>document.addEventListener('DOMContentLoaded', function() {
+      // Sélectionner le bouton et les champs du formulaire
+      const contactButton = document.querySelector('.contact-button');
+      const nomPrenomInput = document.getElementById('nomprenom');
+      const emailInput = document.getElementById('email');
+      const messageInput = document.getElementById('message');
+    
+      // Ajouter un écouteur d'événement au bouton d'envoi
+      contactButton.addEventListener('click', function(e) {
+        e.preventDefault();
+    
+        // Récupérer les valeurs des champs
+        const nomPrenom = nomPrenomInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
+    
+        // Validation simple
+        if (!nomPrenom || !email || !message) {
+          alert('Veuillez remplir tous les champs');
+          return;
+        }
+    
+        if (!isValidEmail(email)) {
+          alert('Veuillez entrer une adresse email valide');
+          return;
+        }
+    
+        // Préparation des données à envoyer
+        const formData = new FormData();
+        formData.append('nom_prenom', nomPrenom);
+        formData.append('email', email);
+        formData.append('message', message);
+    
+        // Envoi des données à Formspree
+        fetch('https://formspree.io/f/mjkwknjb', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        .then(response => {
+          if (response.ok) {
+            // Succès
+            nomPrenomInput.value = '';
+            emailInput.value = '';
+            messageInput.value = '';
+            
+            // Affiche un message de confirmation
+            showConfirmation();
+          } else {
+            // Erreur
+            throw new Error('Erreur lors de l\'envoi du message');
+          }
+        })
+        .catch(error => {
+          console.error('Erreur:', error);
+          alert('Une erreur s\'est produite lors de l\'envoi du message. Veuillez réessayer.');
+        });
+      });
+    
+      // Fonction pour valider le format de l'email
+      function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+    
+      // Fonction pour afficher un message de confirmation
+      function showConfirmation() {
+        // Créer un élément de message de confirmation
+        const confirmationMsg = document.createElement('div');
+        confirmationMsg.className = 'contact-confirmation';
+        confirmationMsg.style.cssText = `
+          background-color: #4ac9f5;
+          color: white;
+          padding: 15px;
+          border-radius: 5px;
+          margin-top: 15px;
+          text-align: center;
+          font-weight: bold;
+          animation: fadeIn 0.5s;
+        `;
+        confirmationMsg.textContent = 'Votre message a été envoyé avec succès!';
+    
+        // Ajouter l'animation au style
+        const styleAnimation = document.createElement('style');
+        styleAnimation.textContent = `
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+        `;
+        document.head.appendChild(styleAnimation);
+    
+        // Insérer le message après le bouton
+        contactButton.parentNode.appendChild(confirmationMsg);
+    
+        // Supprimer le message après 5 secondes
+        setTimeout(() => {
+          confirmationMsg.style.animation = 'fadeOut 0.5s forwards';
+          
+          // Ajouter animation de sortie
+          const styleAnimationOut = document.createElement('style');
+          styleAnimationOut.textContent = `
+            @keyframes fadeOut {
+              from { opacity: 1; transform: translateY(0); }
+              to { opacity: 0; transform: translateY(10px); }
+            }
+          `;
+          document.head.appendChild(styleAnimationOut);
+          
+          setTimeout(() => {
+            confirmationMsg.remove();
+          }, 500);
+        }, 5000);
+      }
+    });</script>
 </body>
 </html>

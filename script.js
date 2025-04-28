@@ -33,6 +33,8 @@ document.addEventListener("DOMContentLoaded", function() {
     portfolioSmallImage.addEventListener("click", function() {
       portfolioToggled = !portfolioToggled;
       if(portfolioToggled) {
+        h1Portfolio.style.color = "#2DDFF3";
+
         portfolioSection.classList.add("toggled");
         portfolioSmallImage.src = "assets/pictos/colored-pic/book-ouvert.png";
         portfolioLargeImage.style.filter = "none";
@@ -40,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
         portfolioSubtitle.style.borderRadius = "3px";
         h1Portfolio.style.color = "#2DDFF3";
       } else {
+        h1Portfolio.style.color = "";
         portfolioSection.classList.remove("toggled");
         portfolioSmallImage.src = "assets/pictos/black-pic/book-ferme.png";
         portfolioLargeImage.style.filter = "grayscale(100%)";

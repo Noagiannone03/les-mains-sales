@@ -125,7 +125,7 @@
   /* Navbar adaptation */
   .navbar {
   
-    padding: 0 15px;
+    padding: 0 25px;
   }
   .navbar .nav-menu {
     display: none;
@@ -636,10 +636,3 @@ transform: scale(1.1);
       margin-top: 10vh;
   }
   
-  .footer-pill-top {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      min-width: 600px;
-    }

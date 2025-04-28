@@ -22,6 +22,7 @@
     padding: 0;
   }
   body {
+    width: 100%;
     font-family: 'Ubuntu', sans-serif;
     overflow-x: hidden;
   }
