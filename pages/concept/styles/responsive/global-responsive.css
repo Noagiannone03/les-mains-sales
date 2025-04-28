@@ -1,0 +1,280 @@
+/* RÈGLES GÉNÉRALES RESPONSIVE */
+* {
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* MEDIA QUERY POUR TABLETTES ET MOBILES */
+  @media screen and (max-width: 992px) {
+    /* SECTION HEADER */
+    .header-section {
+      min-height: 30vh;
+      padding: 0 40px;
+    }
+    
+    .header-title {
+      font-size: 4em;
+    }
+  
+    
+  
+    /* SECTION CAROUSEL - ADAPTATION EN GRILLE DE 4 IMAGES CARRÉES */
+    .carousel-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 2px;
+    }
+  
+    .carousel-container img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      /* Supprimer le filtre grayscale en responsive */
+      filter: none !important;
+    }
+  
+    /* SECTION INTERSTITIELLE */
+    .interstitial-section {
+      padding: 30px 40px;
+    }
+    
+    .interstitial-container {
+      width: 85%;
+    }
+    
+    .interstitial-subtitle {
+      font-size: 1.6em;
+    }
+  
+    /* SECTION CUSTOM */
+    .custom-section {
+      padding: 30px 40px;
+    }
+    
+    .upper-part {
+      flex-direction: column;
+    }
+    
+    .text-column {
+      width: 100%;
+      padding: 15px 0;
+    }
+    
+    .image-column {
+      display: none !important; /* Cacher complètement la colonne d'image */
+    }
+    
+    /* Agrandir la partie inférieure pour prendre toute la place */
+    .lower-part {
+      width: 100%;
+      height: 40%;
+      margin-top: 20px;
+      height: auto;
+    }
+    
+    .lower-image {
+      filter: none !important; /* Supprimer le filtre grayscale en responsive */
+    }
+  
+    /* SECTION MANIFEST - CONVERSION EN SLIDER */
+    .manifest-section {
+      padding: 30px 40px;
+    }
+    
+    .card-container {
+      display: flex;
+      width: 100%;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .card {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      margin-right: 15px;
+    }
+    
+    .card img {
+      filter: none !important; /* Supprimer le filtre grayscale en responsive */
+    }
+    
+    /* Indicateur de pagination */
+    .slider-pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .slider-dot {
+      width: 30px;
+      height: 5px;
+      background-color: #ddd;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .slider-dot.active {
+      background-color: #83f52c;
+    }
+    
+    /* Cacher les boutons de navigation */
+    .slider-controls {
+      display: none !important;
+    }
+  }
+  
+  /* MEDIA QUERY POUR MOBILES */
+  @media screen and (max-width: 576px) {
+    /* SECTION HEADER - ADAPTATION MOBILE */
+    .header-section {
+      min-height: 25vh;
+      padding: 0 20px;
+    }
+    
+    .header-title {
+      font-size: 3em;
+    }
+    
+    .header-top {
+      gap: 15px;
+    }
+    
+    .header-icon {
+      max-height: 140px;
+    }
+  
+    /* SECTION CAROUSEL - VERSION MOBILE */
+    .carousel-container {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
+  
+    /* SECTION INTERSTITIELLE */
+    .interstitial-section {
+      padding: 20px;
+      margin-top: 20px;
+    }
+    
+    .interstitial-container {
+      width: 100%;
+    }
+    
+    .interstitial-subtitle {
+      font-size: 1.3em;
+    }
+    
+    .interstitial-left-img,
+    .interstitial-right-img {
+      width: 25px;
+    }
+  
+    /* SECTION CUSTOM */
+    .custom-section {
+      padding: 20px;
+    }
+    
+    .section-title {
+      font-size: 2em;
+    }
+    
+    .section-paragraph {
+      font-size: 1.0em;
+    }
+  
+    /* SECTION MANIFEST - VERSION MOBILE */
+    .manifest-section {
+      padding: 20px;
+    }
+    
+    .manifest-title {
+      font-size: 2em;
+      margin-left: 10px;
+    }
+    
+    .card-image {
+      height: 200px;
+    }
+    
+    .card-title {
+      font-size: 1.3em;
+    }
+    
+    .card-description {
+      font-size: 1em;
+    }
+
+
+    /* Augmentation de la hauteur de l'image dans la lower-part */
+.lower-part {
+    width: 100%;
+    margin-top: 20px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    border-radius: 20px;
+    /* Ajout d'une hauteur minimale */
+    min-height: 400px;
+  }
+  
+  .lower-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    overflow: hidden;
+    filter: grayscale(100%);
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  
+  /* Version responsive de la lower-part avec une hauteur adaptée */
+  @media screen and (max-width: 992px) {
+    .lower-part {
+      min-height: 350px;
+      height: 50vh; /* Utilisation d'une unité relative à la hauteur de la fenêtre */
+    }
+    
+    .lower-image {
+      filter: none !important;
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .lower-part {
+      min-height: 250px;
+      height: 40vh;
+    }
+  }
+  
+  /* Style pour l'icône du header avec gestion des états normal et actif */
+  .header-icon {
+    border-radius: 8px;
+    height: 80px;
+    width: auto;
+    transition: filter 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    object-fit: contain;
+  }
+  
+  .header-icon:hover {
+    animation: shake 0.5s;
+  }
+  
+  /* Style responsive pour l'icône du header */
+  @media screen and (max-width: 992px) {
+    .header-icon {
+      height: 60px;
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .header-icon {
+      height: 40px;
+    }
+  }
+  }
+  

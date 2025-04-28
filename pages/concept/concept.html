@@ -21,6 +21,8 @@
   <link rel="stylesheet" href="styles/styles/artistes.css" />
 
 
+  <!--link css responsive-->
+  <link rel="stylesheet" href="styles/responsive/global-responsive.css" />
 
 
 
@@ -29,15 +31,39 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="logo">
-      <a href="../../index.html"><img src="../../assets/logos/lesmainssales-noir.png" alt="Logo"></a>
+      <a href="../../index.html">
+        <img src="../../assets/logos/lesmainssales-noir.png" alt="Logo">
+      </a>
     </div>
-    <nav>
+    <nav class="nav-menu">
       <a href="../../index.html" class="nav-home">Home</a>
       <a href="../portfolio/portfolio.html" class="nav-portfolio">Portfolio</a>
       <a href="concept.html" class="nav-concept">Concept</a>
       <a href="../contact/contact.html" class="nav-contact">Contact</a>
     </nav>
+    <div id="navToggle" class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </header>
+
+  <!-- MOBILE OVERLAY -->
+  <div id="mobileOverlay" class="mobile-overlay">
+    <div class="overlay-menu">
+      <a href="../../index.html">Home</a>
+      <a href="../portfolio/portfolio.html">Portfolio</a>
+      <a href="concept.html">Concept</a>
+      <a href="../contact/contact.html">Contact</a>
+    </div>
+    <div class="overlay-footer">
+      <div class="social-text">Rejoignez-nous sur les réseaux sociaux</div>
+      <div class="social-icons">
+        <img src="assets/pictos/black-pic/picto-facebook.png" alt="Facebook">
+        <img src="assets/pictos/black-pic/picto-instagram.png" alt="Instagram">
+      </div>
+    </div>
+  </div>
 
   <!-- SECTION HEADER (75vh) -->
   <section class="header-section">
@@ -48,11 +74,12 @@
   </section>
 
  <!-- SECTION IMAGES (Trois images carrées en pleine largeur) -->
-<section class="carousel-section">
+ <section class="carousel-section">
   <div class="carousel-container">
     <img src="../../assets/images/Property 1=Rectangle 135.png" alt="Image 1">
     <img src="../../assets/images/Property 1=Rectangle 135.png" alt="Image 2">
     <img src="../../assets/images/Property 1=Rectangle 135.png" alt="Image 3">
+    
   </div>
 </section>
 
@@ -95,42 +122,42 @@
 
 
 
-  <section class="manifest-section">
-    <!-- En-tête avec le titre qui toggle le background -->
-    <div class="manifest-header">
-      <h2 class="manifest-title" id="manifestTitle">Manifeste</h2>
+ <!-- Modification de la section manifest pour adapter au slider -->
+<section class="manifest-section">
+  <div class="manifest-header">
+    <h2 class="manifest-title" id="manifestTitle">Manifeste</h2>
+  </div>
+  <div class="card-container">
+    <div class="card">
+      <div class="card-image">
+        <img src="../../assets/images/DSC00440.JPG" alt="Image 1">
+      </div>
+      <h3 class="card-title">Fusion art-ville</h3>
+      <p class="card-description">
+        Notre travail consiste à imbriquer des œuvres à la ville telles des greffes artistiques en créant des nouveaux espaces de dialogue, où l'espace public devient un lieu de rencontre entre artistes et passants. Dans le prolongement du street art, en remontant jusqu'aux traditions du muralisme Mexicain qui se déclarait comme un art populaire et monumental parce qu'il est propriété publique.
+      </p>
     </div>
-    <!-- Grille de cartes -->
-    <div class="card-container">
-      <div class="card">
-        <div class="card-image">
-          <img src="../../assets/images/DSC00440.JPG" alt="Image 1">
-        </div>
-        <h3 class="card-title">Fusion art-ville</h3>
-        <p class="card-description">
-          Notre travail consiste à imbriquer des œuvres à la ville telles des greffes artistiques en créant des nouveaux espaces de dialogue, où l’espace public devient un lieu de rencontre entre artistes et passants. Dans le prolongement du street art, en remontant jusqu’aux traditions du muralisme Mexicain qui se déclarait comme un art populaire et monumental parce qu'il est propriété publique.
-        </p>
+    <div class="card">
+      <div class="card-image">
+        <img src="../../assets/images/DSC00459.JPG" alt="Image 2">
       </div>
-      <div class="card">
-        <div class="card-image">
-          <img src="../../assets/images/DSC00459.JPG" alt="Image 2">
-        </div>
-        <h3 class="card-title">Réinvention urbaine</h3>
-        <p class="card-description">
-          Embellissement, revalorisation, attractivité….Des plus-values multiples pour des territoires à échelle variable. C’est une véritable réinterprétation de lieux jugés souvent austères et sous exploités, que nous souhaitons ré-adapter en espace utiles et agréables pour les habitants et visiteurs d’une ville. Traverser une œuvre en parcourant la ville, en utilisant des espaces urbains comme des nouveaux terrains de jeux, où le sens fusionne avec l’esthétique en y ajoutant parfois une couche de nouvelles technologies.
-        </p>
-      </div>
-      <div class="card">
-        <div class="card-image">
-          <img src="../../assets/images/DSC00464.JPG" alt="Image 3">
-        </div>
-        <h3 class="card-title">L'objectif</h3>
-        <p class="card-description">
-          Laisser une empreinte en intégrant l’intervention artistique comme un élément d’accompagnement du projet urbain et redéfinir l’utilisation d’un espace en y apportant une nouvelle dimension artistique et des installations interactives qui jouent avec le passant et son parcours. L’apport des nouvelles technologies par ce biais peut nous renseigner sur de nombreux nouveaux comportements et usages sur ce site nouvellement adapté..
-        </p>
-      </div>
+      <h3 class="card-title">Réinvention urbaine</h3>
+      <p class="card-description">
+        Embellissement, revalorisation, attractivité….Des plus-values multiples pour des territoires à échelle variable. C'est une véritable réinterprétation de lieux jugés souvent austères et sous exploités, que nous souhaitons ré-adapter en espace utiles et agréables pour les habitants et visiteurs d'une ville. Traverser une œuvre en parcourant la ville, en utilisant des espaces urbains comme des nouveaux terrains de jeux, où le sens fusionne avec l'esthétique en y ajoutant parfois une couche de nouvelles technologies.
+      </p>
     </div>
-  </section>
+    <div class="card">
+      <div class="card-image">
+        <img src="../../assets/images/DSC00464.JPG" alt="Image 3">
+      </div>
+      <h3 class="card-title">L'objectif</h3>
+      <p class="card-description">
+        Laisser une empreinte en intégrant l'intervention artistique comme un élément d'accompagnement du projet urbain et redéfinir l'utilisation d'un espace en y apportant une nouvelle dimension artistique et des installations interactives qui jouent avec le passant et son parcours. L'apport des nouvelles technologies par ce biais peut nous renseigner sur de nombreux nouveaux comportements et usages sur ce site nouvellement adapté.
+      </p>
+    </div>
+  </div>
+  <!-- Le JavaScript ajoutera automatiquement les éléments de pagination et de contrôle ici -->
+</section>
 
   <!-- SECTION FOOTER -->
   <section class="footer-section" id="footer">
@@ -238,5 +265,216 @@
       }
     });
   </script>
+
+  <script>// JavaScript pour gérer le slider des cartes dans la section Manifest
+   // JavaScript pour gérer le slider des cartes dans la section Manifest
+document.addEventListener('DOMContentLoaded', function() {
+  // Éléments DOM
+  const cardContainer = document.querySelector('.card-container');
+  const cards = document.querySelectorAll('.card');
+  
+  if (cardContainer && cards.length > 0) {
+    // Fonction pour vérifier si l'écran est en mode mobile/tablette
+    function isMobileOrTablet() {
+      return window.innerWidth <= 992;
+    }
+    
+    // Créer les points de pagination uniquement en mode responsive
+    if (isMobileOrTablet()) {
+      const paginationContainer = document.createElement('div');
+      paginationContainer.className = 'slider-pagination';
+      
+      // Ajouter après le container des cartes
+      cardContainer.parentNode.insertBefore(paginationContainer, cardContainer.nextSibling);
+      
+      // Créer les points de pagination
+      cards.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'slider-dot' + (index === 0 ? ' active' : '');
+        dot.dataset.index = index;
+        
+        dot.addEventListener('click', () => {
+          scrollToCard(index);
+          updateActiveDot(index);
+        });
+        
+        paginationContainer.appendChild(dot);
+      });
+      
+      // Fonction pour faire défiler jusqu'à une carte spécifique
+      function scrollToCard(index) {
+        const card = cards[index];
+        cardContainer.scrollTo({
+          left: card.offsetLeft - cardContainer.offsetLeft,
+          behavior: 'smooth'
+        });
+      }
+      
+      // Mettre à jour le point actif
+      function updateActiveDot(index) {
+        const dots = document.querySelectorAll('.slider-dot');
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+      }
+      
+      // Détecter le défilement du conteneur de cartes
+      cardContainer.addEventListener('scroll', () => {
+        const scrollPosition = cardContainer.scrollLeft;
+        
+        cards.forEach((card, index) => {
+          const cardOffset = card.offsetLeft - cardContainer.offsetLeft;
+          const cardWidth = card.offsetWidth;
+          
+          // Si la carte est visible à plus de 50% dans la vue
+          if (scrollPosition >= cardOffset - cardWidth / 2 && 
+              scrollPosition < cardOffset + cardWidth / 2) {
+            updateActiveDot(index);
+          }
+        });
+      });
+    }
+  }
+  
+  // Ajout d'une 4ème image au carousel pour former un carré SEULEMENT en mode responsive
+  const carouselContainer = document.querySelector('.carousel-container');
+  if (carouselContainer && window.innerWidth <= 992) {
+    // Vérifier si la 4ème image existe déjà
+    const images = carouselContainer.querySelectorAll('img');
+    if (images.length < 4) {
+      const newImage = document.createElement('img');
+      newImage.src = "../../assets/images/Property 1=Rectangle 135.png";
+      newImage.alt = "Image 4";
+      newImage.classList.add('mobile-only-image');
+      carouselContainer.appendChild(newImage);
+    }
+  }
+  
+  // Gestion du redimensionnement de la fenêtre
+  window.addEventListener('resize', function() {
+    // Gérer l'ajout/suppression de l'image en fonction de la taille de l'écran
+    const mobileOnlyImage = document.querySelector('.mobile-only-image');
+    
+    if (window.innerWidth <= 992) {
+      // En mode mobile/tablette, ajouter l'image si elle n'existe pas
+      if (!mobileOnlyImage && carouselContainer) {
+        const images = carouselContainer.querySelectorAll('img');
+        if (images.length < 4) {
+          const newImage = document.createElement('img');
+          newImage.src = "../../assets/images/Property 1=Rectangle 135.png";
+          newImage.alt = "Image 4";
+          newImage.classList.add('mobile-only-image');
+          carouselContainer.appendChild(newImage);
+        }
+      }
+    } else {
+      // En mode desktop, supprimer l'image si elle existe
+      if (mobileOnlyImage) {
+        mobileOnlyImage.remove();
+      }
+    }
+  });
+});</script>
+
+<script>// responsive javascript
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle  = document.getElementById('navToggle');
+    const overlay = document.getElementById('mobileOverlay');
+    const body    = document.body;
+  
+    toggle.addEventListener('click', () => {
+      const isOpen = overlay.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+  
+      // Bloque le scroll du body quand overlay ouvert
+      if (isOpen) {
+        body.style.overflow = 'hidden';
+      } else {
+        body.style.overflow = '';
+      }
+    });
+  });
+  </script>
+
+  <script>document.addEventListener('DOMContentLoaded', function() {
+    const headerIcon = document.getElementById('headerIcon');
+    const leftIcon = document.getElementById('leftIcon');
+    const rightIcon = document.getElementById('rightIcon');
+    const h1Portfolio = document.querySelector(".header-title");
+    let highlighted = document.querySelectorAll('.toggle-highlight');
+    const sectionTitle = document.getElementById('sectionTitle');
+    const manifestTitle = document.getElementById('manifestTitle');
+    let globalToggled = false;
+    
+    // Définition des tailles de l'icône selon l'état et la taille d'écran
+    function updateIconSize() {
+      const isMobile = window.innerWidth <= 576;
+      const isTablet = window.innerWidth <= 992 && window.innerWidth > 576;
+      
+      // Ajuster la hauteur selon l'état (normal ou actif) et la taille d'écran
+      if (globalToggled) {
+        // État actif - un peu plus grand
+        if (isMobile) {
+          headerIcon.style.height = '130px';
+        } else if (isTablet) {
+          headerIcon.style.height = '65px';
+        } else {
+          headerIcon.style.height = '85px';
+        }
+      } else {
+        // État normal
+        if (isMobile) {
+          headerIcon.style.height = '50px';
+        } else if (isTablet) {
+          headerIcon.style.height = '60px';
+        } else {
+          headerIcon.style.height = '80px';
+        }
+      }
+    }
+    
+    // Gestion du clic sur l'icône
+    headerIcon.addEventListener('click', function() {
+      globalToggled = !globalToggled;
+      
+      if(globalToggled) {
+        highlighted.forEach(highlighted => {
+          highlighted.classList.toggle("toggled");
+        });
+        
+        h1Portfolio.style.color = "#83f52c";
+        headerIcon.src = "../../assets/light-icone/lumiere+file.png";
+        
+        leftIcon.src = "../../assets/quote-icone/colored-quote-gauche.png";
+        rightIcon.src = "../../assets/quote-icone/colored-quote-droit.png";
+        sectionTitle.classList.add("toggled");
+        manifestTitle.classList.add('toggled');
+      } else {
+        h1Portfolio.style.color = "";
+        highlighted.forEach(highlighted => {
+          highlighted.classList.toggle("toggled");
+        });    
+        
+        headerIcon.src = "../../assets/light-icone/ampoule-eteinte.png";
+        
+        leftIcon.src = "../../assets/quote-icone/black-quote-gauche.png";
+        rightIcon.src = "../../assets/quote-icone/black-quote-droit.png";
+        sectionTitle.classList.remove("toggled");
+        manifestTitle.classList.remove('toggled');
+        document.querySelector('.custom-section').classList.remove('toggled');
+      }
+      
+      // Mettre à jour la taille de l'icône après le changement d'état
+      updateIconSize();
+    });
+    
+    // Initialiser la taille de l'icône au chargement
+    updateIconSize();
+    
+    // Mettre à jour la taille lors du redimensionnement de la fenêtre
+    window.addEventListener('resize', updateIconSize);
+  });</script>
 </body>
 </html>

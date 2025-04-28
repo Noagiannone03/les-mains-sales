@@ -10,401 +10,15 @@
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <link rel="stylesheet" href="../../../styles/styles/footer.css">
 
+
+  <link rel="stylesheet" href="styles/styles/style.css">
+  
+  <link rel="stylesheet" href="styles/responsive/responsive.css">
+
+
   <!-- POLICES & RESET -->
   <style>
-    @font-face {
-      font-family: 'Ubuntu';
-      src: url('../../../fonts/ubuntu-regular.woff2') format('woff2'),
-           url('../../../fonts/ubuntu-regular.woff') format('woff');
-    }
-    @font-face {
-      font-family: 'sharpie-extrabold';
-      src: url('../../../assets/fonts/sharpie/Sharpie-Extrabold.otf') format('truetype');
-    }
-    @font-face {
-      font-family: 'ubuntu-medium';
-      src: url('../../../assets/fonts/ubuntu/Ubuntu-M.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'ubuntu-bold';
-      src: url('../../../assets/fonts/ubuntu/Ubuntu-B.ttf') format('truetype');
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Ubuntu',sans-serif; overflow-x:hidden; margin-top:80px; }
-
-    /* NAVBAR */
-    .navbar {
-      position:fixed; top:0; left:0; right:0; z-index:1000;
-      height:80px; background:#fff;
-      display:flex; align-items:center; justify-content:space-between;
-      padding:0 30px; border-bottom:2px solid #383838;
-    }
-    .navbar .logo img { height:55px; }
-    .navbar nav { display:flex; gap:30px; }
-    .navbar nav a {
-      font-family:'Ubuntu',sans-serif; color:#000; font-weight:bold;
-      text-decoration:none; text-transform:uppercase; font-size:1.2em;
-      position:relative; padding:5px 0;
-    }
-    .navbar nav a::before {
-      content:""; position:absolute; top:0; left:0; width:100%; height:100%;
-      background-size:contain; background-position:center; background-repeat:no-repeat;
-      opacity:0; transition:opacity .3s; z-index:-1;
-    }
-    .navbar nav a:hover::before { opacity:1; }
-    .nav-home::before      { background-image:url("../../../assets/navbar-title-background/navbar-home.png"); }
-    .nav-portfolio::before { background-image:url("../../../assets/navbar-title-background/navbar-portfolio.png"); }
-    .nav-concept::before   { background-image:url("../../../assets/navbar-title-background/navbar-concept.png"); }
-    .nav-contact::before   { background-image:url("../../../assets/navbar-title-background/navbar-contact.png"); }
-
-    /* ===== SLIDER ===== */
-.slider-section {
-  position: relative;
-  height: 70vh;
-  overflow: hidden;
-}
-
-.slider-container {
-  display: flex;
-  transition: transform 0.6s ease;
-  will-change: transform;
-  user-select: none;         /* empêche la sélection texte */
-  -webkit-user-drag: none;   /* empêche le drag natif */
-  touch-action: pan-y;       /* scroll vertical OK, horizontal capté */
-  cursor: grab;
-}
-.slider-container.grabbing {
-  cursor: grabbing;
-}
-
-.slide {
-  flex: 0 0 100%;
-}
-
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(100%);
-  transition: filter .3s ease;
-  border-radius: inherit;
-}
-.slide img:hover {
-  filter: grayscale(0);
-}
-
-.slider-indicators {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-}
-.indicator {
-  width: 40px;
-  height: 3px;
-  background: #000;
-  opacity: 0.4;
-  border-radius: 10px;
-  transition: opacity .3s, background .3s;
-  cursor: pointer;
-}
-.indicator.active {
-  opacity: 1;
-  background: #ff67e3;
-}
-
-    /* INTERSTITIEL */
-    .interstitial-section {
-      padding:50px 80px; background:#fff;
-    }
-    .interstitial-section h2 {
-      font-family:'sharpie-extrabold',sans-serif; font-size:3em;
-      text-align:center; margin-bottom:15vh; color:#ff67e3; text-transform:uppercase;
-    }
-    .interstitial-content { display:flex; gap:40px; }
-    .interstitial-left {
-      flex:0 0 30%; display:flex; flex-direction:column; gap:10px;
-    }
-    .interstitial-left .item {
-      display:flex; align-items:center; gap:10px; font-size:1.25em;
-    }
-    .interstitial-left .item img {
-      width:35px; height:35px; object-fit:contain;
-    }
-    .interstitial-right {
-      flex:1; font-family:'ubuntu-medium',sans-serif;
-      font-size:1.5em; text-align:justify;
-    }
-
-    /* GALLERY – Masonry CSS Columns */
-    .gallery-header {
-      display:flex; align-items:center; gap:30px;
-      padding:50px 80px 20px;
-    }
-    .gallery-title {
-      font-family:'ubuntu-medium',sans-serif; 
-      font-size:3em;
-      position:relative; 
-      padding-bottom:10px;
-      background-image: url('../../../assets/background-paint-title/coupoeil.png') center/cover no-repeat;
-    }
-    .gallery-icon {
-      width:50px; ; transition:filter .3s;
-    }
-    .gallery-icon:hover {
-      content: url('../../../assets/oeil-picto/oeil-ouvert.png');
-    }
-
-
-
-
-     /* === GALLERY – CSS COLUMNS amélioré === */
-     .gallery-section {
-      padding: 50px 80px;  /* padding maître */
-      background: #fff;
-    }
-    .gallery-header {
-  display: flex;               /* on active le flex pour l’alignement */
-  align-items: center;         /* aligne verticalement */
-  justify-content: flex-start; /* colle tout à gauche */
-  gap: 30px;  
-  padding-left: 0px;
-  padding-bottom: 0%;                 
-  margin-bottom: 20px;
-}
-
-.gallery-title {
-  font-family: 'sharpie-extrabold', sans-serif;
-  font-size: 3em;
-  width: fit-content;
-  height: fit-content;
-  /* underline en background */
-  background-image: url('../../../assets/background-paint-title/coupoeil.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  padding-right: 3vh;
-}
-
-.gallery-icon {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-
-  /* icône fermée par défaut */
-  background-image: url('../../../assets/oeil-picto/oeil-ferme.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.gallery-icon:hover {
-  /* icône ouverte au survol */
-  background-image: url('../../../assets/pictos/colored-pic/gallery-icon-active.png');
-}
-
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: 200px; /* hauteur de base (ajuster selon tes images) */
-      gap: 16px;
-    }
-
-    /* Ligne 1 */
-    .gallery-grid .gallery-item:nth-child(1) {
-      grid-column: 1 / 3;
-      grid-row:    1 / 3;  /* Grand carré à gauche */
-    }
-    .gallery-grid .gallery-item:nth-child(2) {
-      grid-column: 3 / 4;
-      grid-row:    1 / 2;  /* Petit carré 1 */
-    }
-    .gallery-grid .gallery-item:nth-child(3) {
-      grid-column: 4 / 5;
-      grid-row:    1 / 2;  /* Petit carré 2 */
-    }
-    .gallery-grid .gallery-item:nth-child(4) {
-      grid-column: 3 / 5;
-      grid-row:    2 / 3;  /* Rectangle sous les petits carrés */
-    }
-
-    /* Ligne 2 */
-    .gallery-grid .gallery-item:nth-child(5) {
-      grid-column: 1 / 2;
-      grid-row:    3 / 4;  /* Petit carré 1 */
-    }
-    .gallery-grid .gallery-item:nth-child(6) {
-      grid-column: 2 / 3;
-      grid-row:    3 / 4;  /* Petit carré 2 */
-    }
-    .gallery-grid .gallery-item:nth-child(7) {
-      grid-column: 1 / 3;
-      grid-row:    4 / 5;  /* Rectangle sous ces deux-là */
-    }
-    .gallery-grid .gallery-item:nth-child(8) {
-      grid-column: 3 / 5;
-      grid-row:    3 / 4;  /* Grand rectangle en haut à droite */
-    }
-    .gallery-grid .gallery-item:nth-child(9) {
-      grid-column: 3 / 4;
-      grid-row:    4 / 5;  /* Petit carré 1 en bas à droite */
-    }
-    .gallery-grid .gallery-item:nth-child(10) {
-      grid-column: 4 / 5;
-      grid-row:    4 / 5;  /* Petit carré 2 en bas à droite */
-    }
-
-    .gallery-item img {
-      width:100%; height:100%; object-fit:cover;
-      border-radius:10px; display:block;
-      filter:grayscale(100%); transition:filter .3s ease;
-    }
-    .gallery-item:hover img {
-      filter:none;
-    }
-
-
-
-    /* === SECTION STATS === */
-.stats-section {
-  height: 100vh;
-  padding: 50px 80px;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-}
-
-.stats-title {
-  font-family: 'sharpie-extrabold', sans-serif;
-  font-size: 3em;
-  margin-bottom: 30px;
-  padding-bottom: 10px;
-  background-image: url('../../../assets/background-paint-title/chiffres-portfolio.png');
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: contain;
-  text-align: center;
-  width: 100%;
-}
-
-.stats-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 20px;
-  width: 100%;
-  height: calc(100% - 100px); /* laisse de la place pour le titre */
-}
-
-.card {
-  border: 2px solid #cccccc39;
-  background-color: rgba(255, 192, 203, 0.037);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 15px;
-  transition: border 0.3s ease;
-}
-
-.card:hover {
-  border: 2px solid #ff67e3;
-}
-
-.card .number {
-  font-size: 4em;
-  color: #ff67e3;
-  font-family: 'ubuntu-bold', sans-serif;
-  margin-bottom: 10px;
-}
-
-.card .label {
-  font-size: 1.6em;
-  color: #171616;
-  text-align: center;
-  margin-left: 1vh;
-  margin-right: 1vh;
-  font-family: 'Ubuntu', sans-serif;
-
-  padding: 0 10px;
-}
-
-
-/* === SECTION “ON PARLE DE NOUS” === */
-.mentions-section {
-  padding: 50px 80px;
-  background: #fff;
-  text-align: center;
-}
-
-.mentions-title {
-  font-family: 'sharpie-extrabold', sans-serif;
-  font-size: 3em;
-  margin-bottom: 30px;
-  padding-bottom: 10px;
-  background-image: url('../../../assets/background-paint-title/parledenous-portfolio.png');
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: contain;
-  text-align: center;
-  width: 100%;
-}
-
-.mentions-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto 30px;
-  gap: 20px;
-}
-
-.mention-img {
-  width: calc((100% - 40px) / 3);
-  height: auto;
-  object-fit: cover;
-  border-radius: 4px;
-  transition: transform .3s;
-}
-
-.mention-img:hover {
-  transform: scale(1.02);
-}
-
-.mentions-button-wrapper {
-  text-align: center;
-}
-
-.mentions-toggle {
-  width: 100px;
-  height: auto;
-  cursor: pointer;
-  transition: transform .3s;
-}
-
-.mentions-toggle:hover {
-  transform: scale(1.1);
-}
-
-
-#footer{
-        
-        position: relative;
-     
-        height: 27vh;
-        margin-top: 10vh;
-    }
-    
-    .footer-pill-top {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-        min-width: 600px;
-      }
+  
 
   </style>
 
@@ -743,5 +357,217 @@
   });
   </script>
   
+
+  <script>// Mobile Menu Toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add mobile menu HTML to the page
+      const navbar = document.querySelector('.navbar');
+      
+      // Create mobile menu button
+      const mobileMenuBtn = document.createElement('div');
+      mobileMenuBtn.className = 'mobile-menu-btn';
+      mobileMenuBtn.innerHTML = '<span></span><span></span><span></span>';
+      
+      // Create mobile menu
+      const mobileMenu = document.createElement('div');
+      mobileMenu.className = 'mobile-menu';
+      
+      // Clone desktop navigation links for mobile menu
+      const navLinks = document.querySelector('.navbar nav').cloneNode(true);
+      mobileMenu.appendChild(navLinks);
+      
+      // Append new elements to navbar
+      navbar.appendChild(mobileMenuBtn);
+      document.body.appendChild(mobileMenu);
+      
+      // Toggle mobile menu
+      mobileMenuBtn.addEventListener('click', function() {
+        mobileMenu.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+        
+        // Animate hamburger to X
+        const spans = this.querySelectorAll('span');
+        if (mobileMenu.classList.contains('active')) {
+          spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+          spans[1].style.opacity = '0';
+          spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+        } else {
+          spans[0].style.transform = 'none';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'none';
+        }
+      });
+      
+      // Close menu when clicking a link
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.remove('active');
+          document.body.classList.remove('no-scroll');
+          
+          // Reset hamburger
+          const spans = mobileMenuBtn.querySelectorAll('span');
+          spans[0].style.transform = 'none';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'none';
+        });
+      });
+      
+      // Mentions section slider
+      const mentionsContainer = document.querySelector('.mentions-container');
+      if (mentionsContainer) {
+        const images = mentionsContainer.querySelectorAll('.mention-img');
+        
+        // Create navigation dots
+        const navigation = document.createElement('div');
+        navigation.className = 'mentions-navigation';
+        
+        // Initially, make the first image active
+        if (images.length > 0) {
+          images[0].classList.add('active');
+        }
+        
+        // Create a dot for each image and add to navigation
+        images.forEach((img, index) => {
+          const dot = document.createElement('div');
+          dot.className = 'mentions-dot' + (index === 0 ? ' active' : '');
+          
+          dot.addEventListener('click', () => {
+            // Remove active class from all images and dots
+            images.forEach(image => image.classList.remove('active'));
+            navigation.querySelectorAll('.mentions-dot').forEach(d => d.classList.remove('active'));
+            
+            // Make current image and dot active
+            images[index].classList.add('active');
+            dot.classList.add('active');
+          });
+          
+          navigation.appendChild(dot);
+        });
+        
+        // Insert navigation before mentions-toggle
+        const toggleWrapper = document.querySelector('.mentions-button-wrapper');
+        mentionsContainer.parentNode.insertBefore(navigation, toggleWrapper);
+        
+        // Add touch swiping for mobile
+        let startX, moveX;
+        let currentIndex = 0;
+        
+        mentionsContainer.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].clientX;
+        }, { passive: true });
+        
+        mentionsContainer.addEventListener('touchmove', (e) => {
+          moveX = e.touches[0].clientX;
+        }, { passive: true });
+        
+        mentionsContainer.addEventListener('touchend', () => {
+          if (startX - moveX > 50) { // Swipe left
+            currentIndex = (currentIndex + 1) % images.length;
+          } else if (moveX - startX > 50) { // Swipe right
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+          }
+          
+          // Update active image and dot
+          images.forEach(image => image.classList.remove('active'));
+          navigation.querySelectorAll('.mentions-dot').forEach(d => d.classList.remove('active'));
+          
+          images[currentIndex].classList.add('active');
+          navigation.querySelectorAll('.mentions-dot')[currentIndex].classList.add('active');
+        });
+      }
+      
+      // Modify slider for better touch functionality on mobile
+      const sliderContainer = document.getElementById('sliderContainer');
+      if (sliderContainer) {
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let currentIndex = 0;
+        
+        // Update indicators function
+        function updateIndicators() {
+          const indicators = document.querySelectorAll('.indicator');
+          indicators.forEach((indicator, index) => {
+            if (index === currentIndex) {
+              indicator.classList.add('active');
+            } else {
+              indicator.classList.remove('active');
+            }
+          });
+        }
+        
+        // Initialize - first indicator active
+        updateIndicators();
+        
+        // Touch events
+        sliderContainer.addEventListener('touchstart', touchStart, { passive: true });
+        sliderContainer.addEventListener('touchend', touchEnd);
+        sliderContainer.addEventListener('touchmove', touchMove, { passive: true });
+        
+        // Mouse events
+        sliderContainer.addEventListener('mousedown', touchStart);
+        sliderContainer.addEventListener('mouseup', touchEnd);
+        sliderContainer.addEventListener('mouseleave', touchEnd);
+        sliderContainer.addEventListener('mousemove', touchMove);
+        
+        // Click indicators to jump to slide
+        document.querySelectorAll('.indicator').forEach((indicator, index) => {
+          indicator.addEventListener('click', () => {
+            currentIndex = index;
+            setPositionByIndex();
+            updateIndicators();
+          });
+        });
+        
+        function touchStart(event) {
+          startPos = getPositionX(event);
+          isDragging = true;
+          sliderContainer.classList.add('grabbing');
+        }
+        
+        function touchEnd() {
+          isDragging = false;
+          sliderContainer.classList.remove('grabbing');
+          
+          const movedBy = currentTranslate - prevTranslate;
+          
+          // Threshold for considering it a swipe
+          if (movedBy < -100 && currentIndex < sliderContainer.children.length - 1) {
+            currentIndex += 1;
+          }
+          
+          if (movedBy > 100 && currentIndex > 0) {
+            currentIndex -= 1;
+          }
+          
+          setPositionByIndex();
+          updateIndicators();
+        }
+        
+        function touchMove(event) {
+          if (isDragging) {
+            const currentPosition = getPositionX(event);
+            currentTranslate = prevTranslate + currentPosition - startPos;
+          }
+        }
+        
+        function getPositionX(event) {
+          return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        }
+        
+        function setPositionByIndex() {
+          const width = sliderContainer.offsetWidth;
+          currentTranslate = currentIndex * -width;
+          prevTranslate = currentTranslate;
+          sliderContainer.style.transform = `translateX(${currentTranslate}px)`;
+        }
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+          setPositionByIndex();
+        });
+      }
+    });</script>
 </body>
 </html>
